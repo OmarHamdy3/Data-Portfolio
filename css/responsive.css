@@ -1,0 +1,497 @@
+/* ============================================================================
+   OMAR HAMDY — PORTFOLIO
+   responsive.css
+   ============================================================================
+   Global responsive overrides — media queries that affect layout-wide
+   behavior and don't belong to any single section.
+
+   Each component's own responsive rules live inside its own stylesheet
+   (hero.css, projects.css, etc.). This file handles:
+
+     • Root variable overrides at breakpoints
+     • Body / .wrap global spacing
+     • Typography scale adjustments
+     • Section padding rhythm
+     • Utility class visibility helpers
+     • Print styles
+     • Very small screens fallbacks
+
+   TABLE OF CONTENTS
+   ----------------------------------------------------------------------------
+   01. Global Breakpoint Variables (Reminder)
+   02. Root Variable Overrides
+   03. Container (.wrap) Adjustments
+   04. Section Padding Rhythm
+   05. Global Typography Scale
+   06. Utility Visibility Helpers
+   07. Touch Device Optimizations
+   08. Landscape Phone Optimizations
+   09. Print Styles
+   10. Very Small Screens (≤360px)
+   11. Ultra-Wide Screens (≥1600px)
+   ========================================================================= */
+
+
+/* ============================================================================
+   01. GLOBAL BREAKPOINT VARIABLES (REMINDER)
+   ----------------------------------------------------------------------------
+   Breakpoints used across this project:
+     • 1600px  — ultra-wide
+     • 1200px  — large desktop
+     • 1100px  — desktop → tablet
+     • 1050px  — tablet adjustments
+     • 900px   — desktop header → mobile header
+     • 800px   — tablet portrait
+     • 768px   — common tablet breakpoint
+     • 720px   — detail page mobile
+     • 700px   — small tablet
+     • 600px   — mobile
+     • 560px   — small mobile
+     • 480px   — phone
+     • 430px   — small phone
+     • 400px   — tiny phone
+     • 380px   — very tiny phone
+     • 360px   — minimum supported width
+
+   NOTE: CSS custom properties cannot be used inside `@media` queries
+   (as of CSS Media Queries Level 4), so breakpoint values are hardcoded.
+   ========================================================================= */
+
+
+/* ============================================================================
+   02. ROOT VARIABLE OVERRIDES
+   ----------------------------------------------------------------------------
+   Adjust global design tokens at each breakpoint for consistent rhythm.
+   ========================================================================= */
+
+/* --- Large desktop (≤1200px) --- */
+@media (max-width: 1200px) {
+    :root {
+      --wrap-max-width: 1100px;
+      --wrap-padding: 22px;
+    }
+  }
+  
+  /* --- Tablet (≤1024px) --- */
+  @media (max-width: 1024px) {
+    :root {
+      --wrap-max-width: 100%;
+      --wrap-padding: 20px;
+      --section-padding-y: 90px;
+    }
+  }
+  
+  /* --- Tablet portrait (≤768px) --- */
+  @media (max-width: 768px) {
+    :root {
+      --wrap-padding: 18px;
+      --section-padding-y: 80px;
+    }
+  }
+  
+  /* --- Mobile (≤600px) --- */
+  @media (max-width: 600px) {
+    :root {
+      --wrap-padding: 16px;
+      --section-padding-y: 65px;
+    }
+  }
+  
+  /* --- Small mobile (≤480px) --- */
+  @media (max-width: 480px) {
+    :root {
+      --wrap-padding: 14px;
+      --section-padding-y: 60px;
+    }
+  }
+  
+  /* --- Very small (≤380px) --- */
+  @media (max-width: 380px) {
+    :root {
+      --wrap-padding: 12px;
+      --section-padding-y: 50px;
+    }
+  }
+  
+  
+  /* ============================================================================
+     03. CONTAINER (.wrap) ADJUSTMENTS
+     ----------------------------------------------------------------------------
+     Ensure the global container never overflows on smaller screens.
+     ========================================================================= */
+  
+  @media (max-width: 1200px) {
+    .wrap {
+      padding: 0 var(--wrap-padding, 22px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .wrap {
+      padding: 0 var(--wrap-padding, 18px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .wrap {
+      padding: 0 var(--wrap-padding, 14px);
+    }
+  }
+  
+  
+  /* ============================================================================
+     04. SECTION PADDING RHYTHM
+     ----------------------------------------------------------------------------
+     Every plain <section> uses --section-padding-y from :root.
+     This section ensures consistent fallback behavior.
+     ========================================================================= */
+  
+  @media (max-width: 1024px) {
+    section {
+      padding: var(--section-padding-y, 90px) 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    section {
+      padding: var(--section-padding-y, 80px) 0;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    section {
+      padding: var(--section-padding-y, 65px) 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    section {
+      padding: var(--section-padding-y, 60px) 0;
+    }
+  }
+  
+  @media (max-width: 380px) {
+    section {
+      padding: var(--section-padding-y, 50px) 0;
+    }
+  }
+  
+  
+  /* ============================================================================
+     05. GLOBAL TYPOGRAPHY SCALE
+     ----------------------------------------------------------------------------
+     Fluid typography for base headings and body copy outside of section heads.
+     Sections handle their own h2 sizes; this is a safety net.
+     ========================================================================= */
+  
+  @media (max-width: 1024px) {
+    body {
+      font-size: 15px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      font-size: 14.5px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    body {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  }
+  
+  /* Prevent long words from breaking layouts */
+  @media (max-width: 480px) {
+    h1, h2, h3, h4, h5, h6,
+    p, li, a, span, strong {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+  }
+  
+  
+  /* ============================================================================
+     06. UTILITY VISIBILITY HELPERS
+     ----------------------------------------------------------------------------
+     Optional classes you can add to any element to control visibility
+     at specific breakpoints.
+  
+     Usage in HTML:
+       <div class="hide-mobile">Shown on tablet/desktop only</div>
+       <div class="hide-tablet">Shown on desktop only</div>
+       <div class="hide-desktop">Shown on mobile/tablet only</div>
+     ========================================================================= */
+  
+  /* --- Hide on mobile only (≤600px) --- */
+  @media (max-width: 600px) {
+    .hide-mobile {
+      display: none !important;
+    }
+  }
+  
+  /* --- Hide on tablet & below (≤1024px) --- */
+  @media (max-width: 1024px) {
+    .hide-tablet {
+      display: none !important;
+    }
+  }
+  
+  /* --- Hide on desktop only (≥1025px) --- */
+  @media (min-width: 1025px) {
+    .hide-desktop {
+      display: none !important;
+    }
+  }
+  
+  /* --- Show only on mobile (≤600px) --- */
+  @media (min-width: 601px) {
+    .show-mobile-only {
+      display: none !important;
+    }
+  }
+  
+  /* --- Show only on desktop (≥1025px) --- */
+  @media (max-width: 1024px) {
+    .show-desktop-only {
+      display: none !important;
+    }
+  }
+  
+  
+  /* ============================================================================
+     07. TOUCH DEVICE OPTIMIZATIONS
+     ----------------------------------------------------------------------------
+     Larger tap targets and disabled hover effects on touch devices.
+     ========================================================================= */
+  
+  @media (hover: none) and (pointer: coarse) {
+    /* Minimum 44px tap targets for all interactive elements */
+    button,
+    a,
+    [role="button"],
+    input[type="submit"],
+    input[type="button"] {
+      min-height: 44px;
+    }
+  
+    /* Disable hover transforms that feel weird on touch */
+    .project-card:hover,
+    .specialty-card:hover,
+    .skill-group:hover,
+    .experience-card:hover,
+    .rail-card:hover,
+    .contact-channels:hover,
+    .contact-form-wrapper:hover,
+    .dashboard-card:hover,
+    .deliv-card:hover {
+      transform: none;
+    }
+  
+    /* Always show hover-hidden elements on touch (project-open, channel-arrow, etc.) */
+    .project-open,
+    .channel-arrow,
+    .specialty-arrow {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+  
+  
+  /* ============================================================================
+     08. LANDSCAPE PHONE OPTIMIZATIONS
+     ----------------------------------------------------------------------------
+     Fix for short landscape phones where sticky elements and heroes can
+     cause scroll issues.
+     ========================================================================= */
+  
+  @media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+      min-height: auto;
+      padding: 60px 0 50px;
+    }
+  
+    .hero-metrics {
+      margin-top: 30px;
+    }
+  
+    .hero-scroll {
+      display: none;
+    }
+  
+    .loader .chart-wrapper {
+      margin-top: 20px;
+    }
+  
+    .loader .chart {
+      height: 100px;
+    }
+  }
+  
+  
+  /* ============================================================================
+     09. PRINT STYLES
+     ----------------------------------------------------------------------------
+     Clean printing: hide interactive UI, keep content readable on white.
+     ========================================================================= */
+  
+  @media print {
+    /* Reset colors and background */
+    *,
+    *::before,
+    *::after {
+      background: transparent !important;
+      color: #000 !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+  
+    /* Remove decorative elements */
+    .loader,
+    .sidebar,
+    .sidebar-overlay,
+    .mobile-header,
+    .nav-toggle,
+    .hero-grid,
+    .hero-glow,
+    .hero-scroll,
+    .hero-ctas,
+    .hero-social,
+    .footer-glow,
+    .contact-ambient,
+    .ambient-ring,
+    .ecosystem-ambient,
+    .philosophy-grid,
+    .philosophy-glow,
+    .data-principles-bg,
+    .projects-section::before,
+    .projects-section::after,
+    .fullscreen-modal,
+    .form-toast,
+    .contact-toast,
+    .project-open,
+    .dashboard-fullscreen-btn {
+      display: none !important;
+    }
+  
+    /* Simplify layout */
+    body {
+      font-size: 12pt;
+      line-height: 1.5;
+      color: #000;
+    }
+  
+    .wrap {
+      max-width: 100%;
+      padding: 0;
+    }
+  
+    /* Adjust headers */
+    h1, h2, h3, h4, h5, h6 {
+      page-break-after: avoid;
+      color: #000 !important;
+    }
+  
+    h1 { font-size: 24pt; }
+    h2 { font-size: 20pt; }
+    h3 { font-size: 16pt; }
+  
+    /* Links: show URL after text */
+    a[href^="http"]:not([href*="omarhamdy"]):after {
+      content: " (" attr(href) ")";
+      font-size: 10pt;
+      color: #666;
+    }
+  
+    /* Prevent awkward page breaks */
+    section {
+      page-break-inside: avoid;
+      padding: 20pt 0;
+    }
+  
+    .project-card,
+    .experience-card,
+    .specialty-card,
+    .skill-group,
+    .cert-featured,
+    .learning-card,
+    .achievement-card-mini {
+      page-break-inside: avoid;
+      border: 1px solid #ccc !important;
+    }
+  }
+  
+  
+  /* ============================================================================
+     10. VERY SMALL SCREENS (≤360px)
+     ----------------------------------------------------------------------------
+     Minimum supported width fallback.
+     ========================================================================= */
+  
+  @media (max-width: 360px) {
+    html {
+      font-size: 14px;
+    }
+  
+    .wrap {
+      padding: 0 10px;
+    }
+  
+    /* Guarantee no horizontal overflow */
+    body {
+      overflow-x: hidden;
+    }
+  
+    /* Force stacking of all grids */
+    .hero-metrics,
+    .about-facts,
+    .specialty-grid,
+    .skills-grid,
+    .project-grid,
+    .cert-grid,
+    .achievements-grid,
+    .contact-grid,
+    .footer-main {
+      grid-template-columns: 1fr !important;
+    }
+  
+    /* Smaller typography floor */
+    h1 { font-size: 26px !important; }
+    h2 { font-size: 22px !important; }
+    h3 { font-size: 18px !important; }
+  }
+  
+  
+  /* ============================================================================
+     11. ULTRA-WIDE SCREENS (≥1600px)
+     ----------------------------------------------------------------------------
+     Cap content width for very large screens to avoid overly wide line lengths.
+     ========================================================================= */
+  
+  @media (min-width: 1600px) {
+    :root {
+      --wrap-max-width: 1280px;
+    }
+  
+    .wrap {
+      max-width: 1280px;
+    }
+  }
+  
+  @media (min-width: 1920px) {
+    :root {
+      --wrap-max-width: 1400px;
+    }
+  
+    .wrap {
+      max-width: 1400px;
+    }
+  }
+  
+  
+  /* ============================================================================
+     END OF responsive.css
+     ========================================================================= */

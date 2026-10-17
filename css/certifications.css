@@ -1,0 +1,917 @@
+/* ============================================================================
+   OMAR HAMDY — PORTFOLIO
+   certifications.css
+   ============================================================================
+   Certifications & learning showcase — a 3-column grid mixing two card
+   types:
+
+     1. Cert-Featured  — large certificate card with image + details
+     2. Learning-Card  — progress-tracking card with course checklist
+
+   TABLE OF CONTENTS
+   ----------------------------------------------------------------------------
+   01. Section Shell & Header
+   02. Certification Grid Layout
+   03. Shared Card Base (.learning-card + .cert-featured)
+   04. Cert-Featured — Media (image + overlays)
+   05. Cert-Featured — Content (topline, title, skills)
+   06. Cert-Featured — Footer (credential + button)
+   07. Primary Button (.cert-primary-btn)
+   08. Learning Card — Header (icon, title, percentage)
+   09. Learning Card — Progress Bar
+   10. Learning Card — Course List (scrollable)
+   11. Learning Card — Competency Tags
+   12. Responsive — Tablet (≤1100px)
+   13. Responsive — Mobile (≤700px)
+   14. Reduced Motion
+   ========================================================================= */
+
+
+/* ============================================================================
+   01. SECTION SHELL & HEADER
+   ========================================================================= */
+
+   .certifications-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  
+    padding: 130px 0 120px;
+  
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  
+    background:
+      radial-gradient(circle at 12% 0%, rgba(245, 166, 35, 0.045), transparent 32%),
+      radial-gradient(circle at 88% 100%, rgba(245, 166, 35, 0.025), transparent 30%),
+      var(--bg-alt, transparent);
+  }
+  
+  /* Subtle tech grid background — matches Skills/Contact sections */
+  .certifications-section::before {
+    content: "";
+  
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+  
+    background-size: 72px 72px;
+  
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 85%);
+  }
+  
+  /* Keep content above the grid */
+  .certifications-section > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* ============================================================================
+     02. CERTIFICATION GRID LAYOUT
+     ========================================================================= */
+  
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  
+    align-items: stretch;
+  }
+  
+  
+  /* ============================================================================
+     03. SHARED CARD BASE
+     ----------------------------------------------------------------------------
+     Both .learning-card and .cert-featured share the same shell, hover,
+     and radial-glow-overlay treatment.
+     ========================================================================= */
+  
+  .learning-card,
+  .cert-featured {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+  
+    display: flex;
+    flex-direction: column;
+  
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.055),
+        rgba(255, 255, 255, 0.018)
+      );
+  
+    border: 1px solid rgba(255, 255, 255, 0.085);
+    border-radius: 22px;
+  
+    box-shadow:
+      0 16px 45px rgba(0, 0, 0, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  
+    transition:
+      transform 0.4s cubic-bezier(0.2, 0.65, 0.25, 1),
+      border-color 0.35s ease,
+      box-shadow 0.4s ease;
+  }
+  
+  /* Radial glow (revealed on hover) */
+  .learning-card::before,
+  .cert-featured::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  
+    background: radial-gradient(
+      circle at 90% 0%,
+      rgba(212, 175, 55, 0.08),
+      transparent 32%
+    );
+  
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  
+  .learning-card:hover,
+  .cert-featured:hover {
+    transform: translateY(-7px);
+    border-color: rgba(212, 175, 55, 0.28);
+  
+    box-shadow:
+      0 25px 60px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(212, 175, 55, 0.035);
+  }
+  
+  .learning-card:hover::before,
+  .cert-featured:hover::before {
+    opacity: 1;
+  }
+  
+  
+  /* ============================================================================
+     04. CERT-FEATURED — MEDIA (IMAGE + OVERLAYS)
+     ========================================================================= */
+  
+  .cert-featured {
+    grid-column: span 1;
+    min-height: auto;
+  }
+  
+  .cert-featured-media {
+    position: relative;
+  
+    width: 100%;
+    height: 230px;
+    min-height: 230px;
+  
+    overflow: hidden;
+  
+    background: #0c0c0c;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  
+  .cert-featured-media img {
+    display: block;
+  
+    width: 100%;
+    height: 100%;
+  
+    object-fit: cover;
+  
+    filter: saturate(0.9) contrast(1.04);
+  
+    transition: transform 0.65s cubic-bezier(0.2, 0.65, 0.25, 1);
+  }
+  
+  .cert-featured:hover .cert-featured-media img {
+    transform: scale(1.045);
+  }
+  
+  /* Dark overlay on image */
+  .cert-media-overlay {
+    position: absolute;
+    inset: 0;
+  
+    background:
+      linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.38)),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.55), transparent 60%);
+  }
+  
+  /* Top-left status label */
+  .cert-featured-label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+  
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  
+    padding: 8px 11px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(8, 8, 9, 0.58);
+  
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+  }
+  
+  .cert-featured-label .status-dot {
+    width: 6px;
+    height: 6px;
+  
+    border-radius: 50%;
+    background: var(--accent-solid);
+  
+    box-shadow:
+      0 0 0 4px rgba(212, 175, 55, 0.12),
+      0 0 12px rgba(212, 175, 55, 0.55);
+  }
+  
+  /* Bottom-left provider name */
+  .cert-provider-logo {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+  
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  
+    color: rgba(255, 255, 255, 0.72);
+  }
+  
+  
+  /* ============================================================================
+     05. CERT-FEATURED — CONTENT (TOPLINE, TITLE, SKILLS)
+     ========================================================================= */
+  
+  .cert-featured-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  
+    padding: 25px;
+  }
+  
+  /* Topline: type + verification badge */
+  .cert-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  
+    margin-bottom: 17px;
+  }
+  
+  .cert-type {
+    color: var(--accent-solid);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+  
+  .cert-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  
+    padding: 5px 9px;
+  
+    border-radius: 999px;
+  
+    font-size: 9px;
+    font-weight: 700;
+  }
+  
+  .cert-status svg {
+    width: 12px;
+    height: 12px;
+  
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+  }
+  
+  .cert-status.verified {
+    color: #55d98a;
+    background: rgba(85, 217, 138, 0.08);
+    border: 1px solid rgba(85, 217, 138, 0.16);
+  }
+  
+  /* Title */
+  .cert-featured-content h3 {
+    margin: 0 0 13px;
+  
+    font-family: var(--font-display);
+    font-size: clamp(20px, 1.7vw, 27px);
+    font-weight: 750;
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+  
+    color: var(--text-primary);
+  }
+  
+  .cert-featured-content h3 span {
+    display: block;
+    color: var(--accent-solid);
+  }
+  
+  /* Description */
+  .cert-featured-content p {
+    max-width: 580px;
+    margin: 0 0 20px;
+  
+    color: var(--text-muted);
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+  
+  /* Skill grid */
+  .cert-skill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  
+    margin-bottom: auto;
+  }
+  
+  .cert-skill-grid span,
+  .competency-tags span {
+    display: inline-flex;
+    align-items: center;
+  
+    padding: 6px 9px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.035);
+  
+    color: var(--text-muted);
+    font-size: 9px;
+    font-weight: 650;
+  
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      color 0.25s ease;
+  }
+  
+  .cert-skill-grid span:hover,
+  .competency-tags span:hover {
+    color: var(--text-primary);
+    background: rgba(212, 175, 55, 0.08);
+    border-color: rgba(212, 175, 55, 0.2);
+  }
+  
+  
+  /* ============================================================================
+     06. CERT-FEATURED — FOOTER (CREDENTIAL + BUTTON)
+     ========================================================================= */
+  
+  .cert-featured-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 15px;
+  
+    margin-top: 25px;
+    padding-top: 18px;
+  
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  
+  .credential-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .meta-label {
+    color: var(--text-muted);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  
+  .credential-meta strong {
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    font-size: 11px;
+  }
+  
+  
+  /* ============================================================================
+     07. PRIMARY BUTTON (.cert-primary-btn)
+     ========================================================================= */
+  
+  .cert-primary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  
+    min-height: 38px;
+    padding: 0 14px;
+  
+    border-radius: 10px;
+    background: linear-gradient(
+      135deg,
+      var(--accent-start),
+      var(--accent-end)
+    );
+  
+    color: #17130a;
+    font-size: 10px;
+    font-weight: 800;
+    text-decoration: none;
+  
+    box-shadow: 0 8px 22px rgba(212, 175, 55, 0.16);
+  
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+  
+  .cert-primary-btn svg {
+    width: 13px;
+    height: 13px;
+  
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  
+  .cert-primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(212, 175, 55, 0.27);
+  }
+  
+  
+  /* ============================================================================
+     08. LEARNING CARD — HEADER (ICON, TITLE, PERCENTAGE)
+     ========================================================================= */
+  
+  .learning-card {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .learning-header {
+    position: relative;
+  
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 13px;
+  
+    padding: 22px;
+  
+    border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+  }
+  
+  .learning-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 44px;
+    height: 44px;
+  
+    border-radius: 13px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+  
+    background: linear-gradient(
+      145deg,
+      rgba(212, 175, 55, 0.15),
+      rgba(212, 175, 55, 0.035)
+    );
+  
+    color: var(--accent-solid);
+  }
+  
+  .learning-icon svg {
+    width: 20px;
+    height: 20px;
+  
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  
+  .learning-title {
+    min-width: 0;
+  }
+  
+  .learning-category {
+    margin-bottom: 4px;
+  
+    color: var(--accent-solid);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+  }
+  
+  .learning-title h3 {
+    overflow: hidden;
+  
+    margin: 0 0 3px;
+  
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 720;
+    line-height: 1.25;
+  
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .learning-title > span {
+    display: block;
+    overflow: hidden;
+  
+    color: var(--text-muted);
+    font-size: 10px;
+  
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .learning-percentage {
+    font-family: var(--font-mono);
+    color: var(--accent-solid);
+    font-size: 15px;
+    font-weight: 800;
+  }
+  
+  .learning-percentage.complete {
+    color: #55d98a;
+  }
+  
+  
+  /* ============================================================================
+     09. LEARNING CARD — PROGRESS BAR
+     ========================================================================= */
+  
+  .learning-progress {
+    padding: 17px 22px;
+  
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  
+  .progress-track {
+    position: relative;
+  
+    width: 100%;
+    height: 5px;
+  
+    overflow: hidden;
+  
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.065);
+  }
+  
+  .progress-track span {
+    position: relative;
+  
+    display: block;
+    height: 100%;
+  
+    border-radius: inherit;
+  
+    background: linear-gradient(
+      90deg,
+      var(--accent-start),
+      var(--accent-end)
+    );
+  
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+  }
+  
+  .progress-track.complete span {
+    background: linear-gradient(90deg, #37b96d, #67e29a);
+    box-shadow: 0 0 12px rgba(85, 217, 138, 0.28);
+  }
+  
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  
+    margin-top: 9px;
+  
+    color: var(--text-muted);
+    font-size: 9px;
+  }
+  
+  
+  /* ============================================================================
+     10. LEARNING CARD — COURSE LIST (SCROLLABLE)
+     ========================================================================= */
+  
+  .learning-courses {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  
+    padding: 15px 16px;
+  
+    max-height: 244px;
+  
+    overflow-y: auto;
+  }
+  
+  /* Custom scrollbar for the course list */
+  .learning-courses::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  .learning-courses::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .learning-courses::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(212, 175, 55, 0.28);
+  }
+  
+  /* Individual course row */
+  .learning-course {
+    position: relative;
+  
+    display: grid;
+    grid-template-columns: 25px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 9px;
+  
+    min-height: 48px;
+    padding: 7px 9px;
+  
+    border: 1px solid transparent;
+    border-radius: 11px;
+  
+    transition:
+      background 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease;
+  }
+  
+  .learning-course:hover {
+    transform: translateX(2px);
+    background: rgba(255, 255, 255, 0.028);
+    border-color: rgba(255, 255, 255, 0.065);
+  }
+  
+  /* Status indicator */
+  .course-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 24px;
+    height: 24px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.075);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.045);
+  }
+  
+  .course-state span {
+    font-size: 11px;
+    font-weight: 800;
+  }
+  
+  /* Completed state */
+  .learning-course.completed .course-state {
+    color: #55d98a;
+    background: rgba(85, 217, 138, 0.1);
+    border-color: rgba(85, 217, 138, 0.2);
+  }
+  
+  /* Active state */
+  .learning-course.active {
+    background: rgba(212, 175, 55, 0.045);
+    border-color: rgba(212, 175, 55, 0.12);
+  }
+  
+  .learning-course.active .course-state {
+    border-color: rgba(212, 175, 55, 0.35);
+    background: rgba(212, 175, 55, 0.08);
+  }
+  
+  .learning-course.active .course-state span {
+    width: 6px;
+    height: 6px;
+  
+    border-radius: 50%;
+    background: var(--accent-solid);
+  
+    box-shadow: 0 0 9px rgba(212, 175, 55, 0.7);
+  }
+  
+  /* Upcoming state */
+  .learning-course.upcoming {
+    opacity: 0.62;
+  }
+  
+  .learning-course.upcoming .course-state {
+    color: var(--text-muted);
+  }
+  
+  /* Course info */
+  .course-info {
+    min-width: 0;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  
+  .course-info strong {
+    overflow: hidden;
+  
+    color: var(--text-primary);
+    font-size: 11px;
+    font-weight: 650;
+  
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .course-info small {
+    color: var(--text-muted);
+    font-size: 9px;
+  }
+  
+  /* "Current" badge */
+  .learning-course em {
+    padding: 4px 7px;
+  
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    border-radius: 999px;
+    background: rgba(212, 175, 55, 0.1);
+  
+    color: var(--accent-solid);
+    font-size: 8px;
+    font-style: normal;
+    font-weight: 750;
+  }
+  
+  
+  /* ============================================================================
+     11. LEARNING CARD — COMPETENCY TAGS
+     ========================================================================= */
+  
+  .competency-area {
+    margin-top: auto;
+  
+    padding: 16px 20px 20px;
+  
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  
+  .competency-label {
+    display: block;
+    margin-bottom: 9px;
+  
+    color: var(--text-muted);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+  
+  .competency-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .competency-tags span {
+    padding: 5px 8px;
+    font-size: 9px;
+  }
+  
+  
+  /* ============================================================================
+     12. RESPONSIVE — TABLET (≤1100px)
+     ========================================================================= */
+  
+  @media (max-width: 1100px) {
+    .cert-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  
+  /* ============================================================================
+     13. RESPONSIVE — MOBILE (≤700px)
+     ========================================================================= */
+  
+  @media (max-width: 700px) {
+    .cert-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  
+    .certifications-heading {
+      margin-bottom: 35px;
+    }
+  
+    /* Cert-featured */
+    .cert-featured-media {
+      height: 220px;
+      min-height: 220px;
+    }
+  
+    .cert-featured-content {
+      padding: 22px;
+    }
+  
+    .cert-featured-content h3 {
+      font-size: 24px;
+    }
+  
+    .cert-featured-footer {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .cert-primary-btn {
+      width: 100%;
+    }
+  
+    /* Learning card */
+    .learning-header {
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+      padding: 17px;
+    }
+  
+    .learning-icon {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .learning-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+  
+    .learning-title h3 {
+      font-size: 15px;
+    }
+  
+    .learning-percentage {
+      font-size: 13px;
+    }
+  
+    .learning-progress {
+      padding: 14px 17px;
+    }
+  
+    .learning-courses {
+      padding: 12px 11px;
+      max-height: 220px;
+    }
+  
+    .competency-area {
+      padding: 14px 17px 17px;
+    }
+  }
+  
+  
+  /* ============================================================================
+     14. REDUCED MOTION
+     ========================================================================= */
+  
+  @media (prefers-reduced-motion: reduce) {
+    .learning-card,
+    .cert-featured,
+    .cert-featured-media img,
+    .learning-course,
+    .cert-primary-btn {
+      transition: none;
+    }
+  }

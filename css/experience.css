@@ -1,0 +1,1862 @@
+/* ============================================================================
+   OMAR HAMDY — PORTFOLIO
+   experience.css
+   ============================================================================
+   Two related timeline sections grouped into one stylesheet:
+
+     1. Experience Section    (professional timeline + impact cards)
+     2. Workflow Section      (numbered process steps)
+
+   TABLE OF CONTENTS
+   ----------------------------------------------------------------------------
+   PART A — EXPERIENCE SECTION
+     A1. Section Shell & Ambient Background
+     A2. Shell Layout (sticky intro + timeline)
+     A3. Intro Column (heading, stats, current focus)
+     A4. Timeline Column (progress rail)
+     A5. Experience Item (marker + card)
+     A6. Card Header (role, company, date, status)
+     A7. Location & Description
+     A8. Impact Grid (3-column mini cards)
+     A9. Experience Footer (tech stack)
+     A10. Responsive
+
+   PART B — WORKFLOW SECTION
+     B1. Section Shell & Background
+     B2. Header (eyebrow + kicker + heading)
+     B3. Workflow Cards (rail + index + main)
+     B4. Workflow Content (meta, content, tools)
+     B5. Final Step Variant + Outcome Line
+     B6. Workflow Footer
+     B7. Responsive
+   ========================================================================= */
+
+
+
+/* ████████████████████████████████████████████████████████████████████████████
+   PART A — EXPERIENCE SECTION
+   ████████████████████████████████████████████████████████████████████████████ */
+
+
+/* ============================================================================
+   A1. SECTION SHELL & AMBIENT BACKGROUND
+   ========================================================================= */
+
+   #experience,
+   .experience-section {
+     position: relative;
+     overflow: hidden;
+   
+     padding: 120px 0;
+   
+     background:
+       radial-gradient(circle at 8% 10%, rgba(245, 166, 35, 0.065), transparent 30%),
+       radial-gradient(circle at 92% 85%, rgba(245, 166, 35, 0.035), transparent 32%),
+       var(--bg-alt);
+   
+     border-top: 1px solid var(--divider);
+     border-bottom: 1px solid var(--divider);
+   }
+   
+   /* Subtle tech grid background */
+   #experience::before,
+   .experience-section::before {
+     content: "";
+   
+     position: absolute;
+     inset: 0;
+     pointer-events: none;
+   
+     background-image:
+       linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+       linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+   
+     background-size: 64px 64px;
+   
+     mask-image: linear-gradient(
+       to bottom,
+       black 0%,
+       rgba(0, 0, 0, 0.8) 55%,
+       transparent 100%
+     );
+     -webkit-mask-image: linear-gradient(
+       to bottom,
+       black 0%,
+       rgba(0, 0, 0, 0.8) 55%,
+       transparent 100%
+     );
+   }
+   
+   /* Ambient accent glow */
+   #experience::after,
+   .experience-section::after {
+     content: "";
+   
+     position: absolute;
+     top: 20%;
+     right: -220px;
+     pointer-events: none;
+   
+     width: 420px;
+     height: 420px;
+   
+     background: radial-gradient(
+       circle,
+       rgba(245, 166, 35, 0.055),
+       transparent 70%
+     );
+   
+     filter: blur(20px);
+   }
+   
+   
+   /* ============================================================================
+      A2. SHELL LAYOUT (STICKY INTRO + TIMELINE)
+      ========================================================================= */
+   
+   .experience-shell {
+     position: relative;
+     z-index: 2;
+   
+     display: grid;
+     grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+     gap: 70px;
+   
+     align-items: start;
+   }
+   
+   
+   /* ============================================================================
+      A3. INTRO COLUMN
+      ----------------------------------------------------------------------------
+      Left sticky column: heading, stats, current-focus callout.
+      ========================================================================= */
+   
+   .experience-intro {
+     position: sticky;
+     top: 110px;
+   }
+   
+   .experience-intro .eyebrow-wrap {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   
+     width: 100%;
+     margin-bottom: 22px;
+   }
+   
+   .experience-index {
+     display: block;
+     margin-bottom: 12px;
+   
+     font-family: var(--font-mono);
+     font-size: 10px;
+     font-weight: 700;
+     letter-spacing: 0.18em;
+   
+     color: var(--accent-solid);
+     opacity: 0.85;
+   }
+   
+   .experience-title-wrap {
+     position: relative;
+   }
+   
+   .experience-intro h2 {
+     max-width: 310px;
+     margin: 0 0 18px;
+   
+     font-family: var(--font-display);
+     font-size: clamp(36px, 3.2vw, 48px);
+     font-weight: 750;
+     line-height: 1.05;
+     letter-spacing: -0.045em;
+   
+     color: var(--text-primary);
+   }
+   
+   .experience-lead {
+     max-width: 300px;
+     margin: 0;
+   
+     font-size: 14px;
+     line-height: 1.85;
+   
+     color: var(--text-secondary);
+   }
+   
+   /* Stats block */
+   .experience-stats {
+     display: grid;
+     grid-template-columns: 1fr;
+   
+     margin-top: 32px;
+     overflow: hidden;
+   
+     border: 1px solid var(--card-border);
+     border-radius: 16px;
+     background: rgba(255, 255, 255, 0.018);
+   
+     box-shadow:
+       inset 0 1px rgba(255, 255, 255, 0.025),
+       0 12px 35px rgba(0, 0, 0, 0.12);
+   }
+   
+   .experience-stat {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 20px;
+   
+     padding: 15px 17px;
+   
+     border-bottom: 1px solid var(--divider);
+   
+     transition: background 0.25s ease, padding 0.25s ease;
+   }
+   
+   .experience-stat:last-child {
+     border-bottom: 0;
+   }
+   
+   .experience-stat:hover {
+     padding-left: 20px;
+     background: rgba(245, 166, 35, 0.025);
+   }
+   
+   .experience-stat .stat-number {
+     font-family: var(--font-display);
+     font-size: 21px;
+     font-weight: 750;
+     letter-spacing: -0.035em;
+   
+     color: var(--text-primary);
+   }
+   
+   .experience-stat .stat-label {
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 600;
+     line-height: 1.5;
+     text-align: right;
+     text-transform: uppercase;
+     letter-spacing: 0.08em;
+   
+     color: var(--text-muted);
+   }
+   
+   /* Current focus callout */
+   .experience-focus {
+     position: relative;
+   
+     margin-top: 16px;
+     padding: 16px;
+   
+     overflow: hidden;
+   
+     border: 1px solid rgba(61, 220, 132, 0.18);
+     border-radius: 15px;
+   
+     background: linear-gradient(
+       135deg,
+       rgba(61, 220, 132, 0.055),
+       rgba(61, 220, 132, 0.012)
+     );
+   }
+   
+   .experience-focus::before {
+     content: "";
+   
+     position: absolute;
+     top: 0;
+     left: 0;
+   
+     width: 2px;
+     height: 100%;
+   
+     background: #3ddc84;
+     opacity: 0.65;
+   }
+   
+   .focus-label {
+     display: block;
+     margin-bottom: 9px;
+   
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 600;
+     letter-spacing: 0.13em;
+     text-transform: uppercase;
+   
+     color: var(--text-muted);
+   }
+   
+   .focus-row {
+     display: flex;
+     align-items: center;
+     gap: 9px;
+   
+     font-size: 12px;
+     font-weight: 650;
+   
+     color: var(--text-primary);
+   }
+   
+   .focus-pulse {
+     width: 7px;
+     height: 7px;
+     flex-shrink: 0;
+   
+     border-radius: 50%;
+     background: #3ddc84;
+   
+     box-shadow:
+       0 0 0 4px rgba(61, 220, 132, 0.07),
+       0 0 14px rgba(61, 220, 132, 0.3);
+   
+     animation: experiencePulse 2.2s ease-in-out infinite;
+   }
+   
+   @keyframes experiencePulse {
+     0%,
+     100% {
+       opacity: 1;
+       transform: scale(1);
+     }
+     50% {
+       opacity: 0.55;
+       transform: scale(0.82);
+     }
+   }
+   
+   
+   /* ============================================================================
+      A4. TIMELINE COLUMN (PROGRESS RAIL)
+      ========================================================================= */
+   
+   .experience-timeline {
+     position: relative;
+   
+     display: flex;
+     flex-direction: column;
+     gap: 34px;
+   }
+   
+   .timeline-progress {
+     position: absolute;
+     left: 28px;
+     top: 28px;
+     bottom: 28px;
+     pointer-events: none;
+   
+     width: 1px;
+   
+     background: linear-gradient(
+       to bottom,
+       rgba(245, 166, 35, 0.48),
+       rgba(245, 166, 35, 0.13) 50%,
+       rgba(255, 255, 255, 0.035)
+     );
+   }
+   
+   
+   /* ============================================================================
+      A5. EXPERIENCE ITEM (MARKER + CARD)
+      ========================================================================= */
+   
+   .experience-item {
+     position: relative;
+     isolation: isolate;
+   
+     display: grid;
+     grid-template-columns: 56px minmax(0, 1fr);
+     gap: 25px;
+   }
+   
+   /* Timeline marker column */
+   .timeline-marker {
+     position: relative;
+     z-index: 3;
+   
+     display: flex;
+     justify-content: center;
+   }
+   
+   .marker-icon {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   
+     width: 56px;
+     height: 56px;
+   
+     border: 1px solid var(--card-border);
+     border-radius: 17px;
+   
+     color: var(--accent-solid);
+   
+     background:
+       linear-gradient(
+         145deg,
+         rgba(255, 255, 255, 0.055),
+         rgba(255, 255, 255, 0.015)
+       ),
+       var(--card-bg);
+   
+     box-shadow:
+       0 15px 35px rgba(0, 0, 0, 0.25),
+       inset 0 1px rgba(255, 255, 255, 0.035);
+   
+     transition:
+       transform 0.35s ease,
+       border-color 0.35s ease,
+       box-shadow 0.35s ease;
+   }
+   
+   .marker-icon svg {
+     width: 21px;
+     height: 21px;
+   }
+   
+   /* Currently-active role gets a filled accent marker */
+   .experience-item.current .marker-icon {
+     color: #17130a;
+     border-color: transparent;
+   
+     background: linear-gradient(
+       135deg,
+       var(--accent-start),
+       var(--accent-end)
+     );
+   
+     box-shadow:
+       0 15px 38px rgba(245, 166, 35, 0.18),
+       0 0 0 5px rgba(245, 166, 35, 0.045);
+   }
+   
+   .experience-item:hover .marker-icon {
+     transform: translateY(-4px);
+     border-color: rgba(245, 166, 35, 0.25);
+   
+     box-shadow:
+       0 20px 40px rgba(0, 0, 0, 0.3),
+       0 0 25px rgba(245, 166, 35, 0.06);
+   }
+   
+   /* Experience card */
+   .experience-card {
+     position: relative;
+     overflow: hidden;
+   
+     padding: 32px;
+   
+     border: 1px solid var(--card-border);
+     border-radius: 22px;
+   
+     background:
+       linear-gradient(
+         145deg,
+         rgba(255, 255, 255, 0.035),
+         rgba(255, 255, 255, 0.012)
+       ),
+       var(--card-bg);
+   
+     box-shadow:
+       0 18px 50px rgba(0, 0, 0, 0.17),
+       inset 0 1px rgba(255, 255, 255, 0.025);
+   
+     transition:
+       transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+       border-color 0.35s ease,
+       box-shadow 0.35s ease;
+   }
+   
+   .experience-card::before {
+     content: "";
+   
+     position: absolute;
+     top: 0;
+     left: 30px;
+     right: 30px;
+   
+     height: 1px;
+   
+     background: linear-gradient(
+       90deg,
+       transparent,
+       rgba(245, 166, 35, 0.32),
+       transparent
+     );
+   
+     opacity: 0;
+     transition: opacity 0.35s ease;
+   }
+   
+   .experience-card::after {
+     content: "";
+   
+     position: absolute;
+     top: -100px;
+     right: -80px;
+     pointer-events: none;
+   
+     width: 180px;
+     height: 180px;
+   
+     background: radial-gradient(
+       circle,
+       rgba(245, 166, 35, 0.055),
+       transparent 70%
+     );
+   }
+   
+   .experience-card:hover {
+     transform: translateY(-5px);
+     border-color: rgba(245, 166, 35, 0.23);
+   
+     box-shadow:
+       0 25px 65px rgba(0, 0, 0, 0.24),
+       0 0 45px rgba(245, 166, 35, 0.025),
+       inset 0 1px rgba(255, 255, 255, 0.035);
+   }
+   
+   .experience-card:hover::before {
+     opacity: 1;
+   }
+   
+   
+   /* ============================================================================
+      A6. CARD HEADER (ROLE, COMPANY, DATE, STATUS)
+      ========================================================================= */
+   
+   .experience-card-top {
+     position: relative;
+     z-index: 2;
+   
+     display: flex;
+     align-items: flex-start;
+     justify-content: space-between;
+     gap: 30px;
+   
+     margin-bottom: 14px;
+   }
+   
+   .role-meta {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     margin-bottom: 9px;
+   }
+   
+   .role-number {
+     font-family: var(--font-mono);
+     font-size: 9px;
+     font-weight: 700;
+     letter-spacing: 0.13em;
+   
+     color: var(--accent-solid);
+   }
+   
+   .role-type {
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 600;
+     letter-spacing: 0.1em;
+   
+     color: var(--text-muted);
+   }
+   
+   .role-type::before {
+     content: "/";
+     margin-right: 8px;
+     color: var(--divider);
+   }
+   
+   .role-area h3 {
+     margin: 0 0 7px;
+   
+     font-family: var(--font-display);
+     font-size: clamp(22px, 2vw, 27px);
+     font-weight: 750;
+     line-height: 1.15;
+     letter-spacing: -0.03em;
+   
+     color: var(--text-primary);
+   }
+   
+   .company {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+   
+     font-size: 13px;
+     font-weight: 650;
+   
+     color: var(--accent-solid);
+   }
+   
+   .company-dot {
+     width: 5px;
+     height: 5px;
+     flex-shrink: 0;
+   
+     border-radius: 50%;
+     background: var(--accent-solid);
+   
+     box-shadow: 0 0 8px rgba(245, 166, 35, 0.4);
+   }
+   
+   /* Date + status column */
+   .date-area {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+     gap: 9px;
+     flex-shrink: 0;
+   }
+   
+   .date {
+     font-family: var(--font-mono);
+     font-size: 9px;
+     font-weight: 600;
+     letter-spacing: 0.07em;
+     white-space: nowrap;
+   
+     color: var(--text-muted);
+   }
+   
+   .status {
+     display: inline-flex;
+     align-items: center;
+     gap: 7px;
+   
+     padding: 5px 10px;
+   
+     border: 1px solid var(--card-border);
+     border-radius: 999px;
+     background: rgba(255, 255, 255, 0.018);
+   
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 700;
+     letter-spacing: 0.09em;
+   
+     color: var(--text-muted);
+   }
+   
+   .status.active {
+     color: #3ddc84;
+     border-color: rgba(61, 220, 132, 0.22);
+     background: rgba(61, 220, 132, 0.045);
+   }
+   
+   .status .status-dot {
+     width: 5px;
+     height: 5px;
+   
+     border-radius: 50%;
+     background: #3ddc84;
+   
+     box-shadow: 0 0 7px rgba(61, 220, 132, 0.5);
+   }
+   
+   
+   /* ============================================================================
+      A7. LOCATION & DESCRIPTION
+      ========================================================================= */
+   
+   .experience-location {
+     position: relative;
+     z-index: 2;
+   
+     display: flex;
+     align-items: center;
+     gap: 7px;
+   
+     margin-bottom: 20px;
+   
+     font-size: 11px;
+     color: var(--text-muted);
+   }
+   
+   .experience-location svg {
+     width: 13px;
+     height: 13px;
+     flex-shrink: 0;
+   
+     color: var(--text-muted);
+   }
+   
+   .location-separator {
+     opacity: 0.3;
+   }
+   
+   .experience-description {
+     position: relative;
+     z-index: 2;
+   
+     max-width: 850px;
+     margin: 0 0 27px;
+   
+     font-size: 14px;
+     line-height: 1.85;
+   
+     color: var(--text-secondary);
+   }
+   
+   
+   /* ============================================================================
+      A8. IMPACT GRID (3-COLUMN MINI CARDS)
+      ========================================================================= */
+   
+   .impact-header {
+     display: flex;
+     align-items: center;
+     gap: 13px;
+   
+     margin-bottom: 13px;
+   }
+   
+   .impact-header::after {
+     content: "";
+   
+     height: 1px;
+     flex: 1;
+   
+     background: linear-gradient(90deg, var(--divider), transparent);
+   }
+   
+   .impact-header span {
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 700;
+     letter-spacing: 0.14em;
+   
+     color: var(--text-muted);
+   }
+   
+   .impact-grid {
+     display: grid;
+     grid-template-columns: repeat(3, minmax(0, 1fr));
+     gap: 10px;
+   
+     margin-bottom: 27px;
+   }
+   
+   .impact-card {
+     position: relative;
+     overflow: hidden;
+   
+     display: flex;
+     flex-direction: column;
+     gap: 14px;
+   
+     min-height: 175px;
+     padding: 17px;
+   
+     border: 1px solid rgba(255, 255, 255, 0.055);
+     border-radius: 15px;
+     background: rgba(255, 255, 255, 0.018);
+   
+     transition:
+       transform 0.28s ease,
+       border-color 0.28s ease,
+       background 0.28s ease;
+   }
+   
+   .impact-card::before {
+     content: "";
+   
+     position: absolute;
+     top: 0;
+     left: 17px;
+     right: 17px;
+   
+     height: 1px;
+   
+     background: linear-gradient(
+       90deg,
+       transparent,
+       rgba(245, 166, 35, 0.25),
+       transparent
+     );
+   
+     opacity: 0;
+     transition: opacity 0.28s ease;
+   }
+   
+   .impact-card:hover {
+     transform: translateY(-4px);
+     border-color: rgba(245, 166, 35, 0.2);
+     background: rgba(245, 166, 35, 0.025);
+   }
+   
+   .impact-card:hover::before {
+     opacity: 1;
+   }
+   
+   .impact-icon {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-shrink: 0;
+   
+     width: 34px;
+     height: 34px;
+   
+     border: 1px solid rgba(245, 166, 35, 0.13);
+     border-radius: 10px;
+   
+     color: var(--accent-solid);
+     background: var(--icon-box-bg);
+   }
+   
+   .impact-icon svg {
+     width: 17px;
+     height: 17px;
+   }
+   
+   .impact-card strong {
+     display: block;
+     margin-bottom: 7px;
+   
+     font-size: 12.5px;
+     font-weight: 700;
+   
+     color: var(--text-primary);
+   }
+   
+   .impact-card p {
+     margin: 0;
+   
+     font-size: 11.5px;
+     line-height: 1.65;
+   
+     color: var(--text-muted);
+   }
+   
+   
+   /* ============================================================================
+      A9. EXPERIENCE FOOTER (TECH STACK)
+      ========================================================================= */
+   
+   .experience-footer {
+     display: flex;
+     align-items: flex-start;
+     gap: 17px;
+   
+     padding-top: 19px;
+   
+     border-top: 1px solid var(--divider);
+   }
+   
+   .stack-label {
+     flex-shrink: 0;
+     padding-top: 6px;
+   
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 700;
+     letter-spacing: 0.12em;
+   
+     color: var(--text-muted);
+   }
+   
+   .stack-list {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 6px;
+   }
+   
+   .stack-list span {
+     display: inline-flex;
+     align-items: center;
+   
+     padding: 5px 9px;
+   
+     border: 1px solid var(--card-border);
+     border-radius: 7px;
+     background: rgba(255, 255, 255, 0.015);
+   
+     font-family: var(--font-mono);
+     font-size: 9px;
+   
+     color: var(--text-muted);
+   
+     transition:
+       color 0.2s ease,
+       border-color 0.2s ease,
+       background 0.2s ease,
+       transform 0.2s ease;
+   }
+   
+   .stack-list span:hover {
+     transform: translateY(-2px);
+     color: var(--accent-solid);
+     border-color: rgba(245, 166, 35, 0.25);
+     background: rgba(245, 166, 35, 0.04);
+   }
+   
+   
+   /* ============================================================================
+      A10. RESPONSIVE (EXPERIENCE)
+      ========================================================================= */
+   
+   @media (max-width: 1100px) {
+     #experience,
+     .experience-section {
+       padding: 100px 0;
+     }
+   
+     .experience-shell {
+       grid-template-columns: 250px minmax(0, 1fr);
+       gap: 45px;
+     }
+   
+     .experience-intro h2 {
+       font-size: 35px;
+     }
+   
+     .impact-grid {
+       grid-template-columns: 1fr;
+     }
+   
+     .impact-card {
+       min-height: auto;
+   
+       display: grid;
+       grid-template-columns: 34px minmax(0, 1fr);
+       column-gap: 13px;
+     }
+   
+     .impact-card > div:last-child {
+       grid-column: 2;
+     }
+   }
+   
+   @media (max-width: 800px) {
+     #experience,
+     .experience-section {
+       padding: 80px 0;
+     }
+   
+     .experience-shell {
+       grid-template-columns: 1fr;
+       gap: 48px;
+     }
+   
+     .experience-intro {
+       position: static;
+     }
+   
+     .experience-intro h2 {
+       max-width: 550px;
+       font-size: 36px;
+     }
+   
+     .experience-lead {
+       max-width: 620px;
+     }
+   
+     .experience-stats {
+       max-width: 620px;
+       grid-template-columns: repeat(3, minmax(0, 1fr));
+     }
+   
+     .experience-stat {
+       flex-direction: column;
+       align-items: flex-start;
+       justify-content: center;
+   
+       padding: 15px 12px;
+   
+       border-right: 1px solid var(--divider);
+       border-bottom: 0;
+     }
+   
+     .experience-stat:last-child {
+       border-right: 0;
+     }
+   
+     .stat-label {
+       text-align: left;
+     }
+   
+     .experience-focus {
+       max-width: 620px;
+     }
+   
+     .experience-timeline {
+       gap: 28px;
+     }
+   
+     .timeline-progress {
+       left: 21px;
+     }
+   
+     .experience-item {
+       grid-template-columns: 44px minmax(0, 1fr);
+       gap: 17px;
+     }
+   
+     .marker-icon {
+       width: 44px;
+       height: 44px;
+       border-radius: 13px;
+     }
+   
+     .marker-icon svg {
+       width: 18px;
+       height: 18px;
+     }
+   
+     .experience-card {
+       padding: 24px 21px;
+       border-radius: 18px;
+     }
+   
+     .experience-card-top {
+       flex-direction: column;
+       gap: 17px;
+     }
+   
+     .date-area {
+       align-items: flex-start;
+     }
+   
+     .role-area h3 {
+       font-size: 22px;
+     }
+   
+     .impact-grid {
+       grid-template-columns: 1fr;
+     }
+   
+     .impact-card {
+       display: flex;
+       min-height: auto;
+     }
+   
+     .experience-footer {
+       flex-direction: column;
+       gap: 10px;
+     }
+   }
+   
+   @media (max-width: 480px) {
+     #experience,
+     .experience-section {
+       padding: 65px 0;
+     }
+   
+     .experience-intro h2 {
+       font-size: 31px;
+     }
+   
+     .experience-lead {
+       font-size: 13px;
+     }
+   
+     .experience-stats {
+       grid-template-columns: 1fr;
+     }
+   
+     .experience-stat {
+       flex-direction: row;
+       align-items: center;
+   
+       border-right: 0;
+       border-bottom: 1px solid var(--divider);
+     }
+   
+     .experience-stat:last-child {
+       border-bottom: 0;
+     }
+   
+     .stat-label {
+       text-align: right;
+     }
+   
+     .experience-item {
+       grid-template-columns: 1fr;
+     }
+   
+     .timeline-progress,
+     .timeline-marker {
+       display: none;
+     }
+   
+     .experience-card {
+       padding: 22px 18px;
+       border-radius: 17px;
+     }
+   
+     .experience-card-top {
+       gap: 15px;
+     }
+   
+     .role-area h3 {
+       font-size: 20px;
+     }
+   
+     .company {
+       font-size: 12px;
+     }
+   
+     .experience-location {
+       align-items: flex-start;
+       font-size: 10.5px;
+     }
+   
+     .experience-description {
+       font-size: 13px;
+       line-height: 1.75;
+     }
+   
+     .impact-card {
+       padding: 15px;
+     }
+   
+     .impact-card p {
+       font-size: 11px;
+     }
+   
+     .stack-list span {
+       font-size: 8.5px;
+     }
+   }
+   
+   
+   
+   /* ████████████████████████████████████████████████████████████████████████████
+      PART B — WORKFLOW SECTION
+      ████████████████████████████████████████████████████████████████████████████ */
+   
+   
+   /* ============================================================================
+      B1. SECTION SHELL & BACKGROUND
+      ========================================================================= */
+   
+   .workflow-section {
+     position: relative;
+     overflow: hidden;
+   
+     padding: 130px 0 150px;
+   
+     border-top: 1px solid var(--divider);
+     border-bottom: 1px solid var(--divider);
+   
+     background:
+       radial-gradient(circle at 8% 12%, rgba(245, 166, 35, 0.065), transparent 30%),
+       radial-gradient(circle at 92% 78%, rgba(245, 166, 35, 0.035), transparent 28%),
+       var(--bg-alt);
+   }
+   
+   .workflow-section::before {
+     content: "";
+   
+     position: absolute;
+     inset: 0;
+     pointer-events: none;
+   
+     background-image:
+       linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+       linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+   
+     background-size: 64px 64px;
+   
+     mask-image: linear-gradient(to bottom, black, transparent 90%);
+     -webkit-mask-image: linear-gradient(to bottom, black, transparent 90%);
+   }
+   
+   
+   /* ============================================================================
+      B2. HEADER (EYEBROW + KICKER + HEADING)
+      ========================================================================= */
+   
+   .workflow-header {
+     position: relative;
+     z-index: 1;
+   
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+   
+     margin-bottom: 82px;
+     text-align: center;
+   }
+   
+   .workflow-header .eyebrow-wrap {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+   
+     width: 100%;
+     margin-bottom: 22px;
+   }
+   
+   .workflow-heading {
+     max-width: 780px;
+     margin: 0 auto;
+     text-align: center;
+   }
+   
+   .workflow-kicker {
+     margin-bottom: 15px;
+   
+     font-family: var(--font-mono);
+     font-size: 9px;
+     font-weight: 700;
+     letter-spacing: 0.18em;
+   
+     color: var(--accent-solid);
+     opacity: 0.85;
+     text-align: center;
+   }
+   
+   .workflow-heading h2 {
+     max-width: 760px;
+     margin: 0 auto 20px;
+   
+     font-family: var(--font-display);
+     font-size: clamp(38px, 4.2vw, 58px);
+     font-weight: 760;
+     line-height: 1.03;
+     letter-spacing: -0.045em;
+   
+     color: var(--text-primary);
+     text-align: center;
+   }
+   
+   .workflow-heading h2 .accent {
+     background: linear-gradient(
+       135deg,
+       var(--accent-start),
+       var(--accent-end)
+     );
+   
+     -webkit-background-clip: text;
+     background-clip: text;
+     -webkit-text-fill-color: transparent;
+     color: transparent;
+   }
+   
+   .workflow-heading p {
+     max-width: 680px;
+     margin: 0 auto;
+   
+     font-size: 15px;
+     line-height: 1.85;
+   
+     color: var(--text-secondary);
+     text-align: center;
+   }
+   
+   
+   /* ============================================================================
+      B3. WORKFLOW CARDS (RAIL + INDEX + MAIN)
+      ========================================================================= */
+   
+   .workflow {
+     position: relative;
+     z-index: 1;
+   
+     max-width: 1050px;
+     margin: 0 auto;
+   }
+   
+   .workflow-card {
+     position: relative;
+   
+     display: grid;
+     grid-template-columns: 94px minmax(0, 1fr);
+     gap: 35px;
+   
+     padding: 0 0 38px;
+   
+     transition: transform 0.35s ease, opacity 0.35s ease;
+   }
+   
+   /* Numbered rail */
+   .workflow-rail {
+     position: relative;
+   
+     display: flex;
+     align-items: flex-start;
+     justify-content: center;
+   }
+   
+   .workflow-index {
+     position: relative;
+     z-index: 3;
+   
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   
+     width: 62px;
+     height: 62px;
+   
+     border: 1px solid var(--card-border);
+     border-radius: 18px;
+   
+     font-family: var(--font-mono);
+     font-size: 13px;
+     font-weight: 700;
+     letter-spacing: 0.08em;
+   
+     color: var(--text-muted);
+   
+     background:
+       linear-gradient(
+         145deg,
+         rgba(255, 255, 255, 0.045),
+         rgba(255, 255, 255, 0.012)
+       ),
+       var(--card-bg);
+   
+     box-shadow:
+       0 15px 35px rgba(0, 0, 0, 0.2),
+       inset 0 1px rgba(255, 255, 255, 0.035);
+   
+     transition:
+       color 0.3s ease,
+       border-color 0.3s ease,
+       background 0.3s ease,
+       transform 0.3s ease,
+       box-shadow 0.3s ease;
+   }
+   
+   /* Vertical rail line between nodes */
+   .workflow-line {
+     position: absolute;
+     top: 62px;
+     bottom: -1px;
+     left: 50%;
+   
+     width: 1px;
+     transform: translateX(-50%);
+   
+     background: linear-gradient(
+       to bottom,
+       rgba(245, 166, 35, 0.32),
+       rgba(255, 255, 255, 0.055)
+     );
+   }
+   
+   .workflow-final .workflow-line {
+     display: none;
+   }
+   
+   /* Main card body */
+   .workflow-main {
+     position: relative;
+     overflow: hidden;
+   
+     padding: 28px 30px 27px;
+   
+     border: 1px solid var(--card-border);
+     border-radius: 20px;
+   
+     background:
+       linear-gradient(
+         145deg,
+         rgba(255, 255, 255, 0.035),
+         rgba(255, 255, 255, 0.012)
+       ),
+       var(--card-bg);
+   
+     box-shadow:
+       0 18px 50px rgba(0, 0, 0, 0.14),
+       inset 0 1px rgba(255, 255, 255, 0.025);
+   
+     transition:
+       transform 0.35s ease,
+       border-color 0.35s ease,
+       box-shadow 0.35s ease,
+       background 0.35s ease;
+   }
+   
+   .workflow-main::before {
+     content: "";
+   
+     position: absolute;
+     top: 0;
+     left: 30px;
+     right: 30px;
+   
+     height: 1px;
+   
+     background: linear-gradient(
+       90deg,
+       transparent,
+       rgba(245, 166, 35, 0.35),
+       transparent
+     );
+   
+     opacity: 0;
+     transition: opacity 0.35s ease;
+   }
+   
+   /* Hover states */
+   .workflow-card:hover .workflow-main {
+     transform: translateY(-4px);
+     border-color: rgba(245, 166, 35, 0.22);
+   
+     background:
+       linear-gradient(
+         145deg,
+         rgba(245, 166, 35, 0.035),
+         rgba(255, 255, 255, 0.012)
+       ),
+       var(--card-bg);
+   
+     box-shadow:
+       0 25px 65px rgba(0, 0, 0, 0.23),
+       0 0 35px rgba(245, 166, 35, 0.025);
+   }
+   
+   .workflow-card:hover .workflow-main::before {
+     opacity: 1;
+   }
+   
+   .workflow-card:hover .workflow-index {
+     color: var(--accent-solid);
+     border-color: rgba(245, 166, 35, 0.3);
+   
+     background:
+       linear-gradient(
+         145deg,
+         rgba(245, 166, 35, 0.14),
+         rgba(245, 166, 35, 0.035)
+       ),
+       var(--card-bg);
+   
+     transform: translateY(-3px);
+   
+     box-shadow:
+       0 15px 35px rgba(0, 0, 0, 0.25),
+       0 0 25px rgba(245, 166, 35, 0.05);
+   }
+   
+   
+   /* ============================================================================
+      B4. WORKFLOW CONTENT (META, CONTENT, TOOLS)
+      ========================================================================= */
+   
+   .workflow-meta {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+   
+     margin-bottom: 18px;
+   }
+   
+   .workflow-tag {
+     display: inline-flex;
+     align-items: center;
+   
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 700;
+     letter-spacing: 0.16em;
+   
+     color: var(--accent-solid);
+   }
+   
+   .workflow-tag::before {
+     content: "";
+   
+     width: 5px;
+     height: 5px;
+     margin-right: 8px;
+   
+     border-radius: 50%;
+     background: var(--accent-solid);
+   
+     box-shadow: 0 0 10px rgba(245, 166, 35, 0.45);
+   }
+   
+   .workflow-status {
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 600;
+     letter-spacing: 0.1em;
+   
+     color: var(--text-muted);
+   }
+   
+   .workflow-content {
+     display: grid;
+     grid-template-columns: minmax(0, 1fr) auto;
+     gap: 30px;
+   
+     align-items: end;
+   }
+   
+   .workflow-content h3 {
+     margin: 0 0 9px;
+   
+     font-family: var(--font-display);
+     font-size: 23px;
+     font-weight: 740;
+     line-height: 1.2;
+     letter-spacing: -0.025em;
+   
+     color: var(--text-primary);
+   }
+   
+   .workflow-content p {
+     max-width: 680px;
+     margin: 0;
+   
+     font-size: 13px;
+     line-height: 1.75;
+   
+     color: var(--text-secondary);
+   }
+   
+   /* Tools list */
+   .workflow-tools {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: flex-end;
+     gap: 6px;
+   
+     max-width: 290px;
+   }
+   
+   .workflow-tools span {
+     display: inline-flex;
+     align-items: center;
+   
+     padding: 6px 9px;
+   
+     border: 1px solid rgba(255, 255, 255, 0.07);
+     border-radius: 7px;
+     background: rgba(255, 255, 255, 0.018);
+   
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 600;
+     white-space: nowrap;
+   
+     color: var(--text-muted);
+   
+     transition:
+       color 0.25s ease,
+       border-color 0.25s ease,
+       background 0.25s ease;
+   }
+   
+   .workflow-card:hover .workflow-tools span {
+     border-color: rgba(245, 166, 35, 0.14);
+   }
+   
+   .workflow-tools span:hover {
+     color: var(--accent-solid);
+     border-color: rgba(245, 166, 35, 0.28);
+     background: rgba(245, 166, 35, 0.055);
+   }
+   
+   
+   /* ============================================================================
+      B5. FINAL STEP VARIANT + OUTCOME LINE
+      ========================================================================= */
+   
+   .workflow-final .workflow-index {
+     color: #17130a;
+     border-color: transparent;
+   
+     background: linear-gradient(
+       135deg,
+       var(--accent-start),
+       var(--accent-end)
+     );
+   
+     box-shadow:
+       0 12px 35px rgba(245, 166, 35, 0.16),
+       0 0 0 5px rgba(245, 166, 35, 0.045);
+   }
+   
+   .workflow-outcome {
+     display: flex;
+     align-items: center;
+     gap: 10px;
+   
+     margin: 13px 0 0 129px;
+   
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 700;
+     letter-spacing: 0.13em;
+   
+     color: var(--text-muted);
+   }
+   
+   .workflow-outcome strong {
+     font-size: 13px;
+     color: var(--accent-solid);
+   }
+   
+   .outcome-dot {
+     width: 6px;
+     height: 6px;
+   
+     border-radius: 50%;
+     background: #3ddc84;
+   
+     box-shadow:
+       0 0 0 4px rgba(61, 220, 132, 0.07),
+       0 0 12px rgba(61, 220, 132, 0.3);
+   }
+   
+   
+   /* ============================================================================
+      B6. WORKFLOW FOOTER
+      ========================================================================= */
+   
+   .workflow-footer {
+     position: relative;
+     z-index: 1;
+   
+     max-width: 1050px;
+     margin: 55px auto 0;
+     padding-top: 25px;
+   
+     border-top: 1px solid var(--divider);
+   }
+   
+   .workflow-footer-content {
+     display: flex;
+     align-items: flex-start;
+     gap: 25px;
+   }
+   
+   .workflow-footer-label {
+     flex-shrink: 0;
+     padding-top: 3px;
+   
+     font-family: var(--font-mono);
+     font-size: 8px;
+     font-weight: 700;
+     letter-spacing: 0.15em;
+   
+     color: var(--accent-solid);
+   }
+   
+   .workflow-footer-content p {
+     max-width: 680px;
+     margin: 0;
+   
+     font-size: 12px;
+     line-height: 1.7;
+   
+     color: var(--text-muted);
+   }
+   
+   
+   /* ============================================================================
+      B7. RESPONSIVE (WORKFLOW)
+      ========================================================================= */
+   
+   @media (max-width: 1000px) {
+     .workflow-section {
+       padding: 105px 0 120px;
+     }
+   
+     .workflow-header {
+       grid-template-columns: 1fr;
+       gap: 20px;
+   
+       margin-bottom: 65px;
+     }
+   
+     .workflow-header .eyebrow-wrap {
+       margin: 0;
+     }
+   
+     .workflow-heading h2 {
+       font-size: clamp(36px, 6vw, 50px);
+     }
+   
+     .workflow-content {
+       grid-template-columns: 1fr;
+       gap: 22px;
+     }
+   
+     .workflow-tools {
+       justify-content: flex-start;
+       max-width: none;
+     }
+   }
+   
+   @media (max-width: 700px) {
+     .workflow-section {
+       padding: 80px 0 95px;
+     }
+   
+     .workflow-heading h2 {
+       font-size: 35px;
+       letter-spacing: -0.035em;
+     }
+   
+     .workflow-heading p {
+       font-size: 14px;
+       line-height: 1.75;
+     }
+   
+     .workflow {
+       margin-top: 10px;
+     }
+   
+     .workflow-card {
+       grid-template-columns: 54px minmax(0, 1fr);
+       gap: 16px;
+   
+       padding-bottom: 25px;
+     }
+   
+     .workflow-index {
+       width: 48px;
+       height: 48px;
+       border-radius: 14px;
+       font-size: 11px;
+     }
+   
+     .workflow-line {
+       top: 48px;
+     }
+   
+     .workflow-main {
+       padding: 21px 18px;
+       border-radius: 16px;
+     }
+   
+     .workflow-main::before {
+       left: 20px;
+       right: 20px;
+     }
+   
+     .workflow-meta {
+       margin-bottom: 15px;
+     }
+   
+     .workflow-content h3 {
+       font-size: 19px;
+     }
+   
+     .workflow-content p {
+       font-size: 12.5px;
+       line-height: 1.7;
+     }
+   
+     .workflow-tools {
+       gap: 5px;
+     }
+   
+     .workflow-tools span {
+       padding: 5px 7px;
+       font-size: 7.5px;
+     }
+   
+     .workflow-outcome {
+       margin-left: 70px;
+       flex-wrap: wrap;
+     }
+   
+     .workflow-footer {
+       margin-top: 40px;
+     }
+   
+     .workflow-footer-content {
+       flex-direction: column;
+       gap: 9px;
+     }
+   }
+   
+   @media (max-width: 480px) {
+     .workflow-section {
+       padding: 70px 0 80px;
+     }
+   
+     .workflow-header {
+       margin-bottom: 50px;
+     }
+   
+     .workflow-heading h2 {
+       font-size: 30px;
+     }
+   
+     .workflow-card {
+       grid-template-columns: 1fr;
+       gap: 10px;
+     }
+   
+     .workflow-rail {
+       justify-content: flex-start;
+     }
+   
+     .workflow-index {
+       width: 42px;
+       height: 42px;
+       border-radius: 12px;
+     }
+   
+     .workflow-line {
+       display: none;
+     }
+   
+     .workflow-main {
+       padding: 20px 17px;
+     }
+   
+     .workflow-content h3 {
+       font-size: 18px;
+     }
+   
+     .workflow-content p {
+       font-size: 12.5px;
+     }
+   
+     .workflow-tools span {
+       font-size: 7px;
+     }
+   
+     .workflow-outcome {
+       margin: 5px 0 0;
+       padding-left: 0;
+       font-size: 7px;
+     }
+   }
+   
+   
+   
+   /* ████████████████████████████████████████████████████████████████████████████
+      REDUCED MOTION — Applies to both parts
+      ████████████████████████████████████████████████████████████████████████████ */
+   
+   @media (prefers-reduced-motion: reduce) {
+     /* Experience */
+     .experience-card,
+     .impact-card,
+     .marker-icon,
+     .stack-list span,
+     .experience-stat {
+       transition: none;
+     }
+   
+     .focus-pulse {
+       animation: none;
+     }
+   
+     /* Workflow */
+     .workflow-card,
+     .workflow-main,
+     .workflow-index,
+     .workflow-tools span {
+       transition: none;
+     }
+   }

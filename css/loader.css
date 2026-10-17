@@ -1,0 +1,687 @@
+/* ============================================================================
+   OMAR HAMDY — PORTFOLIO
+   loader.css
+   ============================================================================
+   Premium data-themed loader with cinematic motion.
+
+   TABLE OF CONTENTS
+   ----------------------------------------------------------------------------
+   01. Loader Shell & Reset (scoped)
+   02. Background Grid
+   03. Container & System Header
+   04. Brand Section (name, role, description, tech line)
+   05. Chart Wrapper (header, grid, axis, labels, SVG, value)
+   06. Progress Section (status, percent, bar)
+   07. Loader Footer
+   08. Responsive — Tablet
+   09. Responsive — Mobile
+   10. Reduced Motion
+   ========================================================================= */
+
+
+/* ============================================================================
+   01. LOADER SHELL & SCOPED RESET
+   ----------------------------------------------------------------------------
+   All rules are scoped under `.loader` so they never leak into the rest
+   of the site's styles. Reset only applies inside the loader.
+   ========================================================================= */
+
+   .loader,
+   .loader *,
+   .loader *::before,
+   .loader *::after {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+   }
+   
+   .loader {
+     position: fixed;
+     inset: 0;
+     z-index: 9999;
+   
+     display: flex;
+     align-items: center;
+     justify-content: center;
+   
+     background: #080b0f;
+   
+     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+       Roboto, sans-serif;
+   
+     transition:
+       opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+       visibility 0.9s ease,
+       transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+   }
+   
+   .loader.done {
+     opacity: 0;
+     visibility: hidden;
+     pointer-events: none;
+   }
+   
+   
+   /* ============================================================================
+      02. BACKGROUND GRID
+      ----------------------------------------------------------------------------
+      Subtle radial-faded grid behind the loader content.
+      ========================================================================= */
+   
+   .loader .background-grid {
+     position: absolute;
+     inset: 0;
+   
+     background-image:
+       linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+       linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+   
+     background-size: 64px 64px;
+   
+     mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
+     -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
+   
+     opacity: 0.45;
+     pointer-events: none;
+   }
+   
+   
+   /* ============================================================================
+      03. CONTAINER & SYSTEM HEADER
+      ========================================================================= */
+   
+   .loader .loader-container {
+     position: relative;
+     z-index: 2;
+   
+     width: min(760px, calc(100% - 48px));
+     max-width: 760px;
+   }
+   
+   /* System header: brand line + version line */
+   .loader .system-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+   
+     padding-bottom: 16px;
+     margin-bottom: 38px;
+   
+     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+   
+     opacity: 0;
+     transform: translateY(-8px);
+     animation: loaderFadeDown 0.8s 0.1s forwards;
+   }
+   
+   @keyframes loaderFadeDown {
+     to {
+       opacity: 1;
+       transform: translateY(0);
+     }
+   }
+   
+   .loader .system-brand,
+   .loader .system-version {
+     font-size: 8px;
+     font-weight: 600;
+     letter-spacing: 0.18em;
+     text-transform: uppercase;
+     color: rgba(244, 241, 235, 0.36);
+   }
+   
+   .loader .system-version span {
+     color: rgba(244, 241, 235, 0.68);
+   }
+   
+   
+   /* ============================================================================
+      04. BRAND SECTION
+      ========================================================================= */
+   
+   .loader .brand {
+     opacity: 0;
+     transform: translateY(14px);
+     animation: loaderRevealBrand 0.9s 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+   }
+   
+   @keyframes loaderRevealBrand {
+     to {
+       opacity: 1;
+       transform: translateY(0);
+     }
+   }
+   
+   /* Eyebrow pill */
+   .loader .eyebrow {
+     display: inline-flex;
+     width: auto;
+     padding: 6px 14px;
+     margin-bottom: 15px;
+   
+     background: rgba(255, 255, 255, 0.04);
+     border: 1px solid rgba(255, 255, 255, 0.06);
+     border-radius: 999px;
+   
+     color: rgba(244, 241, 235, 0.36);
+     font-size: 8px;
+     font-weight: 600;
+     letter-spacing: 0.16em;
+     text-transform: uppercase;
+   
+     align-items: center;
+     gap: 9px;
+   }
+   
+   .loader .eyebrow-dot {
+     width: 5px;
+     height: 5px;
+     border-radius: 50%;
+     background: #f5a623;
+     box-shadow: 0 0 12px rgba(245, 166, 35, 0.4);
+     animation: loaderPulse 1.8s infinite;
+   }
+   
+   @keyframes loaderPulse {
+     0%,
+     100% {
+       opacity: 1;
+     }
+   
+     50% {
+       opacity: 0.25;
+     }
+   }
+   
+   /* Brand name */
+   .loader .brand-name {
+     margin-bottom: 12px;
+   
+     font-family: "Space Grotesk", "Inter", sans-serif;
+     font-size: clamp(46px, 8vw, 78px);
+     font-weight: 700;
+     line-height: 0.92;
+     letter-spacing: -0.055em;
+   
+     color: #f4f1eb;
+   }
+   
+   .loader .brand-name span {
+     color: #f5a623;
+   }
+   
+   /* Brand role */
+   .loader .brand-role {
+     margin-bottom: 13px;
+   
+     color: rgba(244, 241, 235, 0.68);
+     font-size: 12px;
+     font-weight: 500;
+     letter-spacing: 0.14em;
+     text-transform: uppercase;
+   }
+   
+   /* Brand description */
+   .loader .brand-description {
+     max-width: 540px;
+   
+     color: rgba(244, 241, 235, 0.68);
+     font-size: 14px;
+     line-height: 1.65;
+   }
+   
+   .loader .brand-description strong {
+     color: #f4f1eb;
+     font-weight: 500;
+   }
+   
+   /* Tech line chips */
+   .loader .tech-line {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 8px;
+     margin-top: 18px;
+   }
+   
+   .loader .tech-line span {
+     padding: 5px 10px;
+   
+     border: 1px solid rgba(255, 255, 255, 0.07);
+     background: rgba(255, 255, 255, 0.025);
+     border-radius: 4px;
+   
+     color: rgba(244, 241, 235, 0.36);
+     font-size: 7px;
+     font-weight: 600;
+     letter-spacing: 0.08em;
+     text-transform: uppercase;
+   }
+   
+   
+   /* ============================================================================
+      05. CHART WRAPPER
+      ========================================================================= */
+   
+   .loader .chart-wrapper {
+     position: relative;
+     margin-top: 42px;
+   
+     border: 1px solid rgba(255, 255, 255, 0.07);
+     border-radius: 8px;
+   
+     background: linear-gradient(
+       180deg,
+       rgba(255, 255, 255, 0.025),
+       rgba(255, 255, 255, 0.008)
+     );
+   
+     overflow: hidden;
+   
+     opacity: 0;
+     transform: translateY(16px);
+     animation: loaderChartReveal 0.9s 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+   }
+   
+   @keyframes loaderChartReveal {
+     to {
+       opacity: 1;
+       transform: translateY(0);
+     }
+   }
+   
+   /* Chart header (title + live status) */
+   .loader .chart-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+   
+     padding: 13px 16px;
+   
+     border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+   }
+   
+   .loader .chart-title {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+   
+     color: rgba(244, 241, 235, 0.68);
+     font-size: 8px;
+     font-weight: 600;
+     letter-spacing: 0.12em;
+     text-transform: uppercase;
+   }
+   
+   .loader .chart-title-dot {
+     width: 4px;
+     height: 4px;
+     border-radius: 50%;
+     background: #f5a623;
+   }
+   
+   .loader .chart-live {
+     color: rgba(244, 241, 235, 0.36);
+     font-size: 7px;
+     font-weight: 500;
+     letter-spacing: 0.1em;
+     text-transform: uppercase;
+   }
+   
+   .loader .chart-live span {
+     color: #45d483;
+   }
+   
+   /* Chart body */
+   .loader .chart {
+     position: relative;
+     height: 190px;
+     overflow: hidden;
+   }
+   
+   .loader .chart-grid {
+     position: absolute;
+     inset: 0;
+   
+     background-image:
+       linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+       linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+   
+     background-size: 12.5% 25%, 12.5% 25%;
+     opacity: 0.55;
+   }
+   
+   .loader .chart-axis {
+     position: absolute;
+     left: 14px;
+     top: 10px;
+     bottom: 26px;
+   
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+   
+     color: rgba(244, 241, 235, 0.22);
+     font-size: 6px;
+     font-weight: 500;
+   }
+   
+   .loader .chart-labels {
+     position: absolute;
+     left: 42px;
+     right: 16px;
+     bottom: 8px;
+   
+     display: flex;
+     justify-content: space-between;
+   
+     color: rgba(244, 241, 235, 0.24);
+     font-size: 6px;
+     text-transform: uppercase;
+     letter-spacing: 0.06em;
+   }
+   
+   /* SVG line + area */
+   .loader .chart svg {
+     position: absolute;
+     left: 40px;
+     right: 12px;
+     top: 10px;
+     bottom: 26px;
+   
+     width: calc(100% - 52px);
+     height: calc(100% - 36px);
+   
+     overflow: visible;
+   }
+   
+   .loader .chart-area {
+     fill: url(#loaderAreaGradient);
+     opacity: 0;
+     transition: opacity 0.5s ease;
+   }
+   
+   .loader .chart-area.visible {
+     opacity: 1;
+   }
+   
+   .loader .chart-line {
+     fill: none;
+     stroke: #f5a623;
+     stroke-width: 2;
+     stroke-linecap: round;
+     stroke-linejoin: round;
+     filter: drop-shadow(0 0 7px rgba(245, 166, 35, 0.3));
+   }
+   
+   .loader .chart-dot {
+     fill: #f5a623;
+     opacity: 0;
+     transition: opacity 0.25s ease, r 0.25s ease;
+   }
+   
+   .loader .chart-dot.visible {
+     opacity: 1;
+   }
+   
+   .loader .chart-dot.current {
+     r: 5;
+     filter: drop-shadow(0 0 12px rgba(245, 166, 35, 0.6));
+   }
+   
+   /* Chart value box (Completion %) */
+   .loader .chart-value {
+     position: absolute;
+     right: 15px;
+     top: 14px;
+     text-align: right;
+   }
+   
+   .loader .chart-value-label {
+     display: block;
+     margin-bottom: 2px;
+   
+     color: rgba(244, 241, 235, 0.36);
+     font-size: 6px;
+     letter-spacing: 0.1em;
+     text-transform: uppercase;
+   }
+   
+   .loader .chart-value-number {
+     font-family: "Space Grotesk", "Inter", sans-serif;
+     font-size: 20px;
+     font-weight: 700;
+     letter-spacing: -0.03em;
+   
+     color: #f4f1eb;
+   }
+   
+   .loader .chart-value-number span {
+     color: #f5a623;
+     font-size: 11px;
+   }
+   
+   
+   /* ============================================================================
+      06. PROGRESS SECTION
+      ========================================================================= */
+   
+   .loader .progress-section {
+     margin-top: 20px;
+   
+     opacity: 0;
+     animation: loaderFadeIn 0.8s 1s forwards;
+   }
+   
+   @keyframes loaderFadeIn {
+     to {
+       opacity: 1;
+     }
+   }
+   
+   .loader .progress-top {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 8px;
+   }
+   
+   .loader .progress-status {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+   
+     color: rgba(244, 241, 235, 0.68);
+     font-size: 8px;
+     font-weight: 500;
+     letter-spacing: 0.08em;
+     text-transform: uppercase;
+   }
+   
+   .loader .progress-status-dot {
+     width: 4px;
+     height: 4px;
+     border-radius: 50%;
+     background: #f5a623;
+   }
+   
+   .loader .progress-percent {
+     font-family: "Space Grotesk", "Inter", sans-serif;
+     font-size: 12px;
+     font-weight: 700;
+     color: #f4f1eb;
+   }
+   
+   .loader .progress-track {
+     width: 100%;
+     height: 2px;
+   
+     background: rgba(255, 255, 255, 0.06);
+     border-radius: 4px;
+     overflow: hidden;
+   }
+   
+   .loader .progress-fill {
+     height: 100%;
+     width: 0%;
+   
+     background: #f5a623;
+     box-shadow: 0 0 12px rgba(245, 166, 35, 0.35);
+   
+     transition: width 0.12s linear;
+   }
+   
+   
+   /* ============================================================================
+      07. LOADER FOOTER
+      ========================================================================= */
+   
+   .loader .loader-footer {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+   
+     margin-top: 18px;
+     padding-top: 14px;
+   
+     border-top: 1px solid rgba(255, 255, 255, 0.07);
+   
+     color: rgba(244, 241, 235, 0.36);
+     font-size: 7px;
+     letter-spacing: 0.12em;
+     text-transform: uppercase;
+   
+     opacity: 0;
+     animation: loaderFadeIn 0.8s 1.2s forwards;
+   }
+   
+   .loader .footer-left {
+     display: flex;
+     gap: 16px;
+   }
+   
+   .loader .footer-status {
+     color: #45d483;
+   }
+   
+   
+   /* ============================================================================
+      08. RESPONSIVE — TABLET
+      ========================================================================= */
+   
+   @media (max-width: 768px) {
+     .loader .loader-container {
+       width: min(620px, calc(100% - 36px));
+     }
+   
+     .loader .brand-name {
+       font-size: clamp(42px, 10vw, 62px);
+     }
+   
+     .loader .brand-description {
+       font-size: 13px;
+     }
+   
+     .loader .chart {
+       height: 165px;
+     }
+   }
+   
+   
+   /* ============================================================================
+      09. RESPONSIVE — MOBILE
+      ========================================================================= */
+   
+   @media (max-width: 480px) {
+     .loader .loader-container {
+       width: calc(100% - 28px);
+     }
+   
+     .loader .system-header {
+       margin-bottom: 25px;
+     }
+   
+     .loader .system-brand,
+     .loader .system-version {
+       font-size: 6px;
+     }
+   
+     .loader .brand-name {
+       font-size: clamp(35px, 12vw, 48px);
+     }
+   
+     .loader .brand-role {
+       font-size: 8px;
+     }
+   
+     .loader .brand-description {
+       font-size: 11px;
+       line-height: 1.6;
+     }
+   
+     .loader .tech-line {
+       margin-top: 13px;
+       gap: 5px;
+     }
+   
+     .loader .tech-line span {
+       padding: 4px 7px;
+       font-size: 6px;
+     }
+   
+     .loader .chart-wrapper {
+       margin-top: 25px;
+     }
+   
+     .loader .chart {
+       height: 125px;
+     }
+   
+     .loader .chart-header {
+       padding: 10px 12px;
+     }
+   
+     .loader .chart-title,
+     .loader .chart-live {
+       font-size: 6px;
+     }
+   
+     .loader .chart-value {
+       top: 11px;
+       right: 11px;
+     }
+   
+     .loader .chart-value-number {
+       font-size: 15px;
+     }
+   
+     .loader .chart-labels {
+       font-size: 5px;
+     }
+   
+     .loader .progress-status {
+       font-size: 6px;
+     }
+   
+     .loader .progress-percent {
+       font-size: 10px;
+     }
+   
+     .loader .loader-footer {
+       font-size: 5.5px;
+     }
+   }
+   
+   
+   /* ============================================================================
+      10. REDUCED MOTION
+      ========================================================================= */
+   
+   @media (prefers-reduced-motion: reduce) {
+     .loader *,
+     .loader *::before,
+     .loader *::after {
+       animation-duration: 0.01ms !important;
+       animation-iteration-count: 1 !important;
+       transition-duration: 0.01ms !important;
+     }
+   }

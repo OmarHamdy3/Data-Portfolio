@@ -1,0 +1,827 @@
+/* ============================================================================
+   OMAR HAMDY — PORTFOLIO
+   footer.css
+   ============================================================================
+   Site footer — CTA banner + 4-column link grid + bottom bar.
+
+   TABLE OF CONTENTS
+   ----------------------------------------------------------------------------
+   01. Section Shell & Ambient Glows
+   02. CTA Banner (headline + button)
+   03. Divider
+   04. Main Grid (brand / explore / resources / contact)
+   05. Brand Column (logo, description, availability)
+   06. Column Titles & Link Lists
+   07. Contact Column (cards + socials)
+   08. Bottom Bar (copyright + back-to-top)
+   09. Focus States
+   10. Responsive — Tablet (≤1100px)
+   11. Responsive — Mobile (≤800px)
+   12. Responsive — Small Mobile (≤560px)
+   13. Responsive — Tiny (≤380px)
+   14. Reduced Motion
+   ========================================================================= */
+
+
+/* ============================================================================
+   01. SECTION SHELL & AMBIENT GLOWS
+   ========================================================================= */
+
+   .site-footer {
+    position: relative;
+    overflow: hidden;
+  
+    padding: 90px 0 28px;
+  
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.015) 0%,
+        rgba(255, 255, 255, 0) 30%
+      ),
+      var(--bg, #080a0d);
+  
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  
+  /* Blurred glow blobs */
+  .footer-glow {
+    position: absolute;
+    pointer-events: none;
+  
+    width: 420px;
+    height: 420px;
+  
+    border-radius: 50%;
+    background: var(--accent-solid, #f5a623);
+  
+    filter: blur(100px);
+    opacity: 0.08;
+  }
+  
+  .footer-glow-left {
+    top: -260px;
+    left: -220px;
+  }
+  
+  .footer-glow-right {
+    bottom: -300px;
+    right: -220px;
+  }
+  
+  .footer-container {
+    position: relative;
+    z-index: 1;
+  }
+  
+  
+  /* ============================================================================
+     02. CTA BANNER
+     ========================================================================= */
+  
+  .footer-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  
+    padding: 42px 44px;
+  
+    border: 1px solid rgba(245, 166, 35, 0.16);
+    border-radius: 24px;
+  
+    background: linear-gradient(
+      135deg,
+      rgba(245, 166, 35, 0.08),
+      rgba(255, 255, 255, 0.025)
+    );
+  
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+  
+  .footer-cta-content {
+    max-width: 720px;
+  }
+  
+  /* Eyebrow */
+  .footer-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  
+    margin-bottom: 15px;
+  
+    font-family: var(--font-mono, monospace);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+  
+    color: var(--accent-solid, #f5a623);
+  }
+  
+  .footer-eyebrow-dot {
+    width: 6px;
+    height: 6px;
+  
+    border-radius: 50%;
+    background: var(--accent-solid, #f5a623);
+  
+    box-shadow: 0 0 12px rgba(245, 166, 35, 0.7);
+  }
+  
+  /* Headline */
+  .footer-cta h2 {
+    margin: 0;
+  
+    font-family: var(--font-display, sans-serif);
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 750;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+  
+    color: var(--text-primary, #fff);
+  }
+  
+  .footer-cta h2 span {
+    color: var(--accent-solid, #f5a623);
+  }
+  
+  .footer-cta-content p {
+    max-width: 620px;
+    margin: 14px 0 0;
+  
+    font-size: 14px;
+    line-height: 1.75;
+  
+    color: var(--text-secondary, #a7adb7);
+  }
+  
+  /* CTA button */
+  .footer-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  
+    min-width: 190px;
+    padding: 14px 20px;
+  
+    border-radius: 12px;
+  
+    color: #17130a;
+  
+    background: linear-gradient(
+      135deg,
+      var(--accent-start, #ffd76a),
+      var(--accent-end, #f5a623)
+    );
+  
+    font-size: 13px;
+    font-weight: 750;
+    text-decoration: none;
+  
+    box-shadow: 0 10px 30px rgba(245, 166, 35, 0.18);
+  
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      filter 0.25s ease;
+  }
+  
+  .footer-cta-button svg {
+    width: 17px;
+    height: 17px;
+    transition: transform 0.25s ease;
+  }
+  
+  .footer-cta-button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.04);
+    box-shadow: 0 16px 38px rgba(245, 166, 35, 0.28);
+  }
+  
+  .footer-cta-button:hover svg {
+    transform: translateX(4px);
+  }
+  
+  
+  /* ============================================================================
+     03. DIVIDER
+     ========================================================================= */
+  
+  .footer-divider {
+    width: 100%;
+    height: 1px;
+  
+    margin: 62px 0 52px;
+  
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.08) 20%,
+      rgba(255, 255, 255, 0.08) 80%,
+      transparent
+    );
+  }
+  
+  
+  /* ============================================================================
+     04. MAIN GRID (BRAND / EXPLORE / RESOURCES / CONTACT)
+     ========================================================================= */
+  
+  .footer-main {
+    display: grid;
+    grid-template-columns:
+      minmax(250px, 1.55fr)
+      minmax(130px, 0.75fr)
+      minmax(130px, 0.75fr)
+      minmax(250px, 1fr);
+  
+    gap: 60px;
+  }
+  
+  
+  /* ============================================================================
+     05. BRAND COLUMN
+     ========================================================================= */
+  
+  .footer-brand {
+    max-width: 350px;
+  }
+  
+  .footer-logo {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+  
+    color: var(--text-primary, #fff);
+    text-decoration: none;
+  }
+  
+  .footer-logo-main {
+    font-family: var(--font-display, sans-serif);
+    font-size: 29px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+  
+  .footer-logo-main span {
+    color: var(--accent-solid, #f5a623);
+  }
+  
+  .footer-logo-sub {
+    font-family: var(--font-mono, monospace);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  
+    color: var(--text-muted, #737a86);
+  }
+  
+  .footer-description {
+    margin: 20px 0;
+  
+    font-size: 13px;
+    line-height: 1.8;
+  
+    color: var(--text-secondary, #a7adb7);
+  }
+  
+  /* Availability pill */
+  .footer-availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+  
+    padding: 8px 12px;
+  
+    border: 1px solid rgba(61, 220, 132, 0.14);
+    border-radius: 999px;
+    background: rgba(61, 220, 132, 0.06);
+  
+    font-size: 11px;
+    font-weight: 600;
+  
+    color: var(--text-secondary, #a7adb7);
+  }
+  
+  .availability-indicator {
+    position: relative;
+  
+    width: 7px;
+    height: 7px;
+  
+    border-radius: 50%;
+    background: #3ddc84;
+  
+    box-shadow: 0 0 10px rgba(61, 220, 132, 0.6);
+  }
+  
+  .availability-indicator::after {
+    content: "";
+  
+    position: absolute;
+    inset: -4px;
+  
+    border: 1px solid rgba(61, 220, 132, 0.2);
+    border-radius: inherit;
+  
+    animation: footerPulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes footerPulse {
+    0%,
+    100% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0;
+      transform: scale(1.8);
+    }
+  }
+  
+  
+  /* ============================================================================
+     06. COLUMN TITLES & LINK LISTS
+     ========================================================================= */
+  
+  .footer-column-title {
+    display: block;
+    margin-bottom: 22px;
+  
+    font-family: var(--font-mono, monospace);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  
+    color: var(--text-muted, #737a86);
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .footer-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  
+    width: fit-content;
+    padding: 5px 0;
+  
+    color: var(--text-secondary, #a7adb7);
+    font-size: 13px;
+    text-decoration: none;
+  
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+  
+  .footer-links a svg {
+    width: 13px;
+    height: 13px;
+  
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  
+    opacity: 0;
+    transform: translateX(-5px);
+  
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+  
+  .footer-links a:hover {
+    color: var(--accent-solid, #f5a623);
+    transform: translateX(3px);
+  }
+  
+  .footer-links a:hover svg {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  
+  /* ============================================================================
+     07. CONTACT COLUMN (CARDS + SOCIALS)
+     ========================================================================= */
+  
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .footer-contact-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  
+    text-decoration: none;
+  
+    transition: transform 0.2s ease;
+  }
+  
+  .footer-contact-card:hover {
+    transform: translateX(3px);
+  }
+  
+  .footer-contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  
+    width: 38px;
+    height: 38px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.025);
+  
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
+  }
+  
+  .footer-contact-icon svg {
+    width: 16px;
+    height: 16px;
+    color: var(--text-muted, #737a86);
+  
+    transition: color 0.2s ease;
+  }
+  
+  .footer-contact-card:hover .footer-contact-icon {
+    background: rgba(245, 166, 35, 0.07);
+    border-color: rgba(245, 166, 35, 0.2);
+  }
+  
+  .footer-contact-card:hover .footer-contact-icon svg {
+    color: var(--accent-solid, #f5a623);
+  }
+  
+  .footer-contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+  
+  .footer-contact-content small {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  
+    color: var(--text-muted, #737a86);
+  }
+  
+  .footer-contact-content strong {
+    max-width: 200px;
+    overflow: hidden;
+  
+    font-size: 12px;
+    font-weight: 600;
+  
+    color: var(--text-secondary, #a7adb7);
+  
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  /* Socials */
+  .footer-social {
+    display: flex;
+    gap: 8px;
+    margin-top: 22px;
+  }
+  
+  .footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 38px;
+    height: 38px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.025);
+  
+    color: var(--text-muted, #737a86);
+  
+    transition:
+      color 0.25s ease,
+      background 0.25s ease,
+      border-color 0.25s ease,
+      transform 0.25s ease;
+  }
+  
+  .footer-social a svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .footer-social a:hover {
+    transform: translateY(-3px);
+    color: var(--accent-solid, #f5a623);
+    background: rgba(245, 166, 35, 0.07);
+    border-color: rgba(245, 166, 35, 0.25);
+  }
+  
+  
+  /* ============================================================================
+     08. BOTTOM BAR (COPYRIGHT + BACK-TO-TOP)
+     ========================================================================= */
+  
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  
+    margin-top: 62px;
+    padding-top: 24px;
+  
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  
+  .footer-copyright {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+  
+    font-size: 11px;
+    color: var(--text-muted, #737a86);
+  }
+  
+  .copyright-symbol {
+    color: var(--accent-solid, #f5a623);
+    font-weight: 700;
+  }
+  
+  .copyright-separator {
+    width: 3px;
+    height: 3px;
+  
+    border-radius: 50%;
+    background: var(--text-muted, #737a86);
+  
+    opacity: 0.5;
+  }
+  
+  .footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  
+    font-size: 11px;
+    color: var(--text-muted, #737a86);
+  }
+  
+  /* Back-to-top button */
+  .back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  
+    padding: 8px 12px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.025);
+  
+    color: var(--text-secondary, #a7adb7);
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+  
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  
+  .back-to-top svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s ease;
+  }
+  
+  .back-to-top:hover {
+    transform: translateY(-2px);
+    color: var(--accent-solid, #f5a623);
+    border-color: rgba(245, 166, 35, 0.22);
+    background: rgba(245, 166, 35, 0.05);
+  }
+  
+  .back-to-top:hover svg {
+    transform: translateY(-2px);
+  }
+  
+  
+  /* ============================================================================
+     09. FOCUS STATES
+     ========================================================================= */
+  
+  .footer-links a:focus-visible,
+  .footer-social a:focus-visible,
+  .footer-cta-button:focus-visible,
+  .back-to-top:focus-visible,
+  .footer-contact-card:focus-visible {
+    outline: 2px solid var(--accent-solid, #f5a623);
+    outline-offset: 4px;
+  }
+  
+  
+  /* ============================================================================
+     10. RESPONSIVE — TABLET (≤1100px)
+     ========================================================================= */
+  
+  @media (max-width: 1100px) {
+    .footer-main {
+      grid-template-columns: 1.4fr 0.8fr 0.8fr;
+    }
+  
+    /* Contact column drops to full width and splits into a 2-column sub-layout */
+    .footer-contact-column {
+      grid-column: 1 / -1;
+  
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: 40px;
+  
+      align-items: start;
+    }
+  
+    .footer-contact-column .footer-column-title {
+      grid-column: 1 / -1;
+    }
+  
+    .footer-contact-column .footer-social {
+      margin-top: 0;
+    }
+  }
+  
+  
+  /* ============================================================================
+     11. RESPONSIVE — MOBILE (≤800px)
+     ========================================================================= */
+  
+  @media (max-width: 800px) {
+    .site-footer {
+      padding: 70px 0 24px;
+    }
+  
+    .footer-cta {
+      flex-direction: column;
+      align-items: flex-start;
+  
+      padding: 32px 28px;
+    }
+  
+    .footer-cta-button {
+      width: 100%;
+    }
+  
+    .footer-divider {
+      margin: 48px 0 40px;
+    }
+  
+    .footer-main {
+      grid-template-columns: 1fr 1fr;
+      gap: 42px 32px;
+    }
+  
+    .footer-brand {
+      grid-column: 1 / -1;
+      max-width: 520px;
+    }
+  
+    .footer-contact-column {
+      grid-column: auto;
+  
+      display: block;
+    }
+  
+    .footer-contact-column .footer-column-title {
+      margin-bottom: 22px;
+    }
+  
+    .footer-contact-column .footer-social {
+      margin-top: 20px;
+    }
+  }
+  
+  
+  /* ============================================================================
+     12. RESPONSIVE — SMALL MOBILE (≤560px)
+     ========================================================================= */
+  
+  @media (max-width: 560px) {
+    .site-footer {
+      padding: 60px 0 20px;
+    }
+  
+    .footer-cta {
+      padding: 26px 22px;
+      border-radius: 18px;
+    }
+  
+    .footer-cta h2 {
+      font-size: 29px;
+    }
+  
+    .footer-cta-content p {
+      font-size: 13px;
+    }
+  
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: 34px;
+    }
+  
+    .footer-brand {
+      grid-column: auto;
+    }
+  
+    .footer-column {
+      width: 100%;
+    }
+  
+    .footer-contact-column {
+      grid-column: auto;
+    }
+  
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+  
+      margin-top: 45px;
+    }
+  
+    .footer-bottom-right {
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+  
+  
+  /* ============================================================================
+     13. RESPONSIVE — TINY (≤380px)
+     ========================================================================= */
+  
+  @media (max-width: 380px) {
+    .footer-cta {
+      padding: 24px 18px;
+    }
+  
+    .footer-cta h2 {
+      font-size: 26px;
+    }
+  
+    .footer-bottom-right {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  
+    .back-to-top {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  
+  /* ============================================================================
+     14. REDUCED MOTION
+     ========================================================================= */
+  
+  @media (prefers-reduced-motion: reduce) {
+    .footer-links a,
+    .footer-social a,
+    .footer-cta-button,
+    .back-to-top,
+    .footer-contact-card {
+      transition: none;
+    }
+  
+    .availability-indicator::after {
+      animation: none;
+    }
+  }

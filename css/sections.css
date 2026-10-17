@@ -1,0 +1,2464 @@
+/* ============================================================================
+   OMAR HAMDY — PORTFOLIO
+   sections.css
+   ============================================================================
+   Three related mid-page sections grouped into one stylesheet:
+
+     1. Analytics Ecosystem  (tech stack showcase)
+     2. Specialties          (service cards grid)
+     3. Philosophy           (decision intelligence / operating model)
+
+   TABLE OF CONTENTS
+   ----------------------------------------------------------------------------
+   PART A — ANALYTICS ECOSYSTEM
+     A1. Section Shell & Ambient Background
+     A2. Container & Header
+     A3. Ecosystem Grid Layout
+     A4. Left Column — Philosophy & Workflow Timeline
+     A5. Right Column — Tools & Categories
+     A6. Additional Skills & Tech Ticker
+     A7. Responsive
+
+   PART B — SPECIALTIES
+     B1. Section Shell & Background
+     B2. Specialty Grid & Cards
+     B3. Card Content & Tags
+     B4. Responsive
+
+   PART C — PHILOSOPHY / DECISION INTELLIGENCE
+     C1. Section Shell & Ambient
+     C2. Header (kicker + title)
+     C3. Approach System Layout
+     C4. Sidebar (marker + number)
+     C5. Decision Pipeline
+     C6. Operating Model
+     C7. Final Statement
+     C8. Responsive
+   ========================================================================= */
+
+
+
+/* ████████████████████████████████████████████████████████████████████████████
+   PART A — ANALYTICS ECOSYSTEM
+   ████████████████████████████████████████████████████████████████████████████ */
+
+
+/* ============================================================================
+   A1. SECTION SHELL & AMBIENT BACKGROUND
+   ========================================================================= */
+
+   .analytics-ecosystem {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  
+    padding: 130px 0 140px;
+  
+    background:
+      radial-gradient(ellipse at 15% 25%, rgba(245, 166, 35, 0.04), transparent 50%),
+      radial-gradient(ellipse at 85% 75%, rgba(245, 166, 35, 0.03), transparent 40%),
+      #0d0d0f;
+  
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  
+  /* Ambient drifting lines */
+  .ecosystem-ambient {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  .ecosystem-ambient .ambient-line {
+    position: absolute;
+  
+    height: 1px;
+  
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(245, 166, 35, 0.08),
+      transparent
+    );
+  
+    animation: ambientDrift 12s linear infinite;
+  }
+  
+  .ecosystem-ambient .ambient-line:nth-child(1) {
+    width: 25%;
+    top: 12%;
+    left: -25%;
+    animation-delay: 0s;
+    animation-duration: 14s;
+  }
+  
+  .ecosystem-ambient .ambient-line:nth-child(2) {
+    width: 30%;
+    top: 35%;
+    left: -30%;
+    animation-delay: 2s;
+    animation-duration: 16s;
+  }
+  
+  .ecosystem-ambient .ambient-line:nth-child(3) {
+    width: 20%;
+    top: 55%;
+    left: -20%;
+    animation-delay: 4s;
+    animation-duration: 12s;
+  }
+  
+  .ecosystem-ambient .ambient-line:nth-child(4) {
+    width: 28%;
+    top: 72%;
+    left: -28%;
+    animation-delay: 6s;
+    animation-duration: 18s;
+  }
+  
+  .ecosystem-ambient .ambient-line:nth-child(5) {
+    width: 22%;
+    top: 88%;
+    left: -22%;
+    animation-delay: 8s;
+    animation-duration: 15s;
+  }
+  
+  @keyframes ambientDrift {
+    0% {
+      transform: translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(120vw);
+      opacity: 0;
+    }
+  }
+  
+  
+  /* ============================================================================
+     A2. CONTAINER & HEADER
+     ========================================================================= */
+  
+  .ecosystem-container {
+    position: relative;
+    z-index: 1;
+  
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  .ecosystem-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+  
+  /* Eyebrow with dot + lines */
+  .ecosystem-eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  
+    margin-bottom: 28px;
+  }
+  
+  .eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #f5a623;
+    box-shadow: 0 0 16px rgba(245, 166, 35, 0.4);
+  }
+  
+  .eyebrow-line {
+    width: 30px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(245, 166, 35, 0.3));
+  }
+  
+  .eyebrow-text {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244, 241, 235, 0.35);
+  }
+  
+  /* Title */
+  .ecosystem-header h2 {
+    margin-bottom: 18px;
+  
+    font-family: "Space Grotesk", "Sora", sans-serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  
+    color: #f4f1eb;
+  }
+  
+  .ecosystem-header h2 span {
+    background: linear-gradient(135deg, #f5a623, #ffc45c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .ecosystem-header h2 .h2-sub {
+    display: block;
+    margin-top: 4px;
+  
+    font-size: clamp(24px, 2.5vw, 34px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: rgba(244, 241, 235, 0.3);
+  }
+  
+  .ecosystem-intro {
+    max-width: 620px;
+    margin: 0 auto;
+  
+    color: rgba(244, 241, 235, 0.5);
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+  }
+  
+  
+  /* ============================================================================
+     A3. ECOSYSTEM GRID LAYOUT
+     ========================================================================= */
+  
+  .ecosystem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+  
+    align-items: start;
+  
+    margin-bottom: 70px;
+  }
+  
+  
+  /* ============================================================================
+     A4. LEFT COLUMN — PHILOSOPHY & WORKFLOW TIMELINE
+     ========================================================================= */
+  
+  .ecosystem-philosophy {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  
+  .block-label {
+    display: block;
+    margin-bottom: 14px;
+  
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  
+    color: rgba(244, 241, 235, 0.25);
+  }
+  
+  /* Philosophy block */
+  .philosophy-block h3 {
+    margin-bottom: 14px;
+  
+    font-family: "Space Grotesk", "Sora", sans-serif;
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  
+    color: #f4f1eb;
+  }
+  
+  .philosophy-block h3 span {
+    color: #f5a623;
+  }
+  
+  .philosophy-block p {
+    max-width: 460px;
+  
+    color: rgba(244, 241, 235, 0.5);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  
+  /* Workflow timeline */
+  .workflow-timeline {
+    position: relative;
+    padding-left: 0;
+  }
+  
+  .workflow-connector-line {
+    position: absolute;
+    left: 13px;
+    top: 40px;
+    bottom: 10px;
+  
+    width: 1px;
+  
+    background: linear-gradient(
+      to bottom,
+      rgba(245, 166, 35, 0.3),
+      rgba(245, 166, 35, 0.02)
+    );
+  }
+  
+  .workflow-step {
+    position: relative;
+  
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 16px;
+  
+    padding-bottom: 22px;
+  }
+  
+  .workflow-step:last-child {
+    padding-bottom: 0;
+  }
+  
+  .step-number {
+    position: relative;
+    z-index: 2;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  
+    width: 28px;
+    height: 28px;
+  
+    border: 1px solid rgba(245, 166, 35, 0.15);
+    border-radius: 50%;
+    background: rgba(245, 166, 35, 0.04);
+  
+    color: #f5a623;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 8px;
+    font-weight: 600;
+  }
+  
+  .step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .step-label {
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(244, 241, 235, 0.2);
+  }
+  
+  .step-content strong {
+    font-size: 13px;
+    font-weight: 600;
+    color: #f4f1eb;
+  }
+  
+  .step-content p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.4;
+    color: rgba(244, 241, 235, 0.35);
+  }
+  
+  /* Stats strip */
+  .ecosystem-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+  
+    background: rgba(255, 255, 255, 0.04);
+  
+    overflow: hidden;
+  }
+  
+  .stat-item {
+    padding: 16px 12px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.01);
+  }
+  
+  .stat-number {
+    display: block;
+  
+    font-family: "Space Grotesk", "Sora", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  
+    color: #f5a623;
+  }
+  
+  .stat-label {
+    display: block;
+    margin-top: 4px;
+  
+    font-size: 7px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  
+    color: rgba(244, 241, 235, 0.25);
+  }
+  
+  
+  /* ============================================================================
+     A5. RIGHT COLUMN — TOOLS & CATEGORIES
+     ========================================================================= */
+  
+  .ecosystem-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  
+  .tools-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    padding-bottom: 12px;
+  
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  
+  .tools-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244, 241, 235, 0.25);
+  }
+  
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #45d483;
+    box-shadow: 0 0 12px rgba(69, 212, 131, 0.3);
+    animation: statusPulse 2s infinite;
+  }
+  
+  @keyframes statusPulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+  }
+  
+  /* Primary tool card */
+  .primary-tool {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  
+    padding: 18px 20px;
+  
+    border: 1px solid rgba(245, 166, 35, 0.12);
+    border-radius: 12px;
+  
+    background: linear-gradient(
+      135deg,
+      rgba(245, 166, 35, 0.04),
+      rgba(245, 166, 35, 0.01)
+    );
+  
+    transition: all 0.3s ease;
+  }
+  
+  .primary-tool:hover {
+    transform: translateY(-2px);
+    border-color: rgba(245, 166, 35, 0.25);
+  }
+  
+  .primary-tool-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  
+    width: 44px;
+    height: 44px;
+  
+    border: 1px solid rgba(245, 166, 35, 0.15);
+    border-radius: 10px;
+    background: rgba(245, 166, 35, 0.06);
+  
+    color: #f5a623;
+    font-size: 18px;
+  }
+  
+  .primary-tool-content {
+    flex: 1;
+  }
+  
+  .primary-tool-category {
+    font-size: 6px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(244, 241, 235, 0.2);
+  }
+  
+  .primary-tool-content strong {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #f4f1eb;
+  }
+  
+  .primary-tool-content p {
+    margin: 2px 0 0;
+    font-size: 10px;
+    color: rgba(244, 241, 235, 0.3);
+  }
+  
+  .primary-tool-arrow {
+    color: rgba(245, 166, 35, 0.3);
+    font-size: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .primary-tool:hover .primary-tool-arrow {
+    transform: translateX(4px);
+    color: #f5a623;
+  }
+  
+  /* Tool categories grid (2x2) */
+  .tool-categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+  
+    overflow: hidden;
+  }
+  
+  .tool-category {
+    padding: 16px 16px 18px;
+    background: rgba(255, 255, 255, 0.01);
+  }
+  
+  .tool-category:nth-child(1) {
+    border-right: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+  
+  .tool-category:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  }
+  
+  .tool-category:nth-child(3) {
+    border-right: 1px solid rgba(255, 255, 255, 0.03);
+  }
+  
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .category-number {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 7px;
+    font-weight: 600;
+    color: #f5a623;
+  }
+  
+  .category-name {
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(244, 241, 235, 0.2);
+  }
+  
+  .category-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  /* Tool tag */
+  .tool-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  
+    padding: 4px 9px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.015);
+  
+    color: rgba(244, 241, 235, 0.3);
+    font-size: 7px;
+    font-weight: 500;
+  
+    transition: all 0.25s ease;
+  }
+  
+  .tool-tag i {
+    font-size: 7px;
+    color: rgba(244, 241, 235, 0.15);
+  }
+  
+  .tool-tag.active {
+    border-color: rgba(245, 166, 35, 0.2);
+    color: #f5a623;
+  }
+  
+  .tool-tag.active i {
+    color: #f5a623;
+  }
+  
+  .tool-tag:hover {
+    transform: translateY(-1px);
+    border-color: rgba(245, 166, 35, 0.15);
+    color: #f4f1eb;
+  }
+  
+  .tool-tag:hover i {
+    color: #f5a623;
+  }
+  
+  
+  /* ============================================================================
+     A6. ADDITIONAL SKILLS & TECH TICKER
+     ========================================================================= */
+  
+  .additional-skills {
+    padding-top: 4px;
+  }
+  
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .skill-tags span {
+    padding: 5px 12px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.015);
+  
+    color: rgba(244, 241, 235, 0.3);
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  
+    transition: all 0.25s ease;
+  }
+  
+  .skill-tags span:hover {
+    border-color: rgba(245, 166, 35, 0.12);
+    color: rgba(244, 241, 235, 0.5);
+    background: rgba(245, 166, 35, 0.03);
+  }
+  
+  /* Tech ticker (auto-scrolling marquee) */
+  .tech-ticker {
+    position: relative;
+    overflow: hidden;
+  
+    padding: 30px 0 0;
+  
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+  }
+  
+  .ticker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    margin-bottom: 14px;
+  
+    color: rgba(244, 241, 235, 0.2);
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  
+  .ticker-header span:first-child {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .ticker-header i {
+    color: #f5a623;
+    font-size: 10px;
+  }
+  
+  .ticker-track-wrapper {
+    position: relative;
+  
+    width: 100%;
+    padding: 12px 0;
+  
+    overflow: hidden;
+  }
+  
+  /* Fade edges */
+  .ticker-track-wrapper::before,
+  .ticker-track-wrapper::after {
+    content: "";
+  
+    position: absolute;
+    top: 0;
+    bottom: 0;
+  
+    width: 60px;
+  
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .ticker-track-wrapper::before {
+    left: 0;
+    background: linear-gradient(90deg, #0d0d0f, transparent);
+  }
+  
+  .ticker-track-wrapper::after {
+    right: 0;
+    background: linear-gradient(270deg, #0d0d0f, transparent);
+  }
+  
+  .ticker-track {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  
+    width: max-content;
+  
+    animation: tickerScroll 30s linear infinite;
+  }
+  
+  .ticker-track:hover {
+    animation-play-state: paused;
+  }
+  
+  .ticker-track span {
+    color: rgba(244, 241, 235, 0.25);
+  
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  
+    transition: color 0.25s ease;
+  }
+  
+  .ticker-track span:hover {
+    color: #f5a623;
+  }
+  
+  .ticker-track .separator {
+    color: rgba(245, 166, 35, 0.15);
+    font-size: 6px;
+  }
+  
+  @keyframes tickerScroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  
+  /* ============================================================================
+     A7. RESPONSIVE (ECOSYSTEM)
+     ========================================================================= */
+  
+  @media (max-width: 1100px) {
+    .ecosystem-grid {
+      grid-template-columns: 1fr;
+      gap: 50px;
+    }
+  
+    .ecosystem-philosophy {
+      max-width: 700px;
+    }
+  
+    .philosophy-block p {
+      max-width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .analytics-ecosystem {
+      padding: 80px 0 90px;
+    }
+  
+    .ecosystem-header {
+      margin-bottom: 50px;
+    }
+  
+    .ecosystem-header h2 {
+      font-size: 38px;
+    }
+  
+    .ecosystem-header h2 .h2-sub {
+      font-size: 24px;
+    }
+  
+    .ecosystem-intro {
+      font-size: 13px;
+    }
+  
+    .ecosystem-stats {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    .tool-categories {
+      grid-template-columns: 1fr;
+    }
+  
+    .tool-category:nth-child(1),
+    .tool-category:nth-child(3) {
+      border-right: none;
+    }
+  
+    .tool-category:nth-child(1),
+    .tool-category:nth-child(2) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+  
+    .ticker-header span:last-child {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .analytics-ecosystem {
+      padding: 60px 0 70px;
+    }
+  
+    .ecosystem-header h2 {
+      font-size: 30px;
+    }
+  
+    .ecosystem-header h2 .h2-sub {
+      font-size: 20px;
+    }
+  
+    .primary-tool {
+      flex-wrap: wrap;
+      padding: 14px 16px;
+    }
+  
+    .primary-tool-arrow {
+      margin-left: auto;
+    }
+  
+    .ecosystem-stats {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+    }
+  
+    .stat-item {
+      padding: 12px 8px;
+    }
+  
+    .stat-number {
+      font-size: 18px;
+    }
+  
+    .skill-tags span {
+      padding: 4px 9px;
+      font-size: 7px;
+    }
+  }
+  
+  
+  
+  /* ████████████████████████████████████████████████████████████████████████████
+     PART B — SPECIALTIES
+     ████████████████████████████████████████████████████████████████████████████ */
+  
+  
+  /* ============================================================================
+     B1. SECTION SHELL & BACKGROUND
+     ========================================================================= */
+  
+  #specialties {
+    position: relative;
+    overflow: hidden;
+  
+    padding: 120px 0;
+  
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  
+    background:
+      radial-gradient(circle at 8% 20%, rgba(245, 166, 35, 0.055), transparent 30%),
+      radial-gradient(circle at 92% 80%, rgba(245, 166, 35, 0.035), transparent 28%),
+      var(--bg-alt);
+  }
+  
+  /* Subtle tech grid background, faded toward the bottom */
+  #specialties::before {
+    content: "";
+  
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+  
+    background-size: 72px 72px;
+  
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
+  }
+  
+  /* Section head override */
+  #specialties .section-head {
+    position: relative;
+    z-index: 1;
+  
+    max-width: 760px;
+    margin: 0 auto 58px;
+    text-align: center;
+  }
+  
+  #specialties .section-head h2 {
+    margin: 0 auto 18px;
+    letter-spacing: -0.04em;
+    text-align: center;
+  }
+  
+  #specialties .section-head p {
+    max-width: 620px;
+    margin: 0 auto;
+  
+    font-size: 14px;
+    line-height: 1.8;
+  
+    color: var(--text-secondary);
+    text-align: center;
+  }
+  
+  
+  /* ============================================================================
+     B2. SPECIALTY GRID & CARDS
+     ========================================================================= */
+  
+  .specialty-grid {
+    position: relative;
+    z-index: 1;
+  
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+  
+  .specialty-card {
+    position: relative;
+    isolation: isolate;
+  
+    display: flex;
+    flex-direction: column;
+  
+    min-height: 410px;
+    padding: 26px;
+  
+    overflow: hidden;
+  
+    border: 1px solid var(--card-border);
+    border-radius: 22px;
+  
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.038),
+        rgba(255, 255, 255, 0.012)
+      ),
+      var(--card-bg);
+  
+    box-shadow:
+      0 16px 45px rgba(0, 0, 0, 0.16),
+      inset 0 1px rgba(255, 255, 255, 0.025);
+  
+    transition:
+      transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color 0.35s ease,
+      box-shadow 0.4s ease;
+  }
+  
+  /* Top accent line, revealed on hover */
+  .specialty-card::before {
+    content: "";
+  
+    position: absolute;
+    top: 0;
+    left: 25px;
+    right: 25px;
+  
+    height: 1px;
+  
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(245, 166, 35, 0.55),
+      transparent
+    );
+  
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  
+  /* Ambient corner glow, revealed on hover */
+  .specialty-card::after {
+    content: "";
+  
+    position: absolute;
+    top: -90px;
+    right: -90px;
+  
+    width: 180px;
+    height: 180px;
+  
+    border-radius: 50%;
+  
+    background: rgba(245, 166, 35, 0.07);
+    filter: blur(35px);
+  
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+  
+  .specialty-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(245, 166, 35, 0.25);
+    box-shadow:
+      0 25px 65px rgba(0, 0, 0, 0.24),
+      0 0 45px rgba(245, 166, 35, 0.025);
+  }
+  
+  .specialty-card:hover::before,
+  .specialty-card:hover::after {
+    opacity: 1;
+  }
+  
+  .specialty-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  
+    margin-bottom: 32px;
+  }
+  
+  .specialty-number {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+  
+    color: var(--accent-solid);
+    opacity: 0.72;
+  }
+  
+  .specialty-card .icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 50px;
+    height: 50px;
+    margin: 0;
+  
+    border-radius: 15px;
+    border: 1px solid rgba(245, 166, 35, 0.16);
+  
+    color: var(--accent-solid);
+  
+    background: linear-gradient(
+      145deg,
+      rgba(245, 166, 35, 0.14),
+      rgba(245, 166, 35, 0.035)
+    );
+  
+    box-shadow:
+      inset 0 1px rgba(255, 255, 255, 0.035),
+      0 8px 20px rgba(0, 0, 0, 0.12);
+  
+    transition:
+      transform 0.35s ease,
+      background 0.35s ease,
+      border-color 0.35s ease;
+  }
+  
+  .specialty-card:hover .icon-box {
+    transform: translateY(-3px) scale(1.04);
+    border-color: rgba(245, 166, 35, 0.3);
+  
+    background: linear-gradient(
+      145deg,
+      rgba(245, 166, 35, 0.2),
+      rgba(245, 166, 35, 0.055)
+    );
+  }
+  
+  .specialty-card .icon-box svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  
+  /* ============================================================================
+     B3. CARD CONTENT & TAGS
+     ========================================================================= */
+  
+  .specialty-content {
+    flex: 1;
+  }
+  
+  .specialty-label {
+    display: block;
+    margin-bottom: 10px;
+  
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+  
+    color: var(--text-muted);
+  }
+  
+  .specialty-card h3 {
+    margin: 0 0 13px;
+  
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 750;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+  
+    color: var(--text-primary);
+  }
+  
+  .specialty-card p {
+    margin: 0;
+  
+    font-size: 12.5px;
+    line-height: 1.75;
+  
+    color: var(--text-secondary);
+  }
+  
+  /* Tech stack tags */
+  .specialty-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  
+    margin-top: 26px;
+    padding-top: 18px;
+  
+    border-top: 1px solid var(--divider);
+  }
+  
+  .specialty-stack span {
+    display: inline-flex;
+    align-items: center;
+  
+    padding: 5px 8px;
+  
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    background: rgba(255, 255, 255, 0.018);
+  
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+  
+    color: var(--text-muted);
+  
+    transition:
+      color 0.25s ease,
+      border-color 0.25s ease,
+      background 0.25s ease;
+  }
+  
+  .specialty-card:hover .specialty-stack span {
+    border-color: rgba(245, 166, 35, 0.12);
+  }
+  
+  .specialty-stack span:hover {
+    color: var(--accent-solid);
+    border-color: rgba(245, 166, 35, 0.25);
+    background: rgba(245, 166, 35, 0.045);
+  }
+  
+  /* Hover arrow (bottom-right) */
+  .specialty-arrow {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 30px;
+    height: 30px;
+  
+    border-radius: 9px;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.018);
+  
+    color: var(--text-muted);
+  
+    opacity: 0.55;
+    transform: translateX(-5px);
+  
+    transition:
+      opacity 0.3s ease,
+      transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+      color 0.3s ease,
+      border-color 0.3s ease;
+  }
+  
+  .specialty-arrow svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .specialty-card:hover .specialty-arrow {
+    transform: translateX(0);
+    opacity: 1;
+    color: var(--accent-solid);
+    border-color: rgba(245, 166, 35, 0.25);
+  }
+  
+  
+  /* ============================================================================
+     B4. RESPONSIVE (SPECIALTIES)
+     ========================================================================= */
+  
+  @media (max-width: 1150px) {
+    #specialties {
+      padding: 100px 0;
+    }
+  
+    .specialty-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  
+    .specialty-card {
+      min-height: 350px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #specialties {
+      padding: 82px 0;
+    }
+  
+    #specialties .section-head {
+      margin-bottom: 42px;
+    }
+  
+    .specialty-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+  
+    .specialty-card {
+      min-height: auto;
+      padding: 23px;
+    }
+  
+    .specialty-card-top {
+      margin-bottom: 25px;
+    }
+  
+    .specialty-card h3 {
+      font-size: 19px;
+    }
+  
+    .specialty-card p {
+      max-width: 650px;
+      font-size: 13px;
+    }
+  
+    .specialty-stack {
+      margin-top: 22px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    #specialties {
+      padding: 68px 0;
+    }
+  
+    #specialties .section-head h2 {
+      font-size: 31px;
+    }
+  
+    #specialties .section-head p {
+      font-size: 13px;
+    }
+  
+    .specialty-card {
+      padding: 20px;
+      border-radius: 18px;
+    }
+  
+    .specialty-card .icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: 13px;
+    }
+  
+    .specialty-card h3 {
+      font-size: 18px;
+    }
+  
+    .specialty-card p {
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+  
+    .specialty-arrow {
+      right: 20px;
+      bottom: 20px;
+    }
+  }
+  
+  
+  
+  /* ████████████████████████████████████████████████████████████████████████████
+     PART C — PHILOSOPHY / DECISION INTELLIGENCE
+     ████████████████████████████████████████████████████████████████████████████ */
+  
+  
+  /* ============================================================================
+     C1. SECTION SHELL & AMBIENT
+     ========================================================================= */
+  
+  .philosophy-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  
+    padding: 150px 0 135px;
+  
+    background: var(--bg);
+  }
+  
+  /* Background grid */
+  .philosophy-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -4;
+    pointer-events: none;
+  
+    opacity: 0.3;
+  
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  
+    background-size: 80px 80px;
+  
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 15%,
+      #000 80%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 15%,
+      #000 80%,
+      transparent
+    );
+  }
+  
+  /* Ambient glow blobs */
+  .philosophy-glow {
+    position: absolute;
+    z-index: -3;
+    pointer-events: none;
+  
+    border-radius: 50%;
+    filter: blur(10px);
+  }
+  
+  .philosophy-glow--top {
+    top: -420px;
+    right: -250px;
+  
+    width: 650px;
+    height: 650px;
+  
+    background: radial-gradient(
+      circle,
+      rgba(251, 237, 82, 0.055),
+      transparent 68%
+    );
+  }
+  
+  .philosophy-glow--bottom {
+    bottom: -400px;
+    left: -260px;
+  
+    width: 550px;
+    height: 550px;
+  
+    background: radial-gradient(
+      circle,
+      rgba(251, 237, 82, 0.035),
+      transparent 68%
+    );
+  }
+  
+  
+  /* ============================================================================
+     C2. WRAPPER, HEADER (KICKER + TITLE)
+     ========================================================================= */
+  
+  .philosophy-wrap {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .philosophy-header {
+    width: min(1120px, 100%);
+    margin: 0 auto 100px;
+  }
+  
+  .philosophy-kicker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  
+    margin-bottom: 28px;
+  
+    color: var(--text-muted);
+  
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 650;
+    letter-spacing: 0.2em;
+  }
+  
+  .kicker-line {
+    width: 45px;
+    height: 1px;
+    background: var(--divider);
+  }
+  
+  .kicker-dot {
+    width: 5px;
+    height: 5px;
+    flex-shrink: 0;
+  
+    border-radius: 50%;
+    background: var(--accent-solid);
+  
+    box-shadow:
+      0 0 0 4px rgba(251, 237, 82, 0.06),
+      0 0 15px rgba(251, 237, 82, 0.2);
+  }
+  
+  .philosophy-title-wrap {
+    position: relative;
+  
+    max-width: 1050px;
+    margin: auto;
+  
+    text-align: center;
+  }
+  
+  .philosophy-index {
+    position: absolute;
+    top: 8px;
+    left: 0;
+  
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+  
+    color: var(--text-muted);
+    opacity: 0.55;
+  }
+  
+  .philosophy-title-wrap h2 {
+    max-width: 900px;
+    margin: 0 auto 27px;
+  
+    font-family: var(--font-display);
+    font-size: clamp(48px, 6.4vw, 80px);
+    font-weight: 800;
+    line-height: 0.99;
+    letter-spacing: -0.065em;
+  
+    color: var(--text-primary);
+  }
+  
+  .philosophy-title-wrap h2 span {
+    display: block;
+  
+    background: linear-gradient(
+      135deg,
+      var(--accent-solid),
+      var(--accent-end)
+    );
+  
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .philosophy-title-wrap p {
+    max-width: 650px;
+    margin: auto;
+  
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  
+  
+  /* ============================================================================
+     C3. APPROACH SYSTEM LAYOUT
+     ========================================================================= */
+  
+  .approach-system {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 70px;
+  
+    width: min(1120px, 100%);
+    margin: auto;
+  }
+  
+  
+  /* ============================================================================
+     C4. SIDEBAR (MARKER + NUMBER)
+     ========================================================================= */
+  
+  .approach-sidebar {
+    position: sticky;
+    top: 120px;
+    align-self: start;
+  }
+  
+  .sidebar-marker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  
+    margin-bottom: 35px;
+  
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 650;
+    letter-spacing: 0.13em;
+  
+    color: var(--text-muted);
+  }
+  
+  .marker-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-solid);
+    box-shadow: 0 0 10px rgba(251, 237, 82, 0.35);
+  }
+  
+  .sidebar-number {
+    margin-bottom: 27px;
+  
+    font-family: var(--font-mono);
+    font-size: 74px;
+    font-weight: 500;
+    line-height: 0.8;
+    letter-spacing: -0.08em;
+  
+    color: rgba(255, 255, 255, 0.045);
+  }
+  
+  .approach-sidebar p {
+    max-width: 170px;
+    margin: 0;
+  
+    color: var(--text-muted);
+    font-size: 11px;
+    line-height: 1.75;
+  }
+  
+  .sidebar-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  
+    margin-top: 35px;
+  }
+  
+  .sidebar-meta span {
+    font-family: var(--font-mono);
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+  
+    color: var(--text-muted);
+  }
+  
+  .sidebar-meta span::before {
+    content: "—";
+    margin-right: 8px;
+    color: var(--accent-solid);
+  }
+  
+  
+  /* ============================================================================
+     C5. DECISION PIPELINE
+     ========================================================================= */
+  
+  .decision-pipeline {
+    position: relative;
+  }
+  
+  /* Pipeline step card */
+  .pipeline-step {
+    position: relative;
+  
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) auto;
+    gap: 24px;
+  
+    align-items: start;
+  
+    padding: 28px 26px;
+  
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+  
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.028),
+      rgba(255, 255, 255, 0.006)
+    );
+  
+    transition:
+      border-color 0.35s ease,
+      background 0.35s ease,
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+  
+  .pipeline-step:hover {
+    transform: translateX(5px);
+    border-color: rgba(251, 237, 82, 0.17);
+  
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.009)
+    );
+  
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+  }
+  
+  /* Node (number circle) */
+  .pipeline-node {
+    position: relative;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 42px;
+    height: 42px;
+  
+    border: 1px solid var(--card-border);
+    border-radius: 11px;
+    background: var(--bg);
+  
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 600;
+  
+    transition:
+      border-color 0.3s ease,
+      color 0.3s ease,
+      background 0.3s ease;
+  }
+  
+  .pipeline-step:hover .pipeline-node {
+    border-color: rgba(251, 237, 82, 0.3);
+    color: var(--accent-solid);
+  }
+  
+  .pipeline-step--active .pipeline-node {
+    border-color: rgba(251, 237, 82, 0.32);
+  
+    color: #17170c;
+    background: linear-gradient(
+      135deg,
+      var(--accent-solid),
+      var(--accent-end)
+    );
+  
+    box-shadow:
+      0 0 0 5px rgba(251, 237, 82, 0.045),
+      0 0 25px rgba(251, 237, 82, 0.12);
+  }
+  
+  /* Content */
+  .pipeline-content {
+    min-width: 0;
+  }
+  
+  .pipeline-label {
+    display: block;
+    margin-bottom: 7px;
+  
+    font-family: var(--font-mono);
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+  
+    color: var(--accent-solid);
+  }
+  
+  .pipeline-content h3 {
+    margin: 0 0 9px;
+  
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+  
+    color: var(--text-primary);
+  }
+  
+  .pipeline-content h3 strong {
+    color: var(--accent-solid);
+    font-weight: inherit;
+  }
+  
+  .pipeline-content p {
+    max-width: 570px;
+    margin: 0;
+  
+    color: var(--text-secondary);
+    font-size: 11px;
+    line-height: 1.7;
+  }
+  
+  /* Status tag */
+  .pipeline-status {
+    align-self: start;
+  
+    padding: 5px 8px;
+  
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+  
+    color: var(--text-muted);
+  
+    font-family: var(--font-mono);
+    font-size: 6px;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+  
+    white-space: nowrap;
+  }
+  
+  .pipeline-step--active .pipeline-status {
+    color: var(--accent-solid);
+    border-color: rgba(251, 237, 82, 0.18);
+    background: rgba(251, 237, 82, 0.035);
+  }
+  
+  /* Connector between steps */
+  .pipeline-connector {
+    position: relative;
+  
+    height: 34px;
+    margin-left: 21px;
+  }
+  
+  .pipeline-connector::before {
+    content: "";
+  
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+  
+    width: 1px;
+  
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.09),
+      rgba(255, 255, 255, 0.025)
+    );
+  }
+  
+  .pipeline-connector span {
+    position: absolute;
+    left: -2px;
+    bottom: 0;
+  
+    width: 5px;
+    height: 5px;
+  
+    border-radius: 50%;
+    background: var(--divider);
+  }
+  
+  
+  /* ============================================================================
+     C6. OPERATING MODEL
+     ========================================================================= */
+  
+  .operating-model {
+    width: min(1120px, 100%);
+    margin: 125px auto 0;
+  }
+  
+  .operating-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 70px;
+  
+    align-items: end;
+  
+    margin-bottom: 35px;
+  }
+  
+  .operating-eyebrow {
+    display: block;
+    margin-bottom: 12px;
+  
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 650;
+    letter-spacing: 0.16em;
+  
+    color: var(--accent-solid);
+  }
+  
+  .operating-header h3 {
+    margin: 0;
+  
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3.4vw, 43px);
+    font-weight: 780;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+  
+    color: var(--text-primary);
+  }
+  
+  .operating-header h3 span {
+    color: var(--accent-solid);
+  }
+  
+  .operating-header > p {
+    margin: 0;
+  
+    color: var(--text-secondary);
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  
+  /* Operating grid */
+  .operating-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  
+  .operating-card {
+    position: relative;
+  
+    min-height: 245px;
+    padding: 27px 24px 30px;
+  
+    border-right: 1px solid var(--divider);
+  
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease;
+  }
+  
+  .operating-card:last-child {
+    border-right: none;
+  }
+  
+  .operating-card:hover {
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.025),
+      transparent
+    );
+  }
+  
+  .operating-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    margin-bottom: 37px;
+  }
+  
+  .operating-number {
+    font-family: var(--font-mono);
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+  
+    color: var(--text-muted);
+  }
+  
+  .operating-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    width: 34px;
+    height: 34px;
+  
+    border: 1px solid rgba(251, 237, 82, 0.1);
+    border-radius: 9px;
+  
+    color: var(--accent-solid);
+    background: rgba(251, 237, 82, 0.025);
+  
+    transition:
+      transform 0.3s ease,
+      border-color 0.3s ease,
+      background 0.3s ease;
+  }
+  
+  .operating-icon svg {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .operating-card:hover .operating-icon {
+    transform: translateY(-2px);
+    border-color: rgba(251, 237, 82, 0.25);
+    background: rgba(251, 237, 82, 0.06);
+  }
+  
+  .operating-label {
+    display: block;
+    margin-bottom: 8px;
+  
+    font-family: var(--font-mono);
+    font-size: 7px;
+    font-weight: 650;
+    letter-spacing: 0.14em;
+  
+    color: var(--accent-solid);
+  }
+  
+  .operating-card h4 {
+    margin: 0 0 10px;
+  
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 720;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+  
+    color: var(--text-primary);
+  }
+  
+  .operating-card p {
+    max-width: 210px;
+    margin: 0;
+  
+    color: var(--text-muted);
+    font-size: 10px;
+    line-height: 1.75;
+  }
+  
+  
+  /* ============================================================================
+     C7. FINAL STATEMENT
+     ========================================================================= */
+  
+  .philosophy-statement {
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr) auto;
+    gap: 30px;
+  
+    align-items: center;
+  
+    width: min(1120px, 100%);
+    margin: 100px auto 0;
+  
+    padding: 30px 32px;
+  
+    border: 1px solid rgba(251, 237, 82, 0.13);
+    border-radius: 17px;
+  
+    background: linear-gradient(
+      135deg,
+      rgba(251, 237, 82, 0.045),
+      rgba(255, 255, 255, 0.012)
+    );
+  }
+  
+  .statement-mark {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .statement-mark span {
+    width: 4px;
+    height: 25px;
+  
+    border-radius: 999px;
+    background: var(--accent-solid);
+  
+    opacity: 0.8;
+  }
+  
+  .statement-mark span:nth-child(2) {
+    height: 16px;
+    opacity: 0.5;
+  }
+  
+  .statement-mark span:nth-child(3) {
+    height: 9px;
+    opacity: 0.25;
+  }
+  
+  .statement-label {
+    display: block;
+    margin-bottom: 5px;
+  
+    font-family: var(--font-mono);
+    font-size: 7px;
+    font-weight: 650;
+    letter-spacing: 0.16em;
+  
+    color: var(--accent-solid);
+  }
+  
+  .statement-content h3 {
+    margin: 0;
+  
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.3vw, 28px);
+    font-weight: 750;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+  
+    color: var(--text-primary);
+  }
+  
+  .statement-content h3 span {
+    color: var(--accent-solid);
+  }
+  
+  .statement-code {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  
+    font-family: var(--font-mono);
+    font-size: 7px;
+    font-weight: 650;
+    letter-spacing: 0.1em;
+  
+    color: var(--text-muted);
+  }
+  
+  .statement-code i {
+    color: var(--accent-solid);
+    font-style: normal;
+  }
+  
+  
+  /* ============================================================================
+     C8. RESPONSIVE (PHILOSOPHY)
+     ========================================================================= */
+  
+  /* Tablet */
+  @media (max-width: 1000px) {
+    .philosophy-section {
+      padding: 120px 0 110px;
+    }
+  
+    .philosophy-header {
+      margin-bottom: 80px;
+    }
+  
+    .philosophy-title-wrap h2 {
+      font-size: clamp(46px, 7vw, 68px);
+    }
+  
+    .approach-system {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  
+    .approach-sidebar {
+      position: relative;
+      top: auto;
+  
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px 25px;
+  
+      align-items: center;
+    }
+  
+    .sidebar-marker {
+      margin: 0;
+    }
+  
+    .sidebar-number,
+    .sidebar-meta {
+      display: none;
+    }
+  
+    .approach-sidebar p {
+      max-width: 500px;
+      margin: 0;
+    }
+  
+    .operating-header {
+      grid-template-columns: 1fr 300px;
+      gap: 40px;
+    }
+  
+    .operating-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .operating-card:nth-child(2) {
+      border-right: none;
+    }
+  
+    .operating-card:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--divider);
+    }
+  
+    .philosophy-statement {
+      grid-template-columns: 50px 1fr;
+    }
+  
+    .statement-code {
+      grid-column: 2;
+    }
+  }
+  
+  /* Mobile */
+  @media (max-width: 700px) {
+    .philosophy-section {
+      padding: 90px 0 80px;
+    }
+  
+    .philosophy-header {
+      margin-bottom: 65px;
+    }
+  
+    .philosophy-kicker {
+      margin-bottom: 22px;
+    }
+  
+    .kicker-line {
+      width: 22px;
+    }
+  
+    .philosophy-index {
+      position: relative;
+      top: auto;
+      left: auto;
+  
+      display: block;
+      margin-bottom: 18px;
+    }
+  
+    .philosophy-title-wrap h2 {
+      font-size: clamp(40px, 11vw, 57px);
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+  
+    .philosophy-title-wrap p {
+      font-size: 12.5px;
+      line-height: 1.8;
+    }
+  
+    .approach-system {
+      gap: 30px;
+    }
+  
+    .approach-sidebar {
+      display: block;
+    }
+  
+    .sidebar-marker {
+      margin-bottom: 15px;
+    }
+  
+    .approach-sidebar p {
+      max-width: 100%;
+      font-size: 11px;
+    }
+  
+    .decision-pipeline {
+      width: 100%;
+    }
+  
+    .pipeline-step {
+      grid-template-columns: 38px minmax(0, 1fr);
+      gap: 16px;
+  
+      padding: 22px 18px;
+  
+      border-radius: 14px;
+    }
+  
+    .pipeline-node {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      font-size: 8px;
+    }
+  
+    .pipeline-content h3 {
+      font-size: 17px;
+    }
+  
+    .pipeline-content p {
+      font-size: 10.5px;
+      line-height: 1.7;
+    }
+  
+    .pipeline-status {
+      display: none;
+    }
+  
+    .pipeline-connector {
+      height: 25px;
+      margin-left: 18px;
+    }
+  
+    .operating-model {
+      margin-top: 80px;
+    }
+  
+    .operating-header {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+  
+    .operating-header h3 {
+      font-size: 29px;
+    }
+  
+    .operating-header > p {
+      font-size: 11px;
+    }
+  
+    .operating-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .operating-card {
+      min-height: 200px;
+      padding: 22px 17px 24px;
+    }
+  
+    .operating-card-top {
+      margin-bottom: 28px;
+    }
+  
+    .operating-card h4 {
+      font-size: 14px;
+    }
+  
+    .operating-card p {
+      font-size: 9.5px;
+    }
+  
+    .philosophy-statement {
+      margin-top: 70px;
+  
+      grid-template-columns: 35px 1fr;
+      gap: 18px;
+  
+      padding: 24px 20px;
+    }
+  
+    .statement-mark span {
+      height: 21px;
+    }
+  
+    .statement-content h3 {
+      font-size: 20px;
+    }
+  
+    .statement-code {
+      grid-column: 2;
+      font-size: 6.5px;
+    }
+  }
+  
+  /* Small mobile */
+  @media (max-width: 460px) {
+    .philosophy-section {
+      padding: 75px 0 65px;
+    }
+  
+    .philosophy-title-wrap h2 {
+      font-size: 38px;
+    }
+  
+    .philosophy-title-wrap p {
+      font-size: 12px;
+    }
+  
+    .pipeline-step {
+      padding: 20px 16px;
+    }
+  
+    .pipeline-content h3 {
+      font-size: 16px;
+    }
+  
+    .operating-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .operating-card,
+    .operating-card:nth-child(2) {
+      min-height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--divider);
+    }
+  
+    .operating-card:last-child {
+      border-bottom: none;
+    }
+  
+    .operating-card p {
+      max-width: 100%;
+    }
+  
+    .statement-content h3 {
+      font-size: 19px;
+    }
+  }
+  
+  
+  
+  /* ████████████████████████████████████████████████████████████████████████████
+     REDUCED MOTION — Applies to all three parts
+     ████████████████████████████████████████████████████████████████████████████ */
+  
+  @media (prefers-reduced-motion: reduce) {
+    /* Ecosystem */
+    .ecosystem-ambient .ambient-line,
+    .tech-ticker .ticker-track {
+      animation: none !important;
+    }
+  
+    .status-dot {
+      animation: none !important;
+    }
+  
+    .primary-tool,
+    .tool-tag,
+    .skill-tags span {
+      transition: none !important;
+    }
+  
+    .ecosystem-ambient .ambient-line {
+      opacity: 0.1;
+    }
+  
+    /* Specialties */
+    .specialty-card,
+    .specialty-card::before,
+    .specialty-card::after,
+    .specialty-card .icon-box,
+    .specialty-arrow,
+    .specialty-stack span {
+      transition: none;
+    }
+  
+    /* Philosophy */
+    .philosophy-section *,
+    .philosophy-section *::before,
+    .philosophy-section *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+  
+    .pipeline-step:hover {
+      transform: none;
+    }
+  }
