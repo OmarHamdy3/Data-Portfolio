@@ -6,56 +6,94 @@
 
    TABLE OF CONTENTS
    ----------------------------------------------------------------------------
-   01. Section Shell & Ambient Glows
-   02. CTA Banner (headline + button)
-   03. Divider
-   04. Main Grid (brand / explore / resources / contact)
-   05. Brand Column (logo, description, availability)
-   06. Column Titles & Link Lists
-   07. Contact Column (cards + socials)
-   08. Bottom Bar (copyright + back-to-top)
-   09. Focus States
-   10. Responsive — Tablet (≤1100px)
-   11. Responsive — Mobile (≤800px)
-   12. Responsive — Small Mobile (≤560px)
-   13. Responsive — Tiny (≤380px)
-   14. Reduced Motion
+   01. Design Tokens (local fallbacks)
+   02. Section Shell & Ambient Glows
+   03. CTA Banner (headline + button)
+   04. Divider
+   05. Main Grid (brand / explore / resources / contact)
+   06. Brand Column (logo, description, availability)
+   07. Column Titles & Link Lists
+   08. Contact Column (cards + socials)
+   09. Bottom Bar (copyright + back-to-top)
+   10. Focus States
+   11. Responsive — Tablet (≤1100px)
+   12. Responsive — Mobile (≤800px)
+   13. Responsive — Small Mobile (≤560px)
+   14. Responsive — Tiny (≤380px)
+   15. Reduced Motion
+   16. Print
    ========================================================================= */
 
 
 /* ============================================================================
-   01. SECTION SHELL & AMBIENT GLOWS
+   01. DESIGN TOKENS (LOCAL FALLBACKS)
    ========================================================================= */
 
    .site-footer {
+    /* Spacing rhythm — 4px base */
+    --f-space-1: 4px;
+    --f-space-2: 8px;
+    --f-space-3: 12px;
+    --f-space-4: 16px;
+    --f-space-5: 24px;
+    --f-space-6: 32px;
+    --f-space-7: 48px;
+    --f-space-8: 64px;
+  
+    /* Surfaces */
+    --f-surface: rgba(255, 255, 255, 0.025);
+    --f-surface-hover: rgba(245, 166, 35, 0.06);
+    --f-border: rgba(255, 255, 255, 0.07);
+    --f-border-accent: rgba(245, 166, 35, 0.22);
+  
+    /* Accent (fallback if --accent-solid is undefined) */
+    --f-accent: var(--accent-solid, #f5a623);
+  
+    /* Motion */
+    --f-ease: cubic-bezier(0.2, 0, 0, 1);
+    --f-dur-fast: 150ms;
+    --f-dur-base: 220ms;
+  }
+  
+  
+  /* ============================================================================
+     02. SECTION SHELL & AMBIENT GLOWS
+     ========================================================================= */
+  
+  .site-footer {
     position: relative;
     overflow: hidden;
   
-    padding: 90px 0 28px;
+    padding: 96px 0 32px;
   
-    background: linear-gradient(
+    background:
+      linear-gradient(
         180deg,
         rgba(255, 255, 255, 0.015) 0%,
         rgba(255, 255, 255, 0) 30%
       ),
       var(--bg, #080a0d);
   
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 1px solid var(--f-border);
+  
+    /* Isolate stacking context for glows */
+    isolation: isolate;
   }
   
   /* Blurred glow blobs */
   .footer-glow {
     position: absolute;
     pointer-events: none;
+    z-index: -1;
   
     width: 420px;
     height: 420px;
   
     border-radius: 50%;
-    background: var(--accent-solid, #f5a623);
+    background: var(--f-accent);
   
     filter: blur(100px);
-    opacity: 0.08;
+    opacity: 0.07;
   }
   
   .footer-glow-left {
@@ -75,49 +113,51 @@
   
   
   /* ============================================================================
-     02. CTA BANNER
+     03. CTA BANNER
      ========================================================================= */
   
   .footer-cta {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
+    gap: var(--f-space-7);
   
-    padding: 42px 44px;
+    padding: 44px 48px;
   
-    border: 1px solid rgba(245, 166, 35, 0.16);
-    border-radius: 24px;
+    border: 1px solid var(--f-border-accent);
+    border-radius: 20px;
   
-    background: linear-gradient(
-      135deg,
-      rgba(245, 166, 35, 0.08),
-      rgba(255, 255, 255, 0.025)
-    );
+    background:
+      linear-gradient(
+        135deg,
+        rgba(245, 166, 35, 0.07),
+        rgba(255, 255, 255, 0.02)
+      );
   
     box-shadow:
-      0 30px 80px rgba(0, 0, 0, 0.28),
+      0 24px 64px -16px rgba(0, 0, 0, 0.32),
       inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
   
   .footer-cta-content {
-    max-width: 720px;
+    max-width: 640px;
   }
   
   /* Eyebrow */
   .footer-eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
+    gap: var(--f-space-2);
   
-    margin-bottom: 15px;
+    margin-bottom: var(--f-space-4);
   
-    font-family: var(--font-mono, monospace);
+    font-family: var(--font-mono, ui-monospace, monospace);
     font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.13em;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
   
-    color: var(--accent-solid, #f5a623);
+    color: var(--f-accent);
   }
   
   .footer-eyebrow-dot {
@@ -125,34 +165,36 @@
     height: 6px;
   
     border-radius: 50%;
-    background: var(--accent-solid, #f5a623);
+    background: var(--f-accent);
   
-    box-shadow: 0 0 12px rgba(245, 166, 35, 0.7);
+    box-shadow: 0 0 12px rgba(245, 166, 35, 0.6);
   }
   
   /* Headline */
   .footer-cta h2 {
     margin: 0;
   
-    font-family: var(--font-display, sans-serif);
-    font-size: clamp(28px, 4vw, 46px);
-    font-weight: 750;
-    line-height: 1.08;
-    letter-spacing: -0.035em;
+    font-family: var(--font-display, system-ui, sans-serif);
+    font-size: clamp(28px, 3.8vw, 44px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
   
     color: var(--text-primary, #fff);
   }
   
   .footer-cta h2 span {
-    color: var(--accent-solid, #f5a623);
+    color: var(--f-accent);
   }
   
   .footer-cta-content p {
-    max-width: 620px;
-    margin: 14px 0 0;
+    max-width: 560px;
+    margin: var(--f-space-4) 0 0;
   
     font-size: 14px;
-    line-height: 1.75;
+    line-height: 1.7;
+    text-wrap: pretty;
   
     color: var(--text-secondary, #a7adb7);
   }
@@ -162,12 +204,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: var(--f-space-3);
+    flex-shrink: 0;
   
     min-width: 190px;
-    padding: 14px 20px;
+    padding: 14px 22px;
   
-    border-radius: 12px;
+    border-radius: 10px;
   
     color: #17130a;
   
@@ -178,76 +221,84 @@
     );
   
     font-size: 13px;
-    font-weight: 750;
+    font-weight: 700;
+    letter-spacing: -0.005em;
     text-decoration: none;
   
-    box-shadow: 0 10px 30px rgba(245, 166, 35, 0.18);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      0 8px 24px -8px rgba(245, 166, 35, 0.35);
   
     transition:
-      transform 0.25s ease,
-      box-shadow 0.25s ease,
-      filter 0.25s ease;
+      box-shadow var(--f-dur-base) var(--f-ease),
+      filter var(--f-dur-base) var(--f-ease);
   }
   
   .footer-cta-button svg {
-    width: 17px;
-    height: 17px;
-    transition: transform 0.25s ease;
+    width: 16px;
+    height: 16px;
+    transition: transform var(--f-dur-base) var(--f-ease);
   }
   
   .footer-cta-button:hover {
-    transform: translateY(-3px);
-    filter: brightness(1.04);
-    box-shadow: 0 16px 38px rgba(245, 166, 35, 0.28);
+    filter: brightness(1.05);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      0 12px 32px -8px rgba(245, 166, 35, 0.45);
   }
   
   .footer-cta-button:hover svg {
-    transform: translateX(4px);
+    transform: translateX(3px);
+  }
+  
+  .footer-cta-button:active {
+    filter: brightness(0.98);
   }
   
   
   /* ============================================================================
-     03. DIVIDER
+     04. DIVIDER
      ========================================================================= */
   
   .footer-divider {
     width: 100%;
     height: 1px;
   
-    margin: 62px 0 52px;
+    margin: var(--f-space-8) 0 var(--f-space-7);
   
+    border: 0;
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.08) 20%,
-      rgba(255, 255, 255, 0.08) 80%,
+      var(--f-border) 20%,
+      var(--f-border) 80%,
       transparent
     );
   }
   
   
   /* ============================================================================
-     04. MAIN GRID (BRAND / EXPLORE / RESOURCES / CONTACT)
+     05. MAIN GRID
      ========================================================================= */
   
   .footer-main {
     display: grid;
     grid-template-columns:
-      minmax(250px, 1.55fr)
-      minmax(130px, 0.75fr)
-      minmax(130px, 0.75fr)
-      minmax(250px, 1fr);
+      minmax(240px, 1.5fr)
+      minmax(120px, 0.7fr)
+      minmax(120px, 0.7fr)
+      minmax(240px, 1fr);
   
-    gap: 60px;
+    gap: var(--f-space-8);
   }
   
   
   /* ============================================================================
-     05. BRAND COLUMN
+     06. BRAND COLUMN
      ========================================================================= */
   
   .footer-brand {
-    max-width: 350px;
+    max-width: 340px;
   }
   
   .footer-logo {
@@ -260,31 +311,32 @@
   }
   
   .footer-logo-main {
-    font-family: var(--font-display, sans-serif);
-    font-size: 29px;
-    font-weight: 800;
+    font-family: var(--font-display, system-ui, sans-serif);
+    font-size: 28px;
+    font-weight: 700;
     line-height: 1;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.04em;
   }
   
   .footer-logo-main span {
-    color: var(--accent-solid, #f5a623);
+    color: var(--f-accent);
   }
   
   .footer-logo-sub {
-    font-family: var(--font-mono, monospace);
+    font-family: var(--font-mono, ui-monospace, monospace);
     font-size: 8px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.2em;
   
     color: var(--text-muted, #737a86);
   }
   
   .footer-description {
-    margin: 20px 0;
+    margin: var(--f-space-5) 0;
   
     font-size: 13px;
-    line-height: 1.8;
+    line-height: 1.75;
+    text-wrap: pretty;
   
     color: var(--text-secondary, #a7adb7);
   }
@@ -293,22 +345,24 @@
   .footer-availability {
     display: inline-flex;
     align-items: center;
-    gap: 9px;
+    gap: var(--f-space-2);
   
     padding: 8px 12px;
   
-    border: 1px solid rgba(61, 220, 132, 0.14);
+    border: 1px solid rgba(61, 220, 132, 0.16);
     border-radius: 999px;
     background: rgba(61, 220, 132, 0.06);
   
     font-size: 11px;
     font-weight: 600;
+    letter-spacing: 0.01em;
   
     color: var(--text-secondary, #a7adb7);
   }
   
   .availability-indicator {
     position: relative;
+    flex-shrink: 0;
   
     width: 7px;
     height: 7px;
@@ -316,7 +370,7 @@
     border-radius: 50%;
     background: #3ddc84;
   
-    box-shadow: 0 0 10px rgba(61, 220, 132, 0.6);
+    box-shadow: 0 0 10px rgba(61, 220, 132, 0.5);
   }
   
   .availability-indicator::after {
@@ -325,10 +379,10 @@
     position: absolute;
     inset: -4px;
   
-    border: 1px solid rgba(61, 220, 132, 0.2);
+    border: 1px solid rgba(61, 220, 132, 0.25);
     border-radius: inherit;
   
-    animation: footerPulse 2s ease-in-out infinite;
+    animation: footerPulse 2s var(--f-ease) infinite;
   }
   
   @keyframes footerPulse {
@@ -345,17 +399,18 @@
   
   
   /* ============================================================================
-     06. COLUMN TITLES & LINK LISTS
+     07. COLUMN TITLES & LINK LISTS
      ========================================================================= */
   
   .footer-column-title {
     display: block;
-    margin-bottom: 22px;
+    margin-bottom: var(--f-space-5);
   
-    font-family: var(--font-mono, monospace);
-    font-size: 9px;
-    font-weight: 700;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 10px;
+    font-weight: 600;
     letter-spacing: 0.14em;
+    text-transform: uppercase;
   
     color: var(--text-muted, #737a86);
   }
@@ -363,48 +418,45 @@
   .footer-links {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: var(--f-space-1);
   }
   
   .footer-links a {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    gap: var(--f-space-2);
   
     width: fit-content;
     padding: 5px 0;
   
     color: var(--text-secondary, #a7adb7);
     font-size: 13px;
+    line-height: 1.5;
     text-decoration: none;
   
-    transition:
-      color 0.2s ease,
-      transform 0.2s ease;
+    transition: color var(--f-dur-fast) var(--f-ease);
   }
   
   .footer-links a svg {
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
   
     fill: none;
     stroke: currentColor;
-    stroke-width: 1.7;
+    stroke-width: 1.75;
     stroke-linecap: round;
     stroke-linejoin: round;
   
     opacity: 0;
-    transform: translateX(-5px);
+    transform: translateX(-4px);
   
     transition:
-      opacity 0.2s ease,
-      transform 0.2s ease;
+      opacity var(--f-dur-fast) var(--f-ease),
+      transform var(--f-dur-fast) var(--f-ease);
   }
   
   .footer-links a:hover {
-    color: var(--accent-solid, #f5a623);
-    transform: translateX(3px);
+    color: var(--f-accent);
   }
   
   .footer-links a:hover svg {
@@ -414,27 +466,21 @@
   
   
   /* ============================================================================
-     07. CONTACT COLUMN (CARDS + SOCIALS)
+     08. CONTACT COLUMN
      ========================================================================= */
   
   .footer-contact {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--f-space-3);
   }
   
   .footer-contact-card {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: var(--f-space-3);
   
     text-decoration: none;
-  
-    transition: transform 0.2s ease;
-  }
-  
-  .footer-contact-card:hover {
-    transform: translateX(3px);
   }
   
   .footer-contact-icon {
@@ -446,13 +492,13 @@
     width: 38px;
     height: 38px;
   
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--f-border);
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.025);
+    background: var(--f-surface);
   
     transition:
-      background 0.2s ease,
-      border-color 0.2s ease;
+      background var(--f-dur-fast) var(--f-ease),
+      border-color var(--f-dur-fast) var(--f-ease);
   }
   
   .footer-contact-icon svg {
@@ -460,29 +506,29 @@
     height: 16px;
     color: var(--text-muted, #737a86);
   
-    transition: color 0.2s ease;
+    transition: color var(--f-dur-fast) var(--f-ease);
   }
   
   .footer-contact-card:hover .footer-contact-icon {
-    background: rgba(245, 166, 35, 0.07);
-    border-color: rgba(245, 166, 35, 0.2);
+    background: var(--f-surface-hover);
+    border-color: var(--f-border-accent);
   }
   
   .footer-contact-card:hover .footer-contact-icon svg {
-    color: var(--accent-solid, #f5a623);
+    color: var(--f-accent);
   }
   
   .footer-contact-content {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 2px;
     min-width: 0;
   }
   
   .footer-contact-content small {
     font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
   
     color: var(--text-muted, #737a86);
@@ -504,8 +550,8 @@
   /* Socials */
   .footer-social {
     display: flex;
-    gap: 8px;
-    margin-top: 22px;
+    gap: var(--f-space-2);
+    margin-top: var(--f-space-5);
   }
   
   .footer-social a {
@@ -516,17 +562,16 @@
     width: 38px;
     height: 38px;
   
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--f-border);
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.025);
+    background: var(--f-surface);
   
     color: var(--text-muted, #737a86);
   
     transition:
-      color 0.25s ease,
-      background 0.25s ease,
-      border-color 0.25s ease,
-      transform 0.25s ease;
+      color var(--f-dur-fast) var(--f-ease),
+      background var(--f-dur-fast) var(--f-ease),
+      border-color var(--f-dur-fast) var(--f-ease);
   }
   
   .footer-social a svg {
@@ -535,41 +580,41 @@
   }
   
   .footer-social a:hover {
-    transform: translateY(-3px);
-    color: var(--accent-solid, #f5a623);
-    background: rgba(245, 166, 35, 0.07);
-    border-color: rgba(245, 166, 35, 0.25);
+    color: var(--f-accent);
+    background: var(--f-surface-hover);
+    border-color: var(--f-border-accent);
   }
   
   
   /* ============================================================================
-     08. BOTTOM BAR (COPYRIGHT + BACK-TO-TOP)
+     09. BOTTOM BAR
      ========================================================================= */
   
   .footer-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: var(--f-space-5);
   
-    margin-top: 62px;
-    padding-top: 24px;
+    margin-top: var(--f-space-8);
+    padding-top: var(--f-space-5);
   
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 1px solid var(--f-border);
   }
   
   .footer-copyright {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 9px;
+    gap: var(--f-space-2);
   
     font-size: 11px;
+    line-height: 1.5;
     color: var(--text-muted, #737a86);
   }
   
   .copyright-symbol {
-    color: var(--accent-solid, #f5a623);
+    color: var(--f-accent);
     font-weight: 700;
   }
   
@@ -578,15 +623,15 @@
     height: 3px;
   
     border-radius: 50%;
-    background: var(--text-muted, #737a86);
+    background: currentColor;
   
-    opacity: 0.5;
+    opacity: 0.4;
   }
   
   .footer-bottom-right {
     display: flex;
     align-items: center;
-    gap: 22px;
+    gap: var(--f-space-5);
   
     font-size: 11px;
     color: var(--text-muted, #737a86);
@@ -596,13 +641,13 @@
   .back-to-top {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--f-space-2);
   
     padding: 8px 12px;
   
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--f-border);
     border-radius: 9px;
-    background: rgba(255, 255, 255, 0.025);
+    background: var(--f-surface);
   
     color: var(--text-secondary, #a7adb7);
     font-size: 11px;
@@ -610,23 +655,21 @@
     text-decoration: none;
   
     transition:
-      color 0.2s ease,
-      border-color 0.2s ease,
-      background 0.2s ease,
-      transform 0.2s ease;
+      color var(--f-dur-fast) var(--f-ease),
+      border-color var(--f-dur-fast) var(--f-ease),
+      background var(--f-dur-fast) var(--f-ease);
   }
   
   .back-to-top svg {
     width: 14px;
     height: 14px;
-    transition: transform 0.2s ease;
+    transition: transform var(--f-dur-fast) var(--f-ease);
   }
   
   .back-to-top:hover {
-    transform: translateY(-2px);
-    color: var(--accent-solid, #f5a623);
-    border-color: rgba(245, 166, 35, 0.22);
-    background: rgba(245, 166, 35, 0.05);
+    color: var(--f-accent);
+    border-color: var(--f-border-accent);
+    background: var(--f-surface-hover);
   }
   
   .back-to-top:hover svg {
@@ -635,7 +678,7 @@
   
   
   /* ============================================================================
-     09. FOCUS STATES
+     10. FOCUS STATES
      ========================================================================= */
   
   .footer-links a:focus-visible,
@@ -643,13 +686,14 @@
   .footer-cta-button:focus-visible,
   .back-to-top:focus-visible,
   .footer-contact-card:focus-visible {
-    outline: 2px solid var(--accent-solid, #f5a623);
-    outline-offset: 4px;
+    outline: 2px solid var(--f-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
   
   
   /* ============================================================================
-     10. RESPONSIVE — TABLET (≤1100px)
+     11. RESPONSIVE — TABLET (≤1100px)
      ========================================================================= */
   
   @media (max-width: 1100px) {
@@ -657,13 +701,12 @@
       grid-template-columns: 1.4fr 0.8fr 0.8fr;
     }
   
-    /* Contact column drops to full width and splits into a 2-column sub-layout */
     .footer-contact-column {
       grid-column: 1 / -1;
   
       display: grid;
       grid-template-columns: auto 1fr;
-      column-gap: 40px;
+      column-gap: var(--f-space-7);
   
       align-items: start;
     }
@@ -679,12 +722,12 @@
   
   
   /* ============================================================================
-     11. RESPONSIVE — MOBILE (≤800px)
+     12. RESPONSIVE — MOBILE (≤800px)
      ========================================================================= */
   
   @media (max-width: 800px) {
     .site-footer {
-      padding: 70px 0 24px;
+      padding: 72px 0 24px;
     }
   
     .footer-cta {
@@ -699,12 +742,12 @@
     }
   
     .footer-divider {
-      margin: 48px 0 40px;
+      margin: var(--f-space-7) 0 var(--f-space-6);
     }
   
     .footer-main {
       grid-template-columns: 1fr 1fr;
-      gap: 42px 32px;
+      gap: var(--f-space-6) var(--f-space-6);
     }
   
     .footer-brand {
@@ -719,40 +762,36 @@
     }
   
     .footer-contact-column .footer-column-title {
-      margin-bottom: 22px;
+      margin-bottom: var(--f-space-5);
     }
   
     .footer-contact-column .footer-social {
-      margin-top: 20px;
+      margin-top: var(--f-space-5);
     }
   }
   
   
   /* ============================================================================
-     12. RESPONSIVE — SMALL MOBILE (≤560px)
+     13. RESPONSIVE — SMALL MOBILE (≤560px)
      ========================================================================= */
   
   @media (max-width: 560px) {
     .site-footer {
-      padding: 60px 0 20px;
+      padding: 64px 0 20px;
     }
   
     .footer-cta {
-      padding: 26px 22px;
-      border-radius: 18px;
+      padding: 28px 24px;
+      border-radius: 16px;
     }
   
     .footer-cta h2 {
-      font-size: 29px;
-    }
-  
-    .footer-cta-content p {
-      font-size: 13px;
+      font-size: 28px;
     }
   
     .footer-main {
       grid-template-columns: 1fr;
-      gap: 34px;
+      gap: var(--f-space-6);
     }
   
     .footer-brand {
@@ -763,16 +802,12 @@
       width: 100%;
     }
   
-    .footer-contact-column {
-      grid-column: auto;
-    }
-  
     .footer-bottom {
       flex-direction: column;
       align-items: flex-start;
-      gap: 18px;
+      gap: var(--f-space-4);
   
-      margin-top: 45px;
+      margin-top: var(--f-space-7);
     }
   
     .footer-bottom-right {
@@ -783,22 +818,22 @@
   
   
   /* ============================================================================
-     13. RESPONSIVE — TINY (≤380px)
+     14. RESPONSIVE — TINY (≤380px)
      ========================================================================= */
   
   @media (max-width: 380px) {
     .footer-cta {
-      padding: 24px 18px;
+      padding: 24px 20px;
     }
   
     .footer-cta h2 {
-      font-size: 26px;
+      font-size: 25px;
     }
   
     .footer-bottom-right {
       flex-direction: column;
       align-items: flex-start;
-      gap: 12px;
+      gap: var(--f-space-3);
     }
   
     .back-to-top {
@@ -809,19 +844,54 @@
   
   
   /* ============================================================================
-     14. REDUCED MOTION
+     15. REDUCED MOTION
      ========================================================================= */
   
   @media (prefers-reduced-motion: reduce) {
-    .footer-links a,
-    .footer-social a,
-    .footer-cta-button,
-    .back-to-top,
-    .footer-contact-card {
-      transition: none;
+    .site-footer *,
+    .site-footer *::before,
+    .site-footer *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
     }
   
     .availability-indicator::after {
       animation: none;
+      opacity: 0.4;
+    }
+  }
+  
+  
+  /* ============================================================================
+     16. PRINT
+     ========================================================================= */
+  
+  @media print {
+    .site-footer {
+      padding: 24px 0;
+      background: none;
+      border-top: 1px solid #ccc;
+    }
+  
+    .footer-glow,
+    .footer-cta-button,
+    .back-to-top,
+    .footer-social {
+      display: none !important;
+    }
+  
+    .footer-cta {
+      border: 1px solid #ccc;
+      box-shadow: none;
+      background: none;
+    }
+  
+    .footer-cta h2,
+    .footer-cta h2 span,
+    .footer-cta-content p,
+    .footer-links a,
+    .footer-contact-content strong {
+      color: #000 !important;
     }
   }

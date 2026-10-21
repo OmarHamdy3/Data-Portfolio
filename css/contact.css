@@ -145,6 +145,28 @@
   
     text-wrap: pretty;
   }
+
+  .contact-header,
+.contact-header * {
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  border: none;
+}
+
+.contact-header::before,
+.contact-header::after {
+  content: none !important;
+}
+
+/* keep the small dot and divider lines visible */
+.contact-eyebrow-line {
+  background: var(--divider) !important;
+}
+
+.contact-eyebrow-dot {
+  background: var(--accent-solid) !important;
+}
   
   
   /* ==========================================================================
