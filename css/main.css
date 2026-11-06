@@ -323,3 +323,112 @@
     outline-offset: 3px;
     border-radius: 3px;
   }
+
+/* ============================================================================
+   CUSTOM CURSOR
+   ========================================================================= */
+
+/* Hide the default system cursor on desktop */
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a,
+  button,
+  input,
+  textarea,
+  [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* Custom cursor elements — hidden by default, only shown on desktop */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  will-change: transform;
+  transition: opacity 0.2s ease;
+}
+
+/* Small solid dot — the "precision" point */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  box-shadow: 0 0 12px rgba(245, 166, 35, 0.6);
+}
+
+/* Larger ring — trails behind and expands on hover */
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(245, 166, 35, 0.55);
+  background: transparent;
+  transition:
+    opacity 0.2s ease,
+    width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    margin 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Show cursor when it enters the page */
+body.cursor-ready .cursor-dot,
+body.cursor-ready .cursor-ring {
+  opacity: 1;
+}
+
+/* Hover state — ring expands and fills subtly */
+body.cursor-hover .cursor-ring {
+  width: 54px;
+  height: 54px;
+  margin: -27px 0 0 -27px;
+  border-color: var(--accent-solid);
+  background: rgba(245, 166, 35, 0.08);
+  box-shadow: 0 0 24px rgba(245, 166, 35, 0.25);
+}
+
+/* Text input state — ring becomes a vertical bar */
+body.cursor-text .cursor-ring {
+  width: 3px;
+  height: 26px;
+  margin: -13px 0 0 -1.5px;
+  border-radius: 2px;
+  background: var(--accent-solid);
+  border-color: var(--accent-solid);
+}
+body.cursor-text .cursor-dot {
+  opacity: 0;
+}
+
+/* Click pulse */
+body.cursor-down .cursor-dot {
+  transform-origin: center;
+  animation: cursorPulse 0.35s ease-out;
+}
+
+@keyframes cursorPulse {
+  0%   { box-shadow: 0 0 12px rgba(245, 166, 35, 0.6); }
+  50%  { box-shadow: 0 0 24px rgba(245, 166, 35, 1); transform: scale(1.6); }
+  100% { box-shadow: 0 0 12px rgba(245, 166, 35, 0.6); transform: scale(1); }
+}
+
+/* Disable on touch devices */
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring { display: none !important; }
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-dot,
+  .cursor-ring { transition: none; animation: none; }
+}

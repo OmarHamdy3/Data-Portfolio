@@ -1,0 +1,348 @@
+/* ============================================================================
+   TECH MARQUEE — marquee.css
+   ----------------------------------------------------------------------------
+   Two-row infinite marquee for tech/tool pills.
+   The animation itself is driven by marquee.js (requestAnimationFrame).
+   This file provides layout, styling, and reduced-motion fallback only.
+
+   Depends on (from your global theme):
+     --bg-alt, --divider, --card-bg, --card-border
+     --text-primary, --text-secondary, --text-muted
+     --accent-solid, --icon-box-bg
+     --font-display, --font-body, --font-mono
+   ========================================================================== */
+
+
+/* ============================================================================
+   1. SECTION SHELL
+   ========================================================================== */
+
+   .marquee-section {
+    position: relative;
+    padding: 90px 0 100px;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    background:
+      radial-gradient(
+        ellipse 60% 100% at 50% 0%,
+        rgba(245, 166, 35, 0.05),
+        transparent 70%
+      ),
+      var(--bg-alt);
+    overflow: hidden;
+  }
+  
+  
+  /* ============================================================================
+     2. SECTION HEADER
+     ========================================================================== */
+  
+  .marquee-head {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 44px;
+  }
+  
+  .marquee-head .eyebrow-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  
+  .marquee-head h3 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+  }
+  
+  .marquee-head p {
+    max-width: 620px;
+    margin: 0 auto;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+  
+  
+  /* ============================================================================
+     3. MARQUEE ROWS
+     ========================================================================== */
+  
+  .marquee-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  
+  /* ============================================================================
+     4. MARQUEE VIEWPORT (edge fade mask)
+     ========================================================================== */
+  
+  .marquee {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 6%,
+      #000 94%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 6%,
+      #000 94%,
+      transparent
+    );
+  }
+  
+  
+  /* ============================================================================
+     5. MARQUEE TRACK
+     ----------------------------------------------------------------------------
+     The transform is controlled by JS. Do NOT add CSS @keyframes here —
+     marquee.js updates `transform: translate3d()` every frame.
+     ========================================================================== */
+  
+     .marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 0;
+      will-change: transform;
+  }
+  
+  .marquee-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+      padding-right: 14px;
+  }
+  
+  .marquee {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+  }
+  
+  /* ============================================================================
+     6. TECH PILL
+     ========================================================================== */
+  
+  .tech-pill {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    flex-shrink: 0;
+    padding: 13px 22px;
+    border-radius: 12px;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.03),
+        rgba(255, 255, 255, 0)
+      );
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    white-space: nowrap;
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease,
+      background-color 0.2s ease;
+  }
+  
+  .tech-pill:hover {
+    border-color: rgba(245, 166, 35, 0.35);
+    transform: translateY(-2px);
+  }
+  
+  
+  /* ============================================================================
+     7. TECH PILL — ICON
+     ========================================================================== */
+  
+  .tech-pill .tech-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: var(--icon-box-bg);
+    border: 1px solid rgba(245, 166, 35, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .tech-pill .tech-icon svg {
+    width: 15px;
+    height: 15px;
+    stroke: var(--accent-solid);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  
+  
+  /* ============================================================================
+     8. TECH PILL — TEXT
+     ========================================================================== */
+  
+  .tech-pill .tech-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .tech-pill .tech-name {
+    font-family: var(--font-body, var(--font-display));
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
+  
+  .tech-pill .tech-cat {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+  }
+  
+  
+  /* ============================================================================
+     9. TABLET
+     ========================================================================== */
+  
+  @media (max-width: 900px) {
+    .marquee-section {
+      padding: 60px 0 70px;
+    }
+  
+    .marquee-head {
+      margin-bottom: 32px;
+    }
+  
+    .marquee-head h3 {
+      font-size: 22px;
+    }
+  
+    .marquee-head p {
+      font-size: 13.5px;
+      padding: 0 16px;
+    }
+  
+    .tech-pill {
+      padding: 11px 16px;
+      gap: 9px;
+    }
+  
+    .tech-pill .tech-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+    }
+  
+    .tech-pill .tech-icon svg {
+      width: 13px;
+      height: 13px;
+    }
+  
+    .tech-pill .tech-name {
+      font-size: 13px;
+    }
+  
+    .tech-pill .tech-cat {
+      font-size: 9px;
+    }
+  }
+  
+  
+  /* ============================================================================
+     10. MOBILE
+     ========================================================================== */
+  
+  @media (max-width: 560px) {
+    .marquee-section {
+      padding: 50px 0 60px;
+    }
+  
+    .marquee-head {
+      margin-bottom: 26px;
+    }
+  
+    .marquee-head h3 {
+      font-size: 20px;
+    }
+  
+    .marquee-rows {
+      gap: 12px;
+    }
+  
+    .tech-pill {
+      padding: 10px 14px;
+      gap: 8px;
+      border-radius: 10px;
+    }
+  
+    .tech-pill .tech-icon {
+      width: 24px;
+      height: 24px;
+    }
+  
+    .tech-pill .tech-icon svg {
+      width: 12px;
+      height: 12px;
+    }
+  
+    .tech-pill .tech-name {
+      font-size: 12.5px;
+    }
+  
+    .tech-pill .tech-cat {
+      font-size: 8.5px;
+    }
+  }
+  
+  
+  /* ============================================================================
+     11. REDUCED MOTION — CSS SAFETY NET
+     ----------------------------------------------------------------------------
+     If the user prefers reduced motion, JS pauses the rAF loop. This fallback
+     ensures the strip becomes horizontally scrollable (so all pills remain
+     accessible) even before JS loads, or if JS is disabled entirely.
+     ========================================================================== */
+  
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+  
+    .marquee::-webkit-scrollbar {
+      display: none;
+    }
+  
+    .marquee-track {
+      transform: none !important;
+    }
+  
+    .tech-pill {
+      transition: none;
+    }
+  
+    .tech-pill:hover {
+      transform: none;
+    }
+  }

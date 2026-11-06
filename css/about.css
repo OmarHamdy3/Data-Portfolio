@@ -254,6 +254,7 @@
       
         font-size: var(--a-text-lead);
         line-height: 1.85;
+        text-wrap: pretty;
       
         color: var(--text-secondary, #a7adb7);
       }
@@ -3021,3 +3022,20 @@
        transition: none;
      }
    }
+
+
+   .monogram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+  }
+  
+  .monogram img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
