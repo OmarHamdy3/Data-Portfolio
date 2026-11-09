@@ -5,10 +5,12 @@
    required. Guarantees motion regardless of CSS load order or overrides.
 
    Features:
-     · Auto-duplicates pills so the loop is seamless.
+     · Repeats pills until one set covers the viewport, then duplicates once
+       more so the loop is seamless on any screen width.
      · Per-track direction via data-direction="left" | "right".
      · Configurable speed via data-speed (px/sec); defaults to 60.
      · Pauses on: hover, keyboard focus, hidden tab, reduced motion.
+     · Re-measures after fonts/images load and on resize.
      · No dependencies, no global leakage, safe with `defer`.
 
    Usage:
@@ -18,8 +20,9 @@
    (function () {
     'use strict';
   
+    function init() {
     var tracks = document.querySelectorAll('.marquee-track');
-    if (!tracks.length) return;
+    if (!tracks.length) { console.warn('[marquee] no .marquee-track found'); return; }
   
     /* ------------------------------------------------------------------------
        CONFIG
@@ -28,21 +31,50 @@
     var DEFAULT_SPEED_PX_PER_SEC = 60;
     var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   
+    // Set to false if you want to respect the OS "reduce motion" setting.
+    var FORCE_MOTION = true;
+  
+    function reduced() {
+      return !FORCE_MOTION && motionQuery.matches;
+    }
+  
+    var sectionEl = document.querySelector('.marquee-section');
+    if (sectionEl && FORCE_MOTION) sectionEl.setAttribute('data-force-motion', '');
+  
+    // Debug info: open DevTools console
+    console.log('[marquee] tracks:', tracks.length,
+                '| OS reduce-motion:', motionQuery.matches,
+                '| forced:', FORCE_MOTION);
+  
     /* ------------------------------------------------------------------------
-       DUPLICATE CONTENT — ensures each track's children repeat 2× for the loop
+       BUILD THE LOOP — repeat the set to fill the viewport, then duplicate once
        ------------------------------------------------------------------------ */
   
-    Array.prototype.forEach.call(tracks, function (track) {
-      if (track.dataset.marqueeReady === 'true') return;
-  
-      var children = Array.prototype.slice.call(track.children);
-      if (!children.length) return;
-  
-      children.forEach(function (node) {
+    function cloneInto(track, nodes) {
+      nodes.forEach(function (node) {
         var clone = node.cloneNode(true);
         clone.setAttribute('aria-hidden', 'true');
         track.appendChild(clone);
       });
+    }
+  
+    Array.prototype.forEach.call(tracks, function (track) {
+      if (track.dataset.marqueeReady === 'true') return;
+  
+      var originals = Array.prototype.slice.call(track.children);
+      if (!originals.length) return;
+  
+      // Repeat the set until one "half" is wider than the viewport
+      var setWidth = track.scrollWidth;
+      var viewWidth = track.parentElement.clientWidth;
+      var repeats = setWidth > 0 ? Math.max(1, Math.ceil(viewWidth / setWidth)) : 1;
+  
+      for (var r = 1; r < repeats; r++) {
+        cloneInto(track, originals);
+      }
+  
+      // Then duplicate everything once more for the seamless loop
+      cloneInto(track, Array.prototype.slice.call(track.children));
   
       track.dataset.marqueeReady = 'true';
     });
@@ -54,8 +86,7 @@
     var states = new WeakMap();
   
     Array.prototype.forEach.call(tracks, function (track) {
-      var directionAttr = track.dataset.direction;
-      var direction = directionAttr === 'right' ? 1 : -1;
+      var direction = track.dataset.direction === 'right' ? 1 : -1;
   
       var speedAttr = parseFloat(track.dataset.speed);
       var speed = isFinite(speedAttr) && speedAttr > 0
@@ -72,7 +103,7 @@
     });
   
     /* ------------------------------------------------------------------------
-       MEASURE — recalc half-width (total scroll width / 2)
+       MEASURE — half-width = total scroll width / 2
        ------------------------------------------------------------------------ */
   
     function measure(track) {
@@ -81,14 +112,22 @@
       state.halfWidth = track.scrollWidth / 2;
     }
   
-    Array.prototype.forEach.call(tracks, measure);
+    function measureAll() {
+      Array.prototype.forEach.call(tracks, measure);
+    }
+  
+    measureAll();
+  
+    // Re-measure once fonts / images have loaded (widths change after load)
+    window.addEventListener('load', measureAll);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(measureAll);
+    }
   
     var resizeTimer = null;
     window.addEventListener('resize', function () {
       if (resizeTimer) clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () {
-        Array.prototype.forEach.call(tracks, measure);
-      }, 120);
+      resizeTimer = setTimeout(measureAll, 120);
     });
   
     /* ------------------------------------------------------------------------
@@ -108,7 +147,7 @@
     if (section) {
       section.addEventListener('mouseenter', function () { setAllPaused(true); });
       section.addEventListener('mouseleave', function () {
-        if (!motionQuery.matches && !document.hidden) setAllPaused(false);
+        if (!reduced() && !document.hidden) setAllPaused(false);
       });
     }
   
@@ -121,7 +160,7 @@
       track.addEventListener('focusout', function (e) {
         if (!track.contains(e.relatedTarget)) {
           var state = states.get(track);
-          if (state && !motionQuery.matches && !document.hidden) {
+          if (state && !reduced() && !document.hidden) {
             state.paused = false;
           }
         }
@@ -135,7 +174,7 @@
   
     /* Reduced-motion pause (dynamic) */
     function applyReducedMotion() {
-      if (motionQuery.matches) {
+      if (reduced()) {
         setAllPaused(true);
       } else if (!document.hidden) {
         setAllPaused(false);
@@ -160,7 +199,7 @@
       var dt = Math.min((now - lastTime) / 1000, 0.1); // cap delta at 100ms
       lastTime = now;
   
-      if (!motionQuery.matches && !document.hidden) {
+      if (!reduced() && !document.hidden) {
         Array.prototype.forEach.call(tracks, function (track) {
           var state = states.get(track);
           if (!state || state.paused || state.halfWidth <= 0) return;
@@ -182,4 +221,11 @@
     }
   
     requestAnimationFrame(tick);
+    }
+  
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   })();

@@ -1,0 +1,579 @@
+/* ============================================================================
+   OMAR HAMDY — PORTFOLIO
+   services.css
+   ============================================================================
+   Services section — header + 3-column service cards + process panel.
+   Uses the same tokens, gold accents and card recipe as achievements.css.
+
+   1. Section shell
+   2. Services grid + card
+   3. Card content
+   4. Process panel
+   5. Responsive
+   6. Accessibility & reduced motion
+   ========================================================================= */
+
+
+/* ============================================================================
+   1. SECTION SHELL
+   ========================================================================= */
+
+   .services-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  
+    padding: 120px 0;
+  
+    background:
+      radial-gradient(circle at 8% 12%, rgba(245, 166, 35, 0.055), transparent 30%),
+      radial-gradient(circle at 92% 80%, rgba(245, 166, 35, 0.035), transparent 28%),
+      var(--bg);
+  }
+  
+  .services-section::before {
+    content: "";
+  
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.014) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+    background-size: 72px 72px;
+  
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 85%);
+  }
+  
+  .services-section > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  
+  /* ============================================================================
+     2. SERVICES GRID + CARD
+     ========================================================================= */
+  
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  
+  .service-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  
+    display: flex;
+    flex-direction: column;
+  
+    padding: 28px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 22px;
+  
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.016)
+    );
+  
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  
+    transition:
+      transform 0.35s ease,
+      border-color 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+  
+  /* Corner glow */
+  .service-card::before {
+    content: "";
+  
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    z-index: -1;
+    pointer-events: none;
+  
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+  
+    background: radial-gradient(circle, rgba(245, 166, 35, 0.1), transparent 70%);
+  
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(245, 166, 35, 0.28);
+    box-shadow:
+      0 25px 55px rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .service-card:hover::before { opacity: 1; }
+  
+  
+  /* ============================================================================
+     3. CARD CONTENT
+     ========================================================================= */
+  
+  .service-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    margin-bottom: 24px;
+  }
+  
+  .service-icon {
+    display: grid;
+    place-items: center;
+  
+    width: 48px;
+    height: 48px;
+  
+    border: 1px solid rgba(245, 166, 35, 0.18);
+    border-radius: 14px;
+    background: rgba(245, 166, 35, 0.065);
+  
+    transition:
+      border-color 0.3s ease,
+      background-color 0.3s ease;
+  }
+  
+  .service-icon svg {
+    width: 21px;
+    height: 21px;
+  
+    stroke: var(--accent-solid);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  
+  .service-card:hover .service-icon {
+    border-color: rgba(245, 166, 35, 0.32);
+    background: rgba(245, 166, 35, 0.12);
+  }
+  
+  .service-index {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  
+  .service-category {
+    display: block;
+    margin-bottom: 10px;
+  
+    color: var(--accent-solid);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
+  
+  .service-card h3 {
+    margin: 0 0 12px;
+  
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+  
+    text-wrap: balance;
+  }
+  
+  .service-card > p {
+    margin: 0 0 20px;
+  
+    color: var(--text-secondary);
+    font-size: 13.5px;
+    line-height: 1.75;
+  
+    text-wrap: pretty;
+  }
+  
+  .service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  
+    margin: 0 0 22px;
+    padding: 18px 0 0;
+  
+    border-top: 1px solid var(--divider);
+    list-style: none;
+  }
+  
+  .service-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+  
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+  
+  .service-list li::before {
+    content: "";
+  
+    flex: 0 0 6px;
+    width: 6px;
+    height: 6px;
+    margin-top: 7px;
+  
+    border-radius: 2px;
+    background: var(--accent-solid);
+    box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.08);
+  
+    transform: rotate(45deg);
+  }
+  
+  .service-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  
+    margin-bottom: 24px;
+  }
+  
+  .service-tools span {
+    padding: 6px 10px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.025);
+  
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+  }
+  
+  .service-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  
+    margin-top: auto;
+    padding-top: 18px;
+  
+    border-top: 1px solid var(--divider);
+  
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+  
+    transition: color 0.25s ease;
+  }
+  
+  .service-link span:last-child {
+    color: var(--accent-solid);
+    font-size: 15px;
+  
+    transition: transform 0.25s ease;
+  }
+  
+  .service-link:hover { color: var(--accent-solid); }
+  
+  .service-link:hover span:last-child { transform: translate(3px, -3px); }
+  
+  
+  /* ============================================================================
+     4. PROCESS PANEL
+     ========================================================================= */
+  
+  .services-process {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  
+    margin-top: 28px;
+    padding: 40px 44px 36px;
+  
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 28px;
+  
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.018)
+    );
+  
+    box-shadow:
+      0 30px 90px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .services-process::before {
+    content: "";
+  
+    position: absolute;
+    top: -260px;
+    right: -240px;
+    z-index: -1;
+    pointer-events: none;
+  
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+  
+    background: radial-gradient(circle, rgba(245, 166, 35, 0.12), transparent 68%);
+  }
+  
+  .process-head { margin-bottom: 30px; }
+  
+  .block-label {
+    display: block;
+    margin-bottom: 10px;
+  
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+  
+  .process-head h4 {
+    margin: 0;
+  
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  
+    margin: 0;
+    padding: 0;
+  
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    list-style: none;
+  }
+  
+  .process-steps li {
+    position: relative;
+  
+    padding: 24px 24px 26px;
+  
+    border-right: 1px solid var(--divider);
+  }
+  
+  .process-steps li:last-child { border-right: 0; }
+  
+  .process-steps li:first-child { padding-left: 0; }
+  
+  .step-no {
+    display: block;
+    margin-bottom: 14px;
+  
+    color: var(--accent-solid);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+  }
+  
+  .process-steps strong {
+    display: block;
+    margin-bottom: 8px;
+  
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  
+  .process-steps p {
+    margin: 0;
+  
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+  
+  .process-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  
+    padding-top: 28px;
+  }
+  
+  .process-cta p {
+    max-width: 520px;
+    margin: 0;
+  
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  
+  .process-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    gap: 12px;
+  
+    padding: 14px 22px;
+  
+    border-radius: 11px;
+    background: linear-gradient(
+      135deg,
+      var(--accent-start, #ffc35a),
+      var(--accent-end, #ff8a3d)
+    );
+  
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+  
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      0 10px 28px -8px rgba(245, 166, 35, 0.4);
+  
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      filter 0.25s ease;
+  }
+  
+  .process-button svg {
+    width: 16px;
+    height: 16px;
+  
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  
+    transition: transform 0.25s ease;
+  }
+  
+  .process-button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      0 14px 34px -8px rgba(245, 166, 35, 0.5);
+  }
+  
+  .process-button:hover svg { transform: translateX(3px); }
+  
+  
+  /* ============================================================================
+     5. RESPONSIVE
+     ========================================================================= */
+  
+  @media (max-width: 1100px) {
+    .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  
+    .services-process { padding: 34px 32px 30px; }
+  
+    .process-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  
+    .process-steps li,
+    .process-steps li:first-child { padding: 24px; }
+  
+    .process-steps li:nth-child(odd) { padding-left: 0; }
+  
+    .process-steps li:nth-child(2) { border-right: 0; }
+  
+    .process-steps li:nth-child(-n + 2) { border-bottom: 1px solid var(--divider); }
+  }
+  
+  @media (max-width: 800px) {
+    .services-section { padding: 90px 0; }
+  
+    .process-cta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .services-section { padding: 72px 0; }
+  
+    .services-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 16px;
+    }
+  
+    .service-card {
+      padding: 24px 22px;
+      border-radius: 18px;
+    }
+  
+    .service-card h3 { font-size: 18px; }
+  
+    .services-process {
+      padding: 26px 22px 24px;
+      border-radius: 22px;
+    }
+  
+    .process-head h4 { font-size: 20px; }
+  
+    .process-steps { grid-template-columns: minmax(0, 1fr); }
+  
+    .process-steps li,
+    .process-steps li:first-child,
+    .process-steps li:nth-child(odd) {
+      padding: 20px 0;
+  
+      border-right: 0;
+      border-bottom: 1px solid var(--divider);
+    }
+  
+    .process-steps li:last-child { border-bottom: 0; }
+  
+    .process-button { width: 100%; }
+  }
+  
+  
+  /* ============================================================================
+     6. ACCESSIBILITY & REDUCED MOTION
+     ========================================================================= */
+  
+  .service-link:focus-visible,
+  .process-button:focus-visible {
+    outline: 2px solid var(--accent-solid);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .services-section *,
+    .services-section *::before,
+    .services-section *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  
+    .service-card:hover,
+    .process-button:hover { transform: none; }
+  }

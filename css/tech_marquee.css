@@ -87,14 +87,14 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    mask-image: linear-gradient(
+    -webkit-mask-image: linear-gradient(
       90deg,
       transparent,
       #000 6%,
       #000 94%,
       transparent
     );
-    -webkit-mask-image: linear-gradient(
+    mask-image: linear-gradient(
       90deg,
       transparent,
       #000 6%,
@@ -109,28 +109,18 @@
      ----------------------------------------------------------------------------
      The transform is controlled by JS. Do NOT add CSS @keyframes here —
      marquee.js updates `transform: translate3d()` every frame.
+  
+     NOTE: Do not use `gap` here. Spacing is a margin on each pill so the
+     total width is exactly 2x one set, which keeps the loop seamless.
      ========================================================================== */
   
-     .marquee-track {
-      display: flex;
-      width: max-content;
-      gap: 0;
-      will-change: transform;
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 0;
+    will-change: transform;
   }
   
-  .marquee-group {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-shrink: 0;
-      padding-right: 14px;
-  }
-  
-  .marquee {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-  }
   
   /* ============================================================================
      6. TECH PILL
@@ -141,6 +131,7 @@
     align-items: center;
     gap: 11px;
     flex-shrink: 0;
+    margin-right: 16px;            /* space between pills */
     padding: 13px 22px;
     border-radius: 12px;
     background:
@@ -242,6 +233,7 @@
     }
   
     .tech-pill {
+      margin-right: 12px;
       padding: 11px 16px;
       gap: 9px;
     }
@@ -289,6 +281,7 @@
     }
   
     .tech-pill {
+      margin-right: 10px;
       padding: 10px 14px;
       gap: 8px;
       border-radius: 10px;
@@ -318,31 +311,30 @@
      11. REDUCED MOTION — CSS SAFETY NET
      ----------------------------------------------------------------------------
      If the user prefers reduced motion, JS pauses the rAF loop. This fallback
-     ensures the strip becomes horizontally scrollable (so all pills remain
-     accessible) even before JS loads, or if JS is disabled entirely.
+     makes the strip horizontally scrollable so all pills remain accessible.
      ========================================================================== */
   
   @media (prefers-reduced-motion: reduce) {
-    .marquee {
+    .marquee-section:not([data-force-motion]) .marquee {
       overflow-x: auto;
       overflow-y: hidden;
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
   
-    .marquee::-webkit-scrollbar {
+    .marquee-section:not([data-force-motion]) .marquee::-webkit-scrollbar {
       display: none;
     }
   
-    .marquee-track {
+    .marquee-section:not([data-force-motion]) .marquee-track {
       transform: none !important;
     }
   
-    .tech-pill {
+    .marquee-section:not([data-force-motion]) .tech-pill {
       transition: none;
     }
   
-    .tech-pill:hover {
+    .marquee-section:not([data-force-motion]) .tech-pill:hover {
       transform: none;
     }
   }

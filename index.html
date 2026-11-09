@@ -62,6 +62,8 @@
   <link rel="stylesheet" href="css/about.css" />
   <link rel="stylesheet" href="css/contact.css" />
   <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/service.css" />
+
 
   <!-- Global responsive overrides — MUST be last -->
   <link rel="stylesheet" href="css/responsive.css" />
@@ -558,24 +560,7 @@
         </div>
       </div>
 
-      <div class="hero-metrics">
-        <div class="hero-metric">
-          <span class="metric-value">SQL</span>
-          <span class="metric-label">Data Querying</span>
-        </div>
-        <div class="hero-metric">
-          <span class="metric-value">BI</span>
-          <span class="metric-label">Power BI</span>
-        </div>
-        <div class="hero-metric">
-          <span class="metric-value">PY</span>
-          <span class="metric-label">Python</span>
-        </div>
-        <div class="hero-metric">
-          <span class="metric-value">3rd</span>
-          <span class="metric-label">National Ranking</span>
-        </div>
-      </div>
+     
     </div>
 
     <a href="#about" class="hero-scroll" aria-label="Scroll to About section">
@@ -585,166 +570,181 @@
   </section>
 
 
-  <section class="marquee-section">
-    <div class="wrap marquee-head">
-      <div class="eyebrow-wrap">
-        <span class="eyebrow"><span class="dot"></span>TECH STACK</span>
-      </div>
-      <h3>Tools I bring to every project</h3>
-      <p>
-        BI platforms, databases, cloud services, and the Python stack — the
-        toolkit behind the dashboards.
-      </p>
+<!-- Load these in your page:
+     <link rel="stylesheet" href="marquee.css">
+     <script src="marquee.js" defer></script>
+-->
+<section class="marquee-section">
+  <div class="wrap marquee-head">
+    <div class="eyebrow-wrap">
+      <span class="eyebrow"><span class="dot"></span>TECH STACK</span>
     </div>
-  
-    <div class="marquee-rows">
-      <div class="marquee">
-        <div class="marquee-track" data-direction="left">
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">Power BI</span>
-              <span class="tech-cat">BI &amp; REPORTING</span>
-            </span>
+    <h3>Tools I bring to every project</h3>
+    <p>
+      BI platforms, databases, cloud services, and the Python stack — the
+      toolkit behind the dashboards.
+    </p>
+  </div>
+
+  <div class="marquee-rows">
+
+    <!-- Row 1: moves left -->
+    <div class="marquee">
+      <div class="marquee-track" data-direction="left" data-speed="60">
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>
+            </svg>
           </span>
-  
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">DAX</span>
-              <span class="tech-cat">BI &amp; REPORTING</span>
-            </span>
+          <span class="tech-text">
+            <span class="tech-name">Power BI</span>
+            <span class="tech-cat">BI &amp; REPORTING</span>
           </span>
-  
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <ellipse cx="12" cy="5" rx="8" ry="3"/>
-                <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/>
-                <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">SQL Server</span>
-              <span class="tech-cat">DATABASE</span>
-            </span>
+        </span>
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>
+            </svg>
           </span>
-  
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <ellipse cx="12" cy="5" rx="8" ry="3"/>
-                <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/>
-                <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">PostgreSQL</span>
-              <span class="tech-cat">DATABASE</span>
-            </span>
+          <span class="tech-text">
+            <span class="tech-name">DAX</span>
+            <span class="tech-cat">BI &amp; REPORTING</span>
           </span>
-  
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h.79a4.5 4.5 0 1 1 0 9z"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">Azure</span>
-              <span class="tech-cat">CLOUD</span>
-            </span>
+        </span>
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="8" ry="3"/>
+              <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/>
+              <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
+            </svg>
           </span>
-  
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h.79a4.5 4.5 0 1 1 0 9z"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">SSIS</span>
-              <span class="tech-cat">ETL</span>
-            </span>
+          <span class="tech-text">
+            <span class="tech-name">SQL Server</span>
+            <span class="tech-cat">DATABASE</span>
           </span>
-        </div>
-      </div>
-  
-      <div class="marquee">
-        <div class="marquee-track" data-direction="right">
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">Python</span>
-              <span class="tech-cat">PROGRAMMING</span>
-            </span>
+        </span>
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="8" ry="3"/>
+              <path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/>
+              <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/>
+            </svg>
           </span>
-  
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">Pandas</span>
-              <span class="tech-cat">PROGRAMMING</span>
-            </span>
+          <span class="tech-text">
+            <span class="tech-name">PostgreSQL</span>
+            <span class="tech-cat">DATABASE</span>
           </span>
-  
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">NumPy</span>
-              <span class="tech-cat">PROGRAMMING</span>
-            </span>
+        </span>
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.5 19H9a7 7 0 1 1 6.71-9h.79a4.5 4.5 0 1 1 0 9z"/>
+            </svg>
           </span>
-  
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">Tableau</span>
-              <span class="tech-cat">BI &amp; REPORTING</span>
-            </span>
+          <span class="tech-text">
+            <span class="tech-name">Azure</span>
+            <span class="tech-cat">CLOUD</span>
           </span>
-  
-          <span class="tech-pill">
-            <span class="tech-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>
-              </svg>
-            </span>
-            <span class="tech-text">
-              <span class="tech-name">Excel</span>
-              <span class="tech-cat">BI &amp; REPORTING</span>
-            </span>
+        </span>
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.5 19H9a7 7 0 1 1 6.71-9h.79a4.5 4.5 0 1 1 0 9z"/>
+            </svg>
           </span>
-        </div>
+          <span class="tech-text">
+            <span class="tech-name">SSIS</span>
+            <span class="tech-cat">ETL</span>
+          </span>
+        </span>
+
       </div>
     </div>
-  </section>
+
+    <!-- Row 2: moves right -->
+    <div class="marquee">
+      <div class="marquee-track" data-direction="right" data-speed="60">
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </span>
+          <span class="tech-text">
+            <span class="tech-name">Python</span>
+            <span class="tech-cat">PROGRAMMING</span>
+          </span>
+        </span>
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </span>
+          <span class="tech-text">
+            <span class="tech-name">Pandas</span>
+            <span class="tech-cat">PROGRAMMING</span>
+          </span>
+        </span>
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+            </svg>
+          </span>
+          <span class="tech-text">
+            <span class="tech-name">NumPy</span>
+            <span class="tech-cat">PROGRAMMING</span>
+          </span>
+        </span>
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>
+            </svg>
+          </span>
+          <span class="tech-text">
+            <span class="tech-name">Tableau</span>
+            <span class="tech-cat">BI &amp; REPORTING</span>
+          </span>
+        </span>
+
+        <span class="tech-pill">
+          <span class="tech-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/>
+            </svg>
+          </span>
+          <span class="tech-text">
+            <span class="tech-name">Excel</span>
+            <span class="tech-cat">BI &amp; REPORTING</span>
+          </span>
+        </span>
+
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
+
+ 
+     
   <!-- ==========================================================================
        ABOUT
        ====================================================================== -->
@@ -786,26 +786,30 @@
 
         <!-- Identity card + CV download -->
         <div class="profile-card">
-          <span class="monogram">
-            <img src="C:\Users\Administrator\Desktop\My Portfolio 2027\assest\logo\Logo.png" alt="Omar Hamdy Logo">
-          </span>
 
+          <!-- 4×6 portrait -->
+          <figure class="profile-photo">
+            <img
+              src="C:\Users\Administrator\Desktop\My Portfolio 2027\assest\logo\ProfileImage.png"
+              alt="Portrait of Omar Hamdy, Data Analyst and BI Developer"
+              width="480"
+              height="720"
+              loading="lazy"
+              decoding="async">
+            <figcaption class="profile-photo-caption">
+              <span class="profile-photo-status" aria-hidden="true"></span>
+              <span>Omar Hamdy</span>
+            </figcaption>
+          </figure>
+        
           <p class="profile-name">Omar Hamdy</p>
           <span class="profile-role">Data Analyst · BI Developer</span>
-
+        
           <span class="profile-availability" role="status">
             <span class="status-dot" aria-hidden="true"></span>
             <span>Available for opportunities</span>
           </span>
-
-          <!--
-            CV download.
-            • `download="Omar-Hamdy-CV.pdf"` forces save-as with a clean name.
-            • aria-label includes format + size for screen reader users —
-              the same info is visible in .cv-meta below, but that element
-              is aria-hidden to avoid duplicate announcements.
-            • Update the href to the real PDF path before shipping.
-          -->
+        
           <a class="cv-button"
              href="/assets/omar-hamdy-cv.pdf"
              download="Omar-Hamdy-CV.pdf"
@@ -819,7 +823,7 @@
               <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
           </a>
-
+        
           <span class="cv-meta" aria-hidden="true">
             <span>PDF</span>
             <span class="cv-sep"></span>
@@ -953,6 +957,65 @@
           </article>
 
         </div>
+
+        <!-- Toolkit strip -->
+<div class="about-toolkit">
+  <span class="toolkit-label">Toolkit</span>
+  <div class="toolkit-items">
+    <span class="toolkit-chip">SQL</span>
+    <span class="toolkit-chip">Power BI</span>
+    <span class="toolkit-chip">Python</span>
+    <span class="toolkit-chip">Excel</span>
+    <span class="toolkit-chip">DAX</span>
+    <span class="toolkit-chip">Data Modeling</span>
+  </div>
+</div>
+
+<!-- Timeline -->
+<article class="about-timeline">
+  <div class="about-label">
+    <span class="label-line"></span>
+    <span>Trajectory</span>
+  </div>
+
+  <ol class="timeline-track">
+    <li class="timeline-item">
+      <span class="timeline-year">2022</span>
+      <span class="timeline-dot" aria-hidden="true"></span>
+      <div class="timeline-body">
+        <span class="timeline-title">Started with data</span>
+        <p>Excel, SQL fundamentals, and first dashboards.</p>
+      </div>
+    </li>
+
+    <li class="timeline-item">
+      <span class="timeline-year">2023</span>
+      <span class="timeline-dot" aria-hidden="true"></span>
+      <div class="timeline-body">
+        <span class="timeline-title">DEPI — Data Analysis</span>
+        <p>National capstone project · 3rd place nationally.</p>
+      </div>
+    </li>
+
+    <li class="timeline-item">
+      <span class="timeline-year">2024</span>
+      <span class="timeline-dot" aria-hidden="true"></span>
+      <div class="timeline-body">
+        <span class="timeline-title">Power BI &amp; modeling</span>
+        <p>Dimensional models, DAX, and production dashboards.</p>
+      </div>
+    </li>
+
+    <li class="timeline-item">
+      <span class="timeline-year">2026</span>
+      <span class="timeline-dot" aria-hidden="true"></span>
+      <div class="timeline-body">
+        <span class="timeline-title">BI developer</span>
+        <p>Building data products teams actually use.</p>
+      </div>
+    </li>
+  </ol>
+</article>
 
       </div>
 
@@ -1944,6 +2007,193 @@
       </div>
     </div>
   </section>
+
+
+  <!-- ==========================================================================
+     SERVICES
+     Place between Skills and Projects (or wherever fits your page order).
+     Nav link:  <a href="#services">Services</a>
+     ====================================================================== -->
+<section id="services" class="services-section" aria-labelledby="services-heading">
+  <div class="wrap">
+
+    <!-- ============================ HEADER ============================ -->
+    <div class="section-head services-head">
+      <div class="eyebrow-wrap">
+        <span class="eyebrow"><span class="dot"></span>SERVICES</span>
+      </div>
+      <div class="services-heading">
+        <h2 id="services-heading">Data services that <span class="accent">drive decisions.</span></h2>
+        <p>End-to-end data analysis and business intelligence, from raw data to dashboards your team can act on.</p>
+      </div>
+    </div>
+
+    <!-- ============================ SERVICES GRID ============================ -->
+    <div class="services-grid">
+
+      <!-- 01 · Dashboards -->
+      <article class="service-card">
+        <div class="service-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V10"/><path d="M10 20V4"/><path d="M16 20v-7"/><path d="M22 20H2"/></svg>
+          </div>
+          <span class="service-index">01</span>
+        </div>
+        <span class="service-category">BUSINESS INTELLIGENCE</span>
+        <h3>Power BI Dashboards &amp; Reporting</h3>
+        <p>Interactive dashboards that turn business data into a clear view of performance, with KPIs and filters your stakeholders can use on their own.</p>
+        <ul class="service-list">
+          <li>KPI scorecards and executive summaries</li>
+          <li>Drill-down reports by region, product and time</li>
+          <li>Clean, consistent visual design</li>
+        </ul>
+        <div class="service-tools"><span>Power BI</span><span>DAX</span><span>Excel</span></div>
+        <a href="#contact" class="service-link"><span>Request this service</span><span aria-hidden="true">↗</span></a>
+      </article>
+
+      <!-- 02 · Cleaning -->
+      <article class="service-card">
+        <div class="service-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4 2v-8L3 5z"/></svg>
+          </div>
+          <span class="service-index">02</span>
+        </div>
+        <span class="service-category">DATA PREPARATION</span>
+        <h3>Data Cleaning &amp; Preparation</h3>
+        <p>Messy, inconsistent data turned into a reliable dataset you can trust, with every cleaning step documented and repeatable.</p>
+        <ul class="service-list">
+          <li>Duplicate, missing and outlier handling</li>
+          <li>Standardizing formats, types and categories</li>
+          <li>Merging data from multiple sources</li>
+        </ul>
+        <div class="service-tools"><span>Python</span><span>SQL</span><span>Excel</span></div>
+        <a href="#contact" class="service-link"><span>Request this service</span><span aria-hidden="true">↗</span></a>
+      </article>
+
+      <!-- 03 · Modeling -->
+      <article class="service-card">
+        <div class="service-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>
+          </div>
+          <span class="service-index">03</span>
+        </div>
+        <span class="service-category">DATA MODELING</span>
+        <h3>Data Modeling &amp; DAX Measures</h3>
+        <p>A well-structured data model that keeps reports fast and numbers consistent, with measures defined once and reused everywhere.</p>
+        <ul class="service-list">
+          <li>Star-schema design with fact and dimension tables</li>
+          <li>Reusable DAX measures and time intelligence</li>
+          <li>Optimized models for faster refresh</li>
+        </ul>
+        <div class="service-tools"><span>Power BI</span><span>DAX</span><span>Star Schema</span></div>
+        <a href="#contact" class="service-link"><span>Request this service</span><span aria-hidden="true">↗</span></a>
+      </article>
+
+      <!-- 04 · SQL -->
+      <article class="service-card">
+        <div class="service-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+          </div>
+          <span class="service-index">04</span>
+        </div>
+        <span class="service-category">DATABASES</span>
+        <h3>SQL Analysis &amp; Database Reporting</h3>
+        <p>Answers pulled straight from your databases: clear, efficient queries and report-ready datasets that your team can reuse.</p>
+        <ul class="service-list">
+          <li>Complex queries, joins and aggregations</li>
+          <li>Views and report-ready datasets</li>
+          <li>Query performance review</li>
+        </ul>
+        <div class="service-tools"><span>SQL Server</span><span>PostgreSQL</span><span>SQL</span></div>
+        <a href="#contact" class="service-link"><span>Request this service</span><span aria-hidden="true">↗</span></a>
+      </article>
+
+      <!-- 05 · ETL -->
+      <article class="service-card">
+        <div class="service-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5V12a3 3 0 0 0 3 3h6.5"/><path d="M15 12l3 3-3 3"/></svg>
+          </div>
+          <span class="service-index">05</span>
+        </div>
+        <span class="service-category">DATA ENGINEERING</span>
+        <h3>ETL &amp; Data Pipelines</h3>
+        <p>Automated pipelines that move data from source to report on a schedule, so dashboards stay current without manual work.</p>
+        <ul class="service-list">
+          <li>Extract, transform and load workflows</li>
+          <li>Scheduled refresh and automation</li>
+          <li>Cloud-ready setup on Azure</li>
+        </ul>
+        <div class="service-tools"><span>SSIS</span><span>Azure</span><span>SQL Server</span></div>
+        <a href="#contact" class="service-link"><span>Request this service</span><span aria-hidden="true">↗</span></a>
+      </article>
+
+      <!-- 06 · Excel -->
+      <article class="service-card">
+        <div class="service-top">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M9 4v16"/></svg>
+          </div>
+          <span class="service-index">06</span>
+        </div>
+        <span class="service-category">REPORTING</span>
+        <h3>Excel Analysis &amp; Reporting</h3>
+        <p>Structured spreadsheets and recurring reports that replace manual, error-prone work with clear, repeatable analysis.</p>
+        <ul class="service-list">
+          <li>Pivot tables, formulas and summary reports</li>
+          <li>Automated, recurring report templates</li>
+          <li>Ad-hoc analysis and data checks</li>
+        </ul>
+        <div class="service-tools"><span>Excel</span><span>Power Query</span><span>Pivot Tables</span></div>
+        <a href="#contact" class="service-link"><span>Request this service</span><span aria-hidden="true">↗</span></a>
+      </article>
+
+    </div>
+
+    <!-- ============================ PROCESS ============================ -->
+    <div class="services-process">
+      <div class="process-head">
+        <span class="block-label">HOW WE WORK TOGETHER</span>
+        <h4>A clear, four-step process</h4>
+      </div>
+
+      <ol class="process-steps">
+        <li>
+          <span class="step-no">01</span>
+          <strong>Discovery</strong>
+          <p>We define your goals, questions and the KPIs that matter.</p>
+        </li>
+        <li>
+          <span class="step-no">02</span>
+          <strong>Data audit</strong>
+          <p>I review your sources, data quality and what is needed.</p>
+        </li>
+        <li>
+          <span class="step-no">03</span>
+          <strong>Build</strong>
+          <p>Cleaning, modeling and dashboards, shared in progress for feedback.</p>
+        </li>
+        <li>
+          <span class="step-no">04</span>
+          <strong>Deliver &amp; hand over</strong>
+          <p>Final delivery with a walkthrough so your team can use it confidently.</p>
+        </li>
+      </ol>
+
+      <div class="process-cta">
+        <p>Have a data challenge in mind? Tell me about it and I'll suggest the right approach.</p>
+        <a href="#contact" class="process-button">
+          <span>Start a conversation</span>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 
   <!-- ==========================================================================
